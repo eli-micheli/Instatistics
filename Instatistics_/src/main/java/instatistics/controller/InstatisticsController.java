@@ -18,6 +18,6 @@ private InstatisticsServiceImpl instatisticsService;
 
 @RequestMapping(value="/media_type")
 public ResponseEntity<Object> getMedia() throws ParseException{
-	return new ResponseEntity<>(instatisticsService.getMedia("media_type"),HttpStatus.OK);
+	return new ResponseEntity<>(instatisticsService.getMedia_type("media_type"),HttpStatus.OK);
 }
 }

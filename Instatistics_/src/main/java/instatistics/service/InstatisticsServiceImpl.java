@@ -15,7 +15,7 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 	private String url="https://graph.instagram.com/me/media/?fields=";
     
 	@Override
-	public JSONObject getMedia(String word) {
+	public JSONObject getMedia_type(String word) {
 		JSONObject media=null;
 		
 		try {
