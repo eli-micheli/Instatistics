@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class InstatisticsServiceImpl implements InstatisticsService {
 	private String token=""; //da inserire
-	private String url="https://graph.instagram.com/me/media/?fields=";
+	private String url="https://graph.instagram.com/me/media?fields=";
     
 	@Override
 	public JSONObject getMedia_type(String word) {
