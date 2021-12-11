@@ -16,8 +16,26 @@ public class InstatisticsController {
 @Autowired
 private InstatisticsServiceImpl instatisticsService;
 
-@RequestMapping(value="/media_type")
-public ResponseEntity<Object> getMedia() throws ParseException{
-	return new ResponseEntity<>(instatisticsService.getMedia_type("media_type"),HttpStatus.OK);
-}
+@RequestMapping(value="/getDataUser/media_type")
+public ResponseEntity<Object> getDataUser() throws ParseException{
+	return new ResponseEntity<>(instatisticsService.getDataUser("media_type"),HttpStatus.OK);
+} // se faccio piu map cambiando il value mi da errore per usare sempre getdata
+  // possiamo trovare un modo per ottenere dalla chiamata il tipo di dato
+  // così da avere un map solo
+@RequestMapping(value="/getAllUser")
+public ResponseEntity<Object> getAllUser() throws ParseException{
+	return new ResponseEntity<>(instatisticsService.getAllUser(),HttpStatus.OK);
+} 
+@RequestMapping(value="/getDataPost/media_type")
+public ResponseEntity<Object> getDataPost() throws ParseException{
+	return new ResponseEntity<>(instatisticsService.getDataPost("media_type"),HttpStatus.OK);
+} // se faccio piu map cambiando il value mi da errore per usare sempre getdata
+  // possiamo trovare un modo per ottenere dalla chiamata il tipo di dato
+  // così da avere un map solo
+@RequestMapping(value="/getAllPost")
+public ResponseEntity<Object> getAllPost() throws ParseException{
+	return new ResponseEntity<>(instatisticsService.getAllPost(),HttpStatus.OK);
+} 
+
+
 }
