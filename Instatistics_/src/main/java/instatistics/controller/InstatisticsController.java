@@ -38,6 +38,9 @@ public ResponseEntity<Object> getDataPost(@RequestParam(name = "field", defaultV
 public ResponseEntity<Object> getAllPost() throws ParseException{
 	return new ResponseEntity<>(instatisticsService.getAllPost(),HttpStatus.OK);
 } 
-
+@RequestMapping(value="/getStat")
+public ResponseEntity<Object> getStat() throws ParseException{
+	return new ResponseEntity<>(instatisticsService.getStat(),HttpStatus.OK);
+} 
 
 }

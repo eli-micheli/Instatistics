@@ -8,6 +8,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
+import org.json.simple.JSONArray;
 import org.springframework.stereotype.Service;
 @Service
 public class InstatisticsServiceImpl implements InstatisticsService {
@@ -123,6 +124,38 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 			}catch (IOException e ) {System.out.println("Errore");}
 			catch (Exception e) {System.out.println("Errore");}
 			return all_post;
+		}
+
+		@Override
+		public JSONArray getStat() {
+			//prova per lavorare col json dell'api di insta
+			JSONArray jsonarray =null;
+
+			try {
+				URLConnection openConnection=new URL(urlUtente+"media_type"+"&access_token="+token).openConnection();
+				InputStream in=openConnection.getInputStream();
+
+				String data="";
+				String line="";
+				try {
+					InputStreamReader inR= new InputStreamReader(in);
+					BufferedReader buf= new BufferedReader(inR);
+					while((line=buf.readLine()) != null) {
+						data+=line;
+					}
+					
+					//più che una lettura di un file json 
+					//bisognerebbe lavorare con il lettore in modo da salvare i vari dati magari 
+					//in un oggetto definito da noi
+					//da fare-> leggere documentazione json in modo da capire
+					//come dividere
+
+				}finally {in.close();}
+
+				jsonarray =(JSONArray) JSONValue.parseWithException(data);
+			}catch (IOException e ) {System.out.println("Errore");}
+			catch (Exception e) {System.out.println("Errore");}
+			return jsonarray;
 		}
 	
 	
