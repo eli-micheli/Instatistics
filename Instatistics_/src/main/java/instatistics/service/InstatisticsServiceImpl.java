@@ -22,7 +22,7 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 	public JSONObject getDataUser(String field) {
 	//permette di ottenere informazioni su tutti i post dell'utente 
 	//il tipo di informazione è definita dalla variabile fields
-		JSONObject media=null;
+		JSONObject data_user=null;
 
 		try {
 			URLConnection openConnection=new URL(urlUtente+field+"&access_token="+token).openConnection();
@@ -39,17 +39,17 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 
 			}finally {in.close();}
 
-			media=(JSONObject) JSONValue.parseWithException(data);
+			data_user=(JSONObject) JSONValue.parseWithException(data);
 		}catch (IOException e ) {System.out.println("Errore");}
 		catch (Exception e) {System.out.println("Errore");}
-		return media;
+		return data_user;
 	}
 	
 	@Override
 	public JSONObject getAllUser() {
 	//permette di ottenere tutte le info possibili da tutti
 	//i post dell'utente
-		JSONObject media=null;
+		JSONObject all_user=null;
 
 		try {
 			URLConnection openConnection=new URL(urlUtente+"media_type,caption,timestamp"+"&access_token="+token).openConnection();
@@ -66,16 +66,16 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 
 			}finally {in.close();}
 
-			media=(JSONObject) JSONValue.parseWithException(data);
+			all_user=(JSONObject) JSONValue.parseWithException(data);
 		}catch (IOException e ) {System.out.println("Errore");}
 		catch (Exception e) {System.out.println("Errore");}
-		return media;
+		return all_user;
 	}
-	
+	@Override
 	public JSONObject getDataPost(String field) {
 		//permette di ottenere informazioni su un post dell'utente 
 		//il tipo di informazione è definita dalla variabile fields
-			JSONObject media=null;
+			JSONObject data_post=null;
 			                     
 			try {
 				URLConnection openConnection=new URL(urlPost+idPost+"/?fields="+field+"&access_token="+token).openConnection();
@@ -92,17 +92,17 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 
 				}finally {in.close();}
 
-				media=(JSONObject) JSONValue.parseWithException(data);
+				data_post=(JSONObject) JSONValue.parseWithException(data);
 			}catch (IOException e ) {System.out.println("Errore");}
 			catch (Exception e) {System.out.println("Errore");}
-			return media;
+			return data_post;
 		}
 		
 		@Override
 		public JSONObject getAllPost() {
 		//permette di ottenere tutte le info possibili da un
 		//solo post dell'utente
-			JSONObject media=null;
+			JSONObject all_post=null;
 
 			try {
 				URLConnection openConnection=new URL(urlPost+idPost+"/?fields=media_type,caption,timestamp"+"&access_token="+token).openConnection();
@@ -119,10 +119,10 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 
 				}finally {in.close();}
 
-				media=(JSONObject) JSONValue.parseWithException(data);
+				all_post=(JSONObject) JSONValue.parseWithException(data);
 			}catch (IOException e ) {System.out.println("Errore");}
 			catch (Exception e) {System.out.println("Errore");}
-			return media;
+			return all_post;
 		}
 	
 	
