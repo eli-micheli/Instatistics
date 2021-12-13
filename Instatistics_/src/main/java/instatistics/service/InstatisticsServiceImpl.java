@@ -128,14 +128,7 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 			return all_post;
 		}
 		
-<<<<<<< HEAD
-		public JSONObject lettura_json(String image) {
-			JSONObject file=new JSONObject();
-			file=getDataUser("media_type,caption");
-			JSONObject prova=new JSONObject();
-			prova.put("post", file.get("data"));
-			String result=prova.toString();
-=======
+
 		@SuppressWarnings("unchecked")
 		public JSONObject lettura_json() {
 			//prende il json che ritorna l'api di instagram
@@ -145,7 +138,7 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 			JSONObject elaboratedInstApi=new JSONObject();
 			elaboratedInstApi.put("post", readingInstApi.get("data"));
 			String result=elaboratedInstApi.toString();
->>>>>>> 3cdeb613438eec154e1e4f6beb21a02399f3cb80
+
 			System.out.println(result);
 			
 			
