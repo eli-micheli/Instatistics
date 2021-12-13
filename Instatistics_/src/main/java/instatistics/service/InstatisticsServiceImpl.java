@@ -148,7 +148,7 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 		
 		public JSONObject lettura_json(String image) {
 			JSONObject file=new JSONObject();
-			file=getAllUser("media_type,caption");
+			file=getDataUser("media_type,caption");
 			JSONObject prova=new JSONObject();
 			prova.put("post", file.get("data"));
 			String result=prova.toString();
