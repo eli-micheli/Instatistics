@@ -8,6 +8,6 @@ public interface InstatisticsService {
 	
 	public abstract JSONObject getDataPost(String field); 
 	public abstract JSONObject getAllPost();
-	
+	public abstract JSONObject Test();
     public JSONObject lettura_json();
 }

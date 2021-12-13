@@ -1,5 +1,5 @@
 package instatistics.service;
-
+import instatistics.model.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -101,50 +101,55 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 			return data_post;
 		}
 		
-		@Override
-		public JSONObject getAllPost() {
+	@Override
+	public JSONObject getAllPost() {
 		//permette di ottenere tutte le info possibili da un
 		//solo post dell'utente
-			JSONObject all_post=null;
+		JSONObject all_post=null;
 
+		try {
+			URLConnection openConnection=new URL(urlPost+idPost+"/?fields=media_type,caption,timestamp"+"&access_token="+token).openConnection();
+			InputStream in=openConnection.getInputStream();
+
+			String data="";
+			String line="";
 			try {
-				URLConnection openConnection=new URL(urlPost+idPost+"/?fields=media_type,caption,timestamp"+"&access_token="+token).openConnection();
-				InputStream in=openConnection.getInputStream();
+				InputStreamReader inR= new InputStreamReader(in);
+				BufferedReader buf= new BufferedReader(inR);
+				while((line=buf.readLine()) != null) {
+					data+=line;
+				}
 
-				String data="";
-				String line="";
-				try {
-					InputStreamReader inR= new InputStreamReader(in);
-					BufferedReader buf= new BufferedReader(inR);
-					while((line=buf.readLine()) != null) {
-						data+=line;
-					}
+			}finally {in.close();}
 
-				}finally {in.close();}
+			all_post=(JSONObject) JSONValue.parseWithException(data);
+		}catch (IOException e ) {System.out.println("Errore");}
+		catch (Exception e) {System.out.println("Errore");}
+		return all_post;
+	}
 
-				all_post=(JSONObject) JSONValue.parseWithException(data);
-			}catch (IOException e ) {System.out.println("Errore");}
-			catch (Exception e) {System.out.println("Errore");}
-			return all_post;
-		}
+
+	@SuppressWarnings("unchecked")
+	public JSONObject lettura_json() {
+		//prende il json che ritorna l'api di instagram
+		//e lo mette in una stringa in base al field
+		JSONObject readingInstApi=new JSONObject();
+		readingInstApi=getDataUser("media_type,caption");
+		JSONObject elaboratedInstApi=new JSONObject();
+		elaboratedInstApi.put("post", readingInstApi.get("data"));
+		String result=elaboratedInstApi.toString();
+
+		System.out.println(result);
+
+
+		return elaboratedInstApi;
+
+	}
+	public JSONObject Test() {	
 		
-
-		@SuppressWarnings("unchecked")
-		public JSONObject lettura_json() {
-			//prende il json che ritorna l'api di instagram
-			//e lo mette in una stringa in base al field
-			JSONObject readingInstApi=new JSONObject();
-			readingInstApi=getDataUser("media_type,caption");
-			JSONObject elaboratedInstApi=new JSONObject();
-			elaboratedInstApi.put("post", readingInstApi.get("data"));
-			String result=elaboratedInstApi.toString();
-
-			System.out.println(result);
-			
-			
-			return elaboratedInstApi;
-			
-			}
+		MediaType mm=new MediaType();
+		return mm.Ranking();
+	}
 		
 
 

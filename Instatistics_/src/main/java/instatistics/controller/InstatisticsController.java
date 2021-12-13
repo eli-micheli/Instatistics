@@ -42,5 +42,9 @@ public ResponseEntity<Object> getAllPost() throws ParseException{
 public ResponseEntity<Object> lettura_json() throws ParseException{
 	return new ResponseEntity<>(instatisticsService.lettura_json(),HttpStatus.OK);
 } 
+@RequestMapping(value="/test")
+public ResponseEntity<Object> Test() throws ParseException{
+	return new ResponseEntity<>(instatisticsService.Test(),HttpStatus.OK);
+} 
 
 }
