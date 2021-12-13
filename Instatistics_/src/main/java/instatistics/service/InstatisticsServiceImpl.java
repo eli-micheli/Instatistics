@@ -127,35 +127,29 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 			catch (Exception e) {System.out.println("Errore");}
 			return all_post;
 		}
-		@Override
-		public JSONObject getStat() {
-		//permette di ottenere tutte le 
-			//info possibili da un
-		//solo post dell'utente
-			//String cc ;
-			JSONObject json = getAllUser();
-			
-			//JSONArray currency = (JSONArray) json.get("data");
-			//cc = (ArrayList) currency.get("17973834163416926");
-			
-			System.out.println("ciao");
-			//System.out.println(cc);
-			//JSONObject stat1 = new JSONObject();
-			//stat1.put("media_type", cc);
-			return json;
-
-		}
 		
+<<<<<<< HEAD
 		public JSONObject lettura_json(String image) {
 			JSONObject file=new JSONObject();
 			file=getDataUser("media_type,caption");
 			JSONObject prova=new JSONObject();
 			prova.put("post", file.get("data"));
 			String result=prova.toString();
+=======
+		@SuppressWarnings("unchecked")
+		public JSONObject lettura_json() {
+			//prende il json che ritorna l'api di instagram
+			//e lo mette in una stringa in base al field
+			JSONObject readingInstApi=new JSONObject();
+			readingInstApi=getDataUser("media_type,caption");
+			JSONObject elaboratedInstApi=new JSONObject();
+			elaboratedInstApi.put("post", readingInstApi.get("data"));
+			String result=elaboratedInstApi.toString();
+>>>>>>> 3cdeb613438eec154e1e4f6beb21a02399f3cb80
 			System.out.println(result);
 			
 			
-			return prova;
+			return elaboratedInstApi;
 			
 			}
 		
