@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class InstatisticsServiceImpl implements InstatisticsService {
 	
-	private String token="IGQVJXUjBtN3hPRnpLeFFWVHJLdEpWaG9QblZAyTGRwUjdDUFhPWDBlM0ZArbjJ0bms2QmdMZAXU1M3l1LUxGam5nZAVhBUmpLLUdOQ3Y3YU5CZAFlYNkNRUzlFQWxVcVVlQnVza2pmR01KWE02Y0s2RUM4YwZDZD"; //da inserire
+	private String token="IGQVJXZAlI3QnhaMUFXanp6SVVhckE2VWU4NTdmaUEyd1BXaFdpMTRtRjJLSFY5NTcxTTdMWENGVEhGSXJiY3YzWm1XTGVJNWlNOU4yR3VWXzRzRUc1Vnk3dkwyVDRmaXJva0lTM1E0ZADhSalBIdlE0MQZDZD"; //da inserire
 	private String idPost ="";//inserire
 	private String urlUtente="https://graph.instagram.com/me/media?fields=";
 	//url per gestire richieste al profilo
