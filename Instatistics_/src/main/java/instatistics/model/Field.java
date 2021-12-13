@@ -1,5 +1,10 @@
 package instatistics.model;
 
-public class Field {
+import org.json.simple.JSONObject;
+
+public interface Field {
+	
+	public JSONObject NumberOfRepetition (String ObjectOfInterest);
+	public JSONObject Ranking();
 
 }
