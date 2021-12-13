@@ -9,5 +9,5 @@ public interface InstatisticsService {
 	public abstract JSONObject getDataPost(String field); 
 	public abstract JSONObject getAllPost();
 	
-	public abstract JSONArray getStat();
+	public abstract JSONObject getStat();
 }

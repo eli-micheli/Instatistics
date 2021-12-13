@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class InstatisticsServiceImpl implements InstatisticsService {
 	
-	private String token="IGQVJXUjBtN3hPRnpLeFFWVHJLdEpWaG9QblZAyTGRwUjdDUFhPWDBlM0ZArbjJ0bms2QmdMZAXU1M3l1LUxGam5nZAVhBUmpLLUdOQ3Y3YU5CZAFlYNkNRUzlFQWxVcVVlQnVza2pmR01KWE02Y0s2RUM4YwZDZD"; //da inserire
-	private String idPost ="";//inserire
+	private String token="IGQVJXbHhWdlQyQVhtRlhXbG1xOFQta1I0Y2RLaU9WR2Fmd1ZApUXNVS2ZAkLU1NTHlLM3d6YXoxRlYyUnlYaXlTMW51OUFBRGY5ZAWdWRHplaURDaUZAJOGl1S1VvUUp6U09sMUtyRzAwQ3EtOE1ZATEMwUAZDZD"; //da inserire
+	private String idPost ="17973834163416926";//inserire
 	private String urlUtente="https://graph.instagram.com/me/media?fields=";
 	//url per gestire richieste al profilo
 	private String urlPost="https://graph.instagram.com/";
@@ -125,38 +125,22 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 			catch (Exception e) {System.out.println("Errore");}
 			return all_post;
 		}
-
 		@Override
-		public JSONArray getStat() {
-			//prova per lavorare col json dell'api di insta
-			JSONArray jsonarray =null;
+		public JSONObject getStat() {
+		//permette di ottenere tutte le info possibili da un
+		//solo post dell'utente
+			//String cc ;
+			JSONObject json = getAllUser();
+			
+			//JSONArray currency = (JSONArray) json.get("data");
+			//cc = (ArrayList) currency.get("17973834163416926");
+			
+			System.out.println("ciao");
+			//System.out.println(cc);
+			//JSONObject stat1 = new JSONObject();
+			//stat1.put("media_type", cc);
+			return json;
 
-			try {
-				URLConnection openConnection=new URL(urlUtente+"media_type"+"&access_token="+token).openConnection();
-				InputStream in=openConnection.getInputStream();
+		}}
 
-				String data="";
-				String line="";
-				try {
-					InputStreamReader inR= new InputStreamReader(in);
-					BufferedReader buf= new BufferedReader(inR);
-					while((line=buf.readLine()) != null) {
-						data+=line;
-					}
-					
-					//più che una lettura di un file json 
-					//bisognerebbe lavorare con il lettore in modo da salvare i vari dati magari 
-					//in un oggetto definito da noi
-					//da fare-> leggere documentazione json in modo da capire
-					//come dividere
-
-				}finally {in.close();}
-
-				jsonarray =(JSONArray) JSONValue.parseWithException(data);
-			}catch (IOException e ) {System.out.println("Errore");}
-			catch (Exception e) {System.out.println("Errore");}
-			return jsonarray;
-		}
-	
-	
-}
+		
