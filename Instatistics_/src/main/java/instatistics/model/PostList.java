@@ -20,7 +20,7 @@ public class PostList {
 	public Caption captionConverter() {
 		Caption cArray = new Caption();
 		for ( int i=0; i<pp.size(); i++) {
-			Caption.array.add(i,pp.get(i).caption);
+			cArray.array.add(i,pp.get(i).caption);
 		}
 		return cArray;
 	}
@@ -30,17 +30,14 @@ public class PostList {
 		for(int i=0;i<pp.size();i++) {
 			mId.array.add(i,pp.get(i).id);
 		}
+		return mId;
+	}
 		
-	public Timestamp timestampConverter() {
-			Timestamp mTimestamp=new Timestamp();
+	public TimeStamp timestampConverter() {
+		TimeStamp mTimestamp=new TimeStamp();
 			for(int i=0;i<pp.size();i++) {
 				mTimestamp.array.add(i,pp.get(i).timestamp);
 			}
+			return mTimestamp;
 	}
-	
-	
-	
-	
-	
-	
 }

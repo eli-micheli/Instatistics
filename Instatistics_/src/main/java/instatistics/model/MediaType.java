@@ -6,11 +6,9 @@ import org.json.simple.JSONObject;
 
 public class MediaType extends FieldSuggest {
     
-    private JSONObject json = new JSONObject();
+	private JSONObject json = new JSONObject();
 	ArrayList <String> array = new ArrayList <String>();
-	public MediaType () {
-	
-	}
+	public MediaType () {}
 	@SuppressWarnings("unchecked")
 	@Override
 	public JSONObject NumberOfRepetition(String ObjectOfInterest) {
