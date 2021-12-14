@@ -39,6 +39,10 @@ public class Post {
 	public void setTimestamp(String timestamp) {
 		this.timestamp = timestamp;
 	}
-	
+	//private MediaType mm = new MediaType();
+	//public MediaType mediaConverter() {
+		
+		
+	}
 
-}
+

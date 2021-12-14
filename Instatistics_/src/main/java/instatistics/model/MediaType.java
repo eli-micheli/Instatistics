@@ -5,14 +5,18 @@ import java.util.ArrayList;
 import org.json.simple.JSONObject;
 
 public class MediaType extends FieldSuggest {
-    String[] API={"VIDEO","MEDIA","CAROUSEL_ALBUM"};
-    JSONObject json = new JSONObject();
+    
+    private JSONObject json = new JSONObject();
+	ArrayList <String> array = new ArrayList <String>();
+	public MediaType () {
+	
+	}
 	@SuppressWarnings("unchecked")
 	@Override
 	public JSONObject NumberOfRepetition(String ObjectOfInterest) {
 		int cont=0;
-		for(int	i=0;i<API.length;i++) {
-			if(API [i] == ObjectOfInterest) {
+		for(int	i=0;i<array.size();i++) {
+			if(array.get(i) == ObjectOfInterest) {
 			cont++;
 			}
 		}
@@ -28,8 +32,8 @@ public class MediaType extends FieldSuggest {
 		int contAlbum =0;//y
 		int contVideo=0;//z
 		//int max;
-		for(int	i=0;i<API.length;i++) {
-			switch (API [i]) {
+		for(int	i=0;i<array.size();i++) {
+			switch (array.get(i)) {
 			case "IMAGE":
 				contImage++;
 			break;
