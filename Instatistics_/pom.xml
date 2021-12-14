@@ -38,9 +38,26 @@
     <artifactId>json-simple</artifactId>
     <version>1.1</version>
 </dependency>
-		
-	</dependencies>
+		<dependency>
+    <groupId>commons-logging</groupId>
+    <artifactId>commons-logging</artifactId>
+    <version>1.2</version>
+    <scope>compile</scope>
+</dependency>
+<dependency>
+    <groupId>org.kopitubruk.util</groupId>
+    <artifactId>JSONUtil</artifactId>
+    <version>1.10.2</version>
+    <scope>compile</scope>
+</dependency>
+	
 
+<dependency>
+ <groupId>org.json</groupId>
+    <artifactId>json</artifactId>
+    <version>20211205</version>
+    </dependency>
+</dependencies>
 	<build>
 		<plugins>
 			<plugin>
@@ -49,5 +66,6 @@
 			</plugin>
 		</plugins>
 	</build>
+	
 
 </project>

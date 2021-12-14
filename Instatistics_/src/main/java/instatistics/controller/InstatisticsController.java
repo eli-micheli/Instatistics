@@ -17,7 +17,7 @@ public class InstatisticsController {
 @Autowired
 private InstatisticsServiceImpl instatisticsService;
 
-//la scrittura in Postamn è getDataUser?field=media_type
+//la scrittura in Postman è getDataUser?field=media_type
 @RequestMapping(value="/getDataUser")
 public ResponseEntity<Object> getDataUser(@RequestParam(name = "field", defaultValue = "media_type") String field) throws ParseException{
 	return new ResponseEntity<>(instatisticsService.getDataUser(field),HttpStatus.OK);
@@ -39,8 +39,8 @@ public ResponseEntity<Object> getAllPost() throws ParseException{
 	return new ResponseEntity<>(instatisticsService.getAllPost(),HttpStatus.OK);
 } 
 @RequestMapping(value="/lettura_json")
-public ResponseEntity<Object> lettura_json() throws ParseException{
-	return new ResponseEntity<>(instatisticsService.lettura_json(),HttpStatus.OK);
+public ResponseEntity<Object> JsonReading() throws ParseException{
+	return new ResponseEntity<>(instatisticsService.JsonReading(),HttpStatus.OK);
 } 
 @RequestMapping(value="/test")
 public ResponseEntity<Object> Test() throws ParseException{

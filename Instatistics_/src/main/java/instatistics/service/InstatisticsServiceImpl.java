@@ -6,15 +6,21 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Vector;
+
+import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.json.simple.JSONArray;
+
 import org.springframework.stereotype.Service;
 @Service
 public class InstatisticsServiceImpl implements InstatisticsService {
 	
 
-	private String token="IGQVJXZAlI3QnhaMUFXanp6SVVhckE2VWU4NTdmaUEyd1BXaFdpMTRtRjJLSFY5NTcxTTdMWENGVEhGSXJiY3YzWm1XTGVJNWlNOU4yR3VWXzRzRUc1Vnk3dkwyVDRmaXJva0lTM1E0ZADhSalBIdlE0MQZDZD"; //da inserire
+	private String token="IGQVJYMjQzaVpCQ191SmswRTFBY1ZACblhUT0NBQWFvamtFYmlsQ1ZAQd3J2T19fdTVjZAjZAwcFB0TEZAadzV3dGMtOC1iS1IwRXltSDhIenhpWWktemlETDFwVy1IRkV3YU1WVC1XY05xV0JaODRTWVF0agZDZD"; //da inserire
 	private String idPost ="";//inserire
 
 	private String urlUtente="https://graph.instagram.com/me/media?fields=";
@@ -130,20 +136,29 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 
 
 	@SuppressWarnings("unchecked")
-	public JSONObject lettura_json() {
-		//prende il json che ritorna l'api di instagram
-		//e lo mette in una stringa in base al field
-		JSONObject readingInstApi=new JSONObject();
-		readingInstApi=getDataUser("media_type,caption");
-		JSONObject elaboratedInstApi=new JSONObject();
-		elaboratedInstApi.put("post", readingInstApi.get("data"));
-		String result=elaboratedInstApi.toString();
-
-		System.out.println(result);
-
-
-		return elaboratedInstApi;
-
+	public JSONObject  JsonReading() {
+		//prende il JSON che ritorna l'api di instagram
+		//e lo mette in un ArrayList
+		ArrayList <Post> postList = new ArrayList<Post>();
+		JSONObject file =getAllUser();
+		//Ottengo il jsonArray che contiene la lista di tutti dati di tutti post
+        JSONArray jsonArrayPost = (JSONArray) file.get("data");
+        //Per ogni oggetto del JSONArray prendo i value e
+        //li salvo in un oggetto Post
+        for (int i=0;i<jsonArrayPost.size(); i++) {
+        	String caption=(((JSONObject) jsonArrayPost.get(i)).get("caption")).toString();
+        	String id=(((JSONObject) jsonArrayPost.get(i)).get("id")).toString();
+        	String timestamp=(((JSONObject) jsonArrayPost.get(i)).get("timestamp")).toString();
+        	String media_type=(( (JSONObject) jsonArrayPost.get(i)).get("media_type")).toString();
+        	
+        	Post post = new Post (media_type,caption,id,timestamp);
+        
+        	postList.add(i, post);
+        }
+        //mi converte l'ArrayList in un JSONObject
+        JSONObject jsonList = new JSONObject();
+        jsonList.put("post", postList);
+        return jsonList;
 	}
 	public JSONObject Test() {	
 		
