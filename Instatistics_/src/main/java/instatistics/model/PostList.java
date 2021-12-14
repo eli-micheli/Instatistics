@@ -10,7 +10,7 @@ public class PostList {
 	}
 
 	public MediaType mediaConverter() {
-		MediaType mArray = new MediaType();
+		MediaType mArray = new MediaType(null);
 		for ( int i=0; i<pp.size(); i++) {
 			mArray.array.add(i,pp.get(i).media_type);
 		}
@@ -39,5 +39,8 @@ public class PostList {
 				mTimestamp.array.add(i,pp.get(i).timestamp);
 			}
 			return mTimestamp;
+	}
+	public String toString() {
+		return pp.toString();
 	}
 }

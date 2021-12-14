@@ -1,6 +1,7 @@
 package instatistics.service;
+import java.util.ArrayList;
 import java.util.Vector;
-
+import instatistics.model.*;
 //import org.json.simple.parser.ParseException;
 import org.json.simple.*;
 
@@ -12,6 +13,7 @@ public interface InstatisticsService {
 	
 	public abstract JSONObject getDataPost(String field); 
 	public abstract JSONObject getAllPost();
-	public abstract JSONObject Test();
-    public abstract JSONObject JsonReading();
+	//public abstract JSONObject Test();
+    public abstract ArrayList<Post> JsonReading();
+    public abstract JSONObject getMedia();
 }

@@ -42,9 +42,14 @@ public ResponseEntity<Object> getAllPost() throws ParseException{
 public ResponseEntity<Object> JsonReading() throws ParseException{
 	return new ResponseEntity<>(instatisticsService.JsonReading(),HttpStatus.OK);
 } 
+/*
 @RequestMapping(value="/test")
 public ResponseEntity<Object> Test() throws ParseException{
 	return new ResponseEntity<>(instatisticsService.Test(),HttpStatus.OK);
+} */
+@RequestMapping(value="/getMedia")
+public ResponseEntity<Object> getMedia() throws ParseException{
+	return new ResponseEntity<>(instatisticsService.getMedia(),HttpStatus.OK);
 } 
 
 }

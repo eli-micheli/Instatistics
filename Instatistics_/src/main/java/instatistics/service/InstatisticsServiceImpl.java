@@ -13,6 +13,7 @@ import java.util.Vector;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
+import org.apache.coyote.http11.AbstractHttp11JsseProtocol;
 import org.json.simple.JSONArray;
 
 import org.springframework.stereotype.Service;
@@ -136,7 +137,7 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 
 
 	@SuppressWarnings("unchecked")
-	public JSONObject  JsonReading() {
+	public ArrayList<Post>  JsonReading() {
 		//prende il JSON che ritorna l'api di instagram
 		//e lo mette in un ArrayList
 		ArrayList <Post> postList = new ArrayList<Post>();
@@ -156,14 +157,61 @@ public class InstatisticsServiceImpl implements InstatisticsService {
         	postList.add(i, post);
         }
         //mi converte l'ArrayList in un JSONObject
-        JSONObject jsonList = new JSONObject();
-        jsonList.put("post", postList);
-        return jsonList;
+      //  JSONObject jsonList = new JSONObject();
+        //PostList pp=new PostList(postList);
+        //jsonList.put("post", postList);
+       /* for(int i=0;i<postList.size();i++) {
+        	System.out.println(postList.get(i).media_type);
+        }*/
+        
+        return postList;
 	}
-	public JSONObject Test() {	
+	/*public JSONObject Test() {	
+		//creo oggetto postlist e richiamo la funzione
+		//PostList pl=new PostList(null);
+		PostList pl=JsonReading();
+		//MediaType mm=new MediaType(pl);
+		//return mm.Ranking();
+		JSONObject jj=new JSONObject();
+		jj.put("file", pl);
 		
-		MediaType mm=new MediaType();
-		return mm.Ranking();
+		System.out.println(pl.toString());
+		return jj;
+		
+	}*/
+	public JSONObject getMedia() {
+		ArrayList<Post> pp=new ArrayList<Post>();
+		pp=JsonReading();
+		Media_type_2 mt=new Media_type_2(pp);
+		
+		//ArrayList<String> p1=new ArrayList<String>();
+		/*for(int i=0;i<pp.size();i++) {
+			p1.add(i, pp.get(i).media_type);
+		}*/
+		/*for(int j=0;j<p1.size();j++) {
+			System.out.println(p1.get(j));
+		}*/
+		//MediaType mm=new MediaType(pp);
+		
+		
+	/*	for(int i=0;i<pp.size();i++) {
+			System.out.println(pp.get(i).getMedia_type());
+		}*/
+	/*	for(int i=0;i<pp.size();i++) {
+			if(pp.get(i).getMedia_type().equals("CAROUSEL_ALBUM")) {
+				cont++;
+				
+			}
+		}*/
+		
+		JSONObject jj=new JSONObject();
+		jj.put("CAROUSEL_ALBUM", mt.getCount_album());
+		jj.put("IMAGE", mt.getCount_image());
+		jj.put("VIDEO", mt.getCount_video());
+		return jj;
+		
+		
+		
 	}
 		
 

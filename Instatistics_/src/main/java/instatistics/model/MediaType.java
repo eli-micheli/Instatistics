@@ -8,7 +8,9 @@ public class MediaType extends FieldSuggest {
     
 	private JSONObject json = new JSONObject();
 	ArrayList <String> array = new ArrayList <String>();
-	public MediaType () {}
+	public MediaType (ArrayList <String> array) {
+		this.array=array;
+	}
 	@SuppressWarnings("unchecked")
 	@Override
 	public JSONObject NumberOfRepetition(String ObjectOfInterest) {
@@ -56,10 +58,21 @@ public class MediaType extends FieldSuggest {
 		return json;
 	}
 
-	@Override
+	//@Override
 	public JSONObject Suggestion() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public JSONObject numberOf(ArrayList<Post> mm) {
+		int cont=0;
+		for(int i=0;i<mm.size();i++) {
+			if(mm.get(i).media_type=="IMAGE") {cont++;}
+		}
+		JSONObject jj=new JSONObject();
+		jj.put("post", cont);
+		return jj;
+		
 	}
 
 }
