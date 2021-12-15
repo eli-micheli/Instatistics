@@ -21,7 +21,7 @@ import org.springframework.stereotype.Service;
 public class InstatisticsServiceImpl implements InstatisticsService {
 	
 
-	private String token="IGQVJYMjQzaVpCQ191SmswRTFBY1ZACblhUT0NBQWFvamtFYmlsQ1ZAQd3J2T19fdTVjZAjZAwcFB0TEZAadzV3dGMtOC1iS1IwRXltSDhIenhpWWktemlETDFwVy1IRkV3YU1WVC1XY05xV0JaODRTWVF0agZDZD"; //da inserire
+	private String token=""; //da inserire
 	private String idPost ="";//inserire
 
 	private String urlUtente="https://graph.instagram.com/me/media?fields=";
@@ -190,6 +190,16 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 		jj.put("Ranking", mt.Ranking());
 		
 		return jj;
+	}
+	
+	public JSONObject getTimestamp(String Argoument) {
+		ArrayList<Post> pp=new ArrayList<Post>();
+		pp=JsonReading();
+		TimeStamp tp=new TimeStamp(pp);
+		JSONObject jj=new JSONObject();
+		jj.put("Numero di post", tp.NumberOfRepetition(Argoument));
+		return jj;
+		
 	}
 		
 

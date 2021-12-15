@@ -13,9 +13,10 @@ public class TimeStamp extends FieldSuggest{
 	public String NumberOfRepetition(String ObjectOfInterest) {
 		int cont=0;
 		for(int i=0;i<array.size();i++) {
-			
+			if(array.get(i).timestamp.contains(ObjectOfInterest)) {cont++;
+			}
 		}
-		return null;
+		return Integer.toString(cont);
 	}
 	@Override
 	public String Ranking() {

@@ -16,4 +16,5 @@ public interface InstatisticsService {
 	//public abstract JSONObject Test();
     public abstract ArrayList<Post> JsonReading();
     public abstract JSONObject getMedia(String argoument);
+    public abstract JSONObject getTimestamp(String argoument);
 }

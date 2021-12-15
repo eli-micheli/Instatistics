@@ -1,10 +1,12 @@
 package instatistics.controller;
 
 import java.text.ParseException;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -50,6 +52,11 @@ public ResponseEntity<Object> Test() throws ParseException{
 @RequestMapping(value="/getMedia")
 public ResponseEntity<Object> getMedia(@RequestParam(name = "field", defaultValue = "IMAGE") String field) throws ParseException{
 	return new ResponseEntity<>(instatisticsService.getMedia(field),HttpStatus.OK);
+} 
+@RequestMapping(value="/getTimestamp/{data}")
+public ResponseEntity<Object> getTimestamp(Map<String, Object> model,@PathVariable String data) throws ParseException{
+	model.put("data", data);
+	return new ResponseEntity<>(instatisticsService.getTimestamp(data),HttpStatus.OK);
 } 
 
 }
