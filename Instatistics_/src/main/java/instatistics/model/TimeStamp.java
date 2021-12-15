@@ -5,11 +5,16 @@ import org.json.simple.JSONObject;
 
 public class TimeStamp extends FieldSuggest{
 	
-	ArrayList <String> array = new ArrayList <String>();
-	public TimeStamp () {}
+	ArrayList <Post> array = new ArrayList <Post>();
+	public TimeStamp (ArrayList<Post> array) {
+		this.array=array;
+	}
 	@Override
 	public String NumberOfRepetition(String ObjectOfInterest) {
-		// TODO Auto-generated method stub
+		int cont=0;
+		for(int i=0;i<array.size();i++) {
+			
+		}
 		return null;
 	}
 	@Override
