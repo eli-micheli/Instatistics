@@ -186,7 +186,7 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 		MediaType mt=new MediaType(pp);
 		
 		JSONObject jj = new JSONObject();
-		jj.put("NUMERO RIPETIZIONI", mt.NumberOfRepetition(Argoument));
+		jj.put("Numero ripetizioni", mt.NumberOfRepetition(Argoument));
 		jj.put("Ranking", mt.Ranking());
 		
 		return jj;

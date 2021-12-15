@@ -15,5 +15,5 @@ public interface InstatisticsService {
 	public abstract JSONObject getAllPost();
 	//public abstract JSONObject Test();
     public abstract ArrayList<Post> JsonReading();
-    public abstract JSONObject getMedia();
+    public abstract JSONObject getMedia(String argoument);
 }
