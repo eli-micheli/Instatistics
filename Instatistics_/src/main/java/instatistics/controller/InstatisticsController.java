@@ -48,8 +48,8 @@ public ResponseEntity<Object> Test() throws ParseException{
 	return new ResponseEntity<>(instatisticsService.Test(),HttpStatus.OK);
 } */
 @RequestMapping(value="/getMedia")
-public ResponseEntity<Object> getMedia() throws ParseException{
-	return new ResponseEntity<>(instatisticsService.getMedia(),HttpStatus.OK);
+public ResponseEntity<Object> getMedia(@RequestParam(name = "field", defaultValue = "IMAGE") String field) throws ParseException{
+	return new ResponseEntity<>(instatisticsService.getMedia(field),HttpStatus.OK);
 } 
 
 }

@@ -7,8 +7,8 @@ import org.json.simple.JSONObject;
 public abstract class FieldSuggest implements Field{
 	@SuppressWarnings("unused")
 	private JSONObject json = new JSONObject();
-	public ArrayList <String> array = new ArrayList <String>();
-	//public abstract JSONObject NumberOfRepetition(String ObjectOfInterest) ;
-    //public abstract JSONObject Ranking();
-	//public abstract JSONObject Suggestion();
+	public ArrayList <Post> array = new ArrayList <Post>();
+	public abstract String NumberOfRepetition(String ObjectOfInterest) ;
+    public abstract String Ranking();
+	public abstract String Suggestion();
 }

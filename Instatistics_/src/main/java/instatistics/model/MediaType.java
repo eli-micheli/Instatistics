@@ -1,39 +1,33 @@
 package instatistics.model;
 
 import java.util.ArrayList;
+import org.json.simple.*;
 
-import org.json.simple.JSONObject;
-
-public class MediaType extends FieldSuggest {
+public class MediaType extends FieldSuggest{
     
-	private JSONObject json = new JSONObject();
-	ArrayList <String> array = new ArrayList <String>();
-	public MediaType (ArrayList <String> array) {
+	ArrayList <Post> array = new ArrayList <Post>();
+	public MediaType (ArrayList <Post> array) {
 		this.array=array;
 	}
 	@SuppressWarnings("unchecked")
-	@Override
-	public JSONObject NumberOfRepetition(String ObjectOfInterest) {
+	public String NumberOfRepetition(String ObjectOfInterest) {
 		int cont=0;
 		for(int	i=0;i<array.size();i++) {
-			if(array.get(i) == ObjectOfInterest) {
+			if(array.get(i).getMedia_type().equals(ObjectOfInterest)) {
 			cont++;
 			}
 		}
-		
-		json.put("Numero ripetizioni", cont);
-		return json; 
+		return Integer.toString(cont); 
 	}
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public JSONObject Ranking() {
-		int contImage=0;//x
-		int contAlbum =0;//y
-		int contVideo=0;//z
-		//int max;
+	public String Ranking() {
+		int contImage=0;
+		int contAlbum =0;
+		int contVideo=0;
+		
+		String p = null;
 		for(int	i=0;i<array.size();i++) {
-			switch (array.get(i)) {
+			switch (array.get(i).getMedia_type()) {
 			case "IMAGE":
 				contImage++;
 			break;
@@ -44,35 +38,29 @@ public class MediaType extends FieldSuggest {
 				contVideo++;
 			break;
 			}
+			
 			if(contImage>=contAlbum && contImage>=contAlbum) {
-				json.put("Maggiore", contImage);
-				json.put("Tipo più frequente","IMAGE");
+			    p ="Maggiore" +" "+contImage +" "+"Tipo più frequente" +" "+"IMAGE";
+			
 			}
-			else if(contAlbum>=contVideo) {
-				json.put("Maggiore", contAlbum);
-				json.put("Tipo più frequente","ALBUM");}
-			else json.put("Maggiore",contVideo);
-			json.put("Tipo più frequente","VIDEO");
+			else {
+				if(contAlbum>=contVideo) {
+				p = "Maggiore" +" "+contAlbum +" "+"Tipo più frequente" +" "+"ALBUM";
+				}
+				else {
+					p= "Maggiore" +" "+contVideo +" "+"Tipo più frequente"+" " +"VIDEO";
+				}   
+			}
 		}
-	
-		return json;
+		return p;
+
 	}
 
 	//@Override
-	public JSONObject Suggestion() {
+	public String Suggestion() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
-	public JSONObject numberOf(ArrayList<Post> mm) {
-		int cont=0;
-		for(int i=0;i<mm.size();i++) {
-			if(mm.get(i).media_type=="IMAGE") {cont++;}
-		}
-		JSONObject jj=new JSONObject();
-		jj.put("post", cont);
-		return jj;
-		
-	}
-
+	
 }

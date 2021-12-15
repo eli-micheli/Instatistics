@@ -179,39 +179,17 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 		return jj;
 		
 	}*/
-	public JSONObject getMedia() {
+	@SuppressWarnings("unchecked")
+	public JSONObject getMedia(String Argoument) {
 		ArrayList<Post> pp=new ArrayList<Post>();
 		pp=JsonReading();
-		Media_type_2 mt=new Media_type_2(pp);
+		MediaType mt=new MediaType(pp);
 		
-		//ArrayList<String> p1=new ArrayList<String>();
-		/*for(int i=0;i<pp.size();i++) {
-			p1.add(i, pp.get(i).media_type);
-		}*/
-		/*for(int j=0;j<p1.size();j++) {
-			System.out.println(p1.get(j));
-		}*/
-		//MediaType mm=new MediaType(pp);
+		JSONObject jj = new JSONObject();
+		jj.put("NUMERO RIPETIZIONI", mt.NumberOfRepetition(Argoument));
+		jj.put("Ranking", mt.Ranking());
 		
-		
-	/*	for(int i=0;i<pp.size();i++) {
-			System.out.println(pp.get(i).getMedia_type());
-		}*/
-	/*	for(int i=0;i<pp.size();i++) {
-			if(pp.get(i).getMedia_type().equals("CAROUSEL_ALBUM")) {
-				cont++;
-				
-			}
-		}*/
-		
-		JSONObject jj=new JSONObject();
-		jj.put("CAROUSEL_ALBUM", mt.getCount_album());
-		jj.put("IMAGE", mt.getCount_image());
-		jj.put("VIDEO", mt.getCount_video());
 		return jj;
-		
-		
-		
 	}
 		
 
