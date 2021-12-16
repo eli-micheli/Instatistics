@@ -1,5 +1,6 @@
 package instatistics.service;
 
+import instatistics.filters.*;
 import instatistics.model.*;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -157,6 +158,33 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 	@SuppressWarnings("unchecked")
 	public JSONObject Test() {	
 		//creo oggetto postlist e richiamo la funzione
+
+		//PostList pl=new PostList(null);
+		PostList pl=JsonReading();
+		//MediaType mm=new MediaType(pl);
+		//return mm.Ranking();
+		JSONObject jj=new JSONObject();
+		jj.put("file", pl);
+		
+		System.out.println(pl.toString());
+
+		
+		ArrayList<Post> pl=JsonReading();
+		/*TimeStamp cc = new TimeStamp(pl);
+		
+		String[] stringa = {"2021","2017", "2019"};
+		String risultato = cc.Ranking(stringa);
+		//String risultato = cc.NumberOfRepetition("#vascononstop2019");
+		JSONObject jj=new JSONObject();
+		jj.put("file", risultato);
+	
+		return jj;*/
+		JSONObject jj=new JSONObject();
+		Caption mt=new Caption(pl);
+		
+		;
+		jj.put("File",mt.NumberOfRepetition("mare") );
+
 		
 		ArrayList<Post> pl=JsonReading();
 		Caption mm = new Caption(pl);
@@ -164,6 +192,7 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 		JSONObject jj=new JSONObject();
 		jj.put("file", risultato);
 	
+
 		return jj;
 		
 	}
