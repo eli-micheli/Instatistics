@@ -57,6 +57,7 @@ public class Caption extends FieldSuggest{
 		String [] sport = {"#nopainnogain", "#sport", "#giornatainmovimento"};
 		String [] insieme = {"#giornatacongliamici", "#ritrovarsi", "#amicizia"};
 		String [] cerimonia = {"#congratulazioni", "#auguri", "#complimenti"};
+		String [] 
 		int i = (int) (Math.random()*3);
 		String result = null;
 		switch(input) {
