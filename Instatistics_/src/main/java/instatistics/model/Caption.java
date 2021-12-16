@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import org.json.simple.JSONObject;
 
 public class Caption extends FieldSuggest{
-	private JSONObject json = new JSONObject();
+	//private JSONObject json = new JSONObject();
 	ArrayList <Post> array = new ArrayList <Post>();
 	public Caption (ArrayList<Post> array) {
 		this.array=array;
@@ -14,15 +14,15 @@ public class Caption extends FieldSuggest{
 		int cont=0;
 		for(int	i=0;i<array.size();i++) {
 			String s = array.get(i).getCaption(); //captin del post numero i
-			if(s.contains(ObjectOfInterest)) { //se la stringa s contiene l'hastag aumento il contatore
-			cont++;
+			if(s.contains(ObjectOfInterest)) { 
+			cont++;//se la stringa s contiene l'hastag aumento il contatore
 			}
 		}
 		return Integer.toString(cont); 
-	
 	}
+	
 	@Override
-	public String Ranking() {
+	public String Ranking(String [] input) {
 		// TODO Auto-generated method stub
 		return null;
 	}

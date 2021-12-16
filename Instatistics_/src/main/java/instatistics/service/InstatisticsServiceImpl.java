@@ -21,7 +21,8 @@ import org.springframework.stereotype.Service;
 public class InstatisticsServiceImpl implements InstatisticsService {
 	
 
-	private String token=""; //da inserire
+	private String token="IGQVJYMjQzaVpCQ191SmswRTFBY1ZACblhUT0NBQWFvamtFYmlsQ1ZAQd3J2T19fdTVjZAjZAwcFB0TEZAadzV3dGMtOC1iS1IwRXltSDhIenhpWWktemlETDFwVy1IRkV3YU1WVC1XY05xV0JaODRTWVF0agZDZD"; //da inserire
+
 	private String idPost ="";//inserire
 
 	private String urlUtente="https://graph.instagram.com/me/media?fields=";
@@ -48,7 +49,8 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 				}
 
 			}finally {in.close();}
-
+        //String[] fields = field.split(","); per èassare gli argomenti di req param ai metodi
+       
 			data_user=(JSONObject) JSONValue.parseWithException(data);
 		}catch (IOException e ) {System.out.println("Errore");}
 		catch (Exception e) {System.out.println("Errore");}
