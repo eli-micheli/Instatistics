@@ -159,11 +159,8 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 		//creo oggetto postlist e richiamo la funzione
 		
 		ArrayList<Post> pl=JsonReading();
-		TimeStamp cc = new TimeStamp(pl);
-		
-		String[] stringa = {"2021","2017", "2019"};
-		String risultato = cc.Ranking(stringa);
-		//String risultato = cc.NumberOfRepetition("#vascononstop2019");
+		Caption mm = new Caption(pl);
+		String risultato = mm.Suggestion("cerimonia");
 		JSONObject jj=new JSONObject();
 		jj.put("file", risultato);
 	

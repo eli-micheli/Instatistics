@@ -1,6 +1,7 @@
 package instatistics.model;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 
 public class Caption extends FieldSuggest{
@@ -52,10 +53,23 @@ public class Caption extends FieldSuggest{
 	
 		
 	@Override
-	public String Suggestion() {
-		// TODO Auto-generated method stub
-		return null;
+	public String Suggestion(String input) {
+		String [] sport = {"#nopainnogain", "#sport", "#giornatainmovimento"};
+		String [] insieme = {"#giornatacongliamici", "#ritrovarsi", "#amicizia"};
+		String [] cerimonia = {"#congratulazioni", "#auguri", "#complimenti"};
+		int i = (int) (Math.random()*3);
+		String result = null;
+		switch(input) {
+			case "sport":
+			 result = sport [i];
+			break;
+			case "insieme":
+			 result = insieme[i];
+			break;
+			case "cerimonia":
+			 result = cerimonia[i];
+			break;
+		}
+		return result;
 	}
-	
-	
 }
