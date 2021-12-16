@@ -1,4 +1,8 @@
 package instatistics.service;
+<<<<<<< Updated upstream
+=======
+import instatistics.filters.*;
+>>>>>>> Stashed changes
 import instatistics.model.*;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -170,6 +174,7 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 	}
 	/*public JSONObject Test() {	
 		//creo oggetto postlist e richiamo la funzione
+<<<<<<< Updated upstream
 		//PostList pl=new PostList(null);
 		PostList pl=JsonReading();
 		//MediaType mm=new MediaType(pl);
@@ -178,6 +183,24 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 		jj.put("file", pl);
 		
 		System.out.println(pl.toString());
+=======
+		
+		ArrayList<Post> pl=JsonReading();
+		/*TimeStamp cc = new TimeStamp(pl);
+		
+		String[] stringa = {"2021","2017", "2019"};
+		String risultato = cc.Ranking(stringa);
+		//String risultato = cc.NumberOfRepetition("#vascononstop2019");
+		JSONObject jj=new JSONObject();
+		jj.put("file", risultato);
+	
+		return jj;*/
+		JSONObject jj=new JSONObject();
+		Caption mt=new Caption(pl);
+		
+		;
+		jj.put("File",mt.NumberOfRepetition("mare") );
+>>>>>>> Stashed changes
 		return jj;
 		
 	}*/
