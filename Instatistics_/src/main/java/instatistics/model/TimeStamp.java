@@ -3,24 +3,26 @@ package instatistics.model;
 import java.util.ArrayList;
 import org.json.simple.JSONObject;
 
-public class TimeStamp extends FieldSuggest{
+public class TimeStamp implements Field{
 	
-	ArrayList <String> array = new ArrayList <String>();
-	public TimeStamp () {}
+	ArrayList <Post> array = new ArrayList <Post>();
+	public TimeStamp (ArrayList<Post> array) {
+		this.array=array;
+	}
 	@Override
 	public String NumberOfRepetition(String ObjectOfInterest) {
-		// TODO Auto-generated method stub
-		return null;
+		int cont=0;
+		for(int i=0;i<array.size();i++) {
+			if(array.get(i).timestamp.contains(ObjectOfInterest)) {cont++;
+			}
+		}
+		return Integer.toString(cont);
 	}
 	@Override
 	public String Ranking() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	@Override
-	public String Suggestion() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 }
