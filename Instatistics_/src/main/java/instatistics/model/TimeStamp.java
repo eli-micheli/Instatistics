@@ -3,7 +3,7 @@ package instatistics.model;
 import java.util.ArrayList;
 import org.json.simple.JSONObject;
 
-public class TimeStamp extends FieldSuggest{
+public class TimeStamp implements Field{
 	
 	ArrayList <Post> array = new ArrayList <Post>();
 	public TimeStamp (ArrayList<Post> array) {
@@ -23,10 +23,6 @@ public class TimeStamp extends FieldSuggest{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	@Override
-	public String Suggestion() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 }

@@ -59,4 +59,5 @@ public ResponseEntity<Object> getTimestamp(Map<String, Object> model,@PathVariab
 	return new ResponseEntity<>(instatisticsService.getTimestamp(data),HttpStatus.OK);
 } 
 
+
 }
