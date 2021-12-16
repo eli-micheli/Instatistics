@@ -20,8 +20,27 @@ public class TimeStamp implements Field{
 	}
 	@Override
 	public String Ranking(String[] input) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		int winnerpast =0;
+		int winnerpresent =0;
+		int contpresent =0;
+		int contpast =0;
+		TimeStamp tt=new TimeStamp(array);
+		for ( int i =1; i<input.length; i++) {
+			if (Integer.valueOf(tt.NumberOfRepetition(input [i-1]))>Integer.valueOf(tt.NumberOfRepetition(input [i]))) {
+				winnerpresent = Integer.valueOf(tt.NumberOfRepetition(input [i-1]));
+			 contpresent =i-1;}
+			else {
+				winnerpresent = Integer.valueOf(tt.NumberOfRepetition(input [i]));
+				contpresent = i;
+				}
+			if (winnerpresent > winnerpast) {
+				winnerpast = winnerpresent;
+				contpast = contpresent;
+			}
+		}
+		String result = "L'anno in cui hai pubblicato più è " +input[contpast] + " con " +Integer.toString(winnerpast) +" post" ;
+	    return result ;
 	}
 	
 

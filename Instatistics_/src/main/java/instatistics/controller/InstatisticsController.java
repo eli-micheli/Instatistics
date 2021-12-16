@@ -53,9 +53,9 @@ public ResponseEntity<Object> Test() throws ParseException{
 public ResponseEntity<Object> getMedia(@RequestParam(name = "field", defaultValue = "IMAGE") String field) throws ParseException{
 	return new ResponseEntity<>(instatisticsService.getMedia(field),HttpStatus.OK);
 } 
-
-///public ResponseEntity<Object> getTimestamp(Map<String, Object> model,@PathVariable String data) throws ParseException{
-//	model.put("data", data);
-//	return new ResponseEntity<>(instatisticsService.getTimestamp(data),HttpStatus.OK);
-//} 
+@RequestMapping(value="/getTimestamp/{data}")
+public ResponseEntity<Object> getTimestamp(Map<String, Object> model,@PathVariable String data) throws ParseException{
+	model.put("data", data);
+	return new ResponseEntity<>(instatisticsService.getTimestamp(data),HttpStatus.OK);
+} 
 }

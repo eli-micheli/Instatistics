@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class InstatisticsServiceImpl implements InstatisticsService {
 	
-	private String token="IGQVJYMjQzaVpCQ191SmswRTFBY1ZACblhUT0NBQWFvamtFYmlsQ1ZAQd3J2T19fdTVjZAjZAwcFB0TEZAadzV3dGMtOC1iS1IwRXltSDhIenhpWWktemlETDFwVy1IRkV3YU1WVC1XY05xV0JaODRTWVF0agZDZD"; //da inserire
+	private String token="IGQVJXZAlI3QnhaMUFXanp6SVVhckE2VWU4NTdmaUEyd1BXaFdpMTRtRjJLSFY5NTcxTTdMWENGVEhGSXJiY3YzWm1XTGVJNWlNOU4yR3VWXzRzRUc1Vnk3dkwyVDRmaXJva0lTM1E0ZADhSalBIdlE0MQZDZD"; //da inserire
 	private String idPost ="";//inserire
 
 	private String urlUtente="https://graph.instagram.com/me/media?fields=";
@@ -159,10 +159,11 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 		//creo oggetto postlist e richiamo la funzione
 		
 		ArrayList<Post> pl=JsonReading();
-		Caption cc = new Caption(pl);
-		//String[] stringa = {"#mare","#ancona", "#sea", "#Vasco"};
-		//String risultato = cc.Ranking(stringa);
-		String risultato = cc.NumberOfRepetition("#vascononstop2019");
+		TimeStamp cc = new TimeStamp(pl);
+		
+		String[] stringa = {"2021","2017", "2019"};
+		String risultato = cc.Ranking(stringa);
+		//String risultato = cc.NumberOfRepetition("#vascononstop2019");
 		JSONObject jj=new JSONObject();
 		jj.put("file", risultato);
 	
@@ -182,14 +183,14 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 		return jj;
 	}
 	
-	//public JSONObject getTimestamp(String Argoument) {
-		//ArrayList<Post> pp=new ArrayList<Post>();
-		//pp=JsonReading();
-		//TimeStamp tp=new TimeStamp(pp);
-		//JSONObject jj=new JSONObject();
-		//jj.put("Numero di post", tp.NumberOfRepetition(Argoument));
-		//return jj;
-	//}
+	public JSONObject getTimestamp(String Argoument) {
+		ArrayList<Post> pp=new ArrayList<Post>();
+		pp=JsonReading();
+		TimeStamp tp=new TimeStamp(pp);
+		JSONObject jj=new JSONObject();
+		jj.put("Numero di post", tp.NumberOfRepetition(Argoument));
+		return jj;
+	}
 		
 
 
