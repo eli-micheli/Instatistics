@@ -177,7 +177,7 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 		
 		JSONObject jj = new JSONObject();
 		jj.put("Numero ripetizioni", mt.NumberOfRepetition(Argoument));
-		jj.put("Ranking", mt.Ranking());
+		jj.put("Ranking", mt.Ranking(null));
 		
 		return jj;
 	}

@@ -20,7 +20,7 @@ public class MediaType extends FieldSuggest{
 		return Integer.toString(cont); 
 	}
 
-	public String Ranking() {
+	public String Ranking(String[] input) {
 		int contImage=0;
 		int contAlbum =0;
 		int contVideo=0;
