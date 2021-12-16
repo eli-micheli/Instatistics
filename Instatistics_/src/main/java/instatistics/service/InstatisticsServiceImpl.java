@@ -1,8 +1,6 @@
 package instatistics.service;
-<<<<<<< Updated upstream
-=======
+
 import instatistics.filters.*;
->>>>>>> Stashed changes
 import instatistics.model.*;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,22 +9,15 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Vector;
-
-import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
-import org.apache.coyote.http11.AbstractHttp11JsseProtocol;
 import org.json.simple.JSONArray;
 
 import org.springframework.stereotype.Service;
 @Service
 public class InstatisticsServiceImpl implements InstatisticsService {
 	
-
-	private String token="IGQVJYMjQzaVpCQ191SmswRTFBY1ZACblhUT0NBQWFvamtFYmlsQ1ZAQd3J2T19fdTVjZAjZAwcFB0TEZAadzV3dGMtOC1iS1IwRXltSDhIenhpWWktemlETDFwVy1IRkV3YU1WVC1XY05xV0JaODRTWVF0agZDZD"; //da inserire
-
+	private String token="IGQVJXZAlI3QnhaMUFXanp6SVVhckE2VWU4NTdmaUEyd1BXaFdpMTRtRjJLSFY5NTcxTTdMWENGVEhGSXJiY3YzWm1XTGVJNWlNOU4yR3VWXzRzRUc1Vnk3dkwyVDRmaXJva0lTM1E0ZADhSalBIdlE0MQZDZD"; //da inserire
 	private String idPost ="";//inserire
 
 	private String urlUtente="https://graph.instagram.com/me/media?fields=";
@@ -142,7 +133,7 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 	}
 
 
-	@SuppressWarnings("unchecked")
+	
 	public ArrayList<Post>  JsonReading() {
 		//prende il JSON che ritorna l'api di instagram
 		//e lo mette in un ArrayList
@@ -162,19 +153,12 @@ public class InstatisticsServiceImpl implements InstatisticsService {
         
         	postList.add(i, post);
         }
-        //mi converte l'ArrayList in un JSONObject
-      //  JSONObject jsonList = new JSONObject();
-        //PostList pp=new PostList(postList);
-        //jsonList.put("post", postList);
-       /* for(int i=0;i<postList.size();i++) {
-        	System.out.println(postList.get(i).media_type);
-        }*/
-        
         return postList;
 	}
-	/*public JSONObject Test() {	
+	@SuppressWarnings("unchecked")
+	public JSONObject Test() {	
 		//creo oggetto postlist e richiamo la funzione
-<<<<<<< Updated upstream
+
 		//PostList pl=new PostList(null);
 		PostList pl=JsonReading();
 		//MediaType mm=new MediaType(pl);
@@ -183,7 +167,7 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 		jj.put("file", pl);
 		
 		System.out.println(pl.toString());
-=======
+
 		
 		ArrayList<Post> pl=JsonReading();
 		/*TimeStamp cc = new TimeStamp(pl);
@@ -200,10 +184,18 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 		
 		;
 		jj.put("File",mt.NumberOfRepetition("mare") );
->>>>>>> Stashed changes
+
+		
+		ArrayList<Post> pl=JsonReading();
+		Caption mm = new Caption(pl);
+		String risultato = mm.Suggestion("cerimonia");
+		JSONObject jj=new JSONObject();
+		jj.put("file", risultato);
+	
+
 		return jj;
 		
-	}*/
+	}
 	@SuppressWarnings("unchecked")
 	public JSONObject getMedia(String Argoument) {
 		ArrayList<Post> pp=new ArrayList<Post>();
@@ -212,7 +204,7 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 		
 		JSONObject jj = new JSONObject();
 		jj.put("Numero ripetizioni", mt.NumberOfRepetition(Argoument));
-		jj.put("Ranking", mt.Ranking());
+		jj.put("Ranking", mt.Ranking(null));
 		
 		return jj;
 	}
@@ -224,7 +216,6 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 		JSONObject jj=new JSONObject();
 		jj.put("Numero di post", tp.NumberOfRepetition(Argoument));
 		return jj;
-		
 	}
 		
 

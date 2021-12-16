@@ -44,23 +44,18 @@ public ResponseEntity<Object> getAllPost() throws ParseException{
 public ResponseEntity<Object> JsonReading() throws ParseException{
 	return new ResponseEntity<>(instatisticsService.JsonReading(),HttpStatus.OK);
 } 
-/*
+
 @RequestMapping(value="/test")
 public ResponseEntity<Object> Test() throws ParseException{
 	return new ResponseEntity<>(instatisticsService.Test(),HttpStatus.OK);
-} */
+} 
 @RequestMapping(value="/getMedia")
 public ResponseEntity<Object> getMedia(@RequestParam(name = "field", defaultValue = "IMAGE") String field) throws ParseException{
 	return new ResponseEntity<>(instatisticsService.getMedia(field),HttpStatus.OK);
 } 
-
-@RequestMapping(value="/getTimestamp")
-
+@RequestMapping(value="/getTimestamp/{data}")
 public ResponseEntity<Object> getTimestamp(Map<String, Object> model,@PathVariable String data) throws ParseException{
 	model.put("data", data);
 	return new ResponseEntity<>(instatisticsService.getTimestamp(data),HttpStatus.OK);
 } 
-
-
-
 }
