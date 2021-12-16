@@ -1,7 +1,7 @@
 package instatistics.model;
 
 import java.util.ArrayList;
-import org.json.simple.JSONObject;
+
 
 public class TimeStamp implements Field{
 	
@@ -19,7 +19,7 @@ public class TimeStamp implements Field{
 		return Integer.toString(cont);
 	}
 	@Override
-	public String Ranking() {
+	public String Ranking(String[] input) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -1,7 +1,7 @@
 package instatistics.model;
 
 import java.util.ArrayList;
-import org.json.simple.JSONObject;
+
 
 public class Caption extends FieldSuggest{
 	//private JSONObject json = new JSONObject();
@@ -22,12 +22,7 @@ public class Caption extends FieldSuggest{
 		return Integer.toString(cont); 
 	}
 	
-	@Override
-<<<<<<< Updated upstream
-	public String Ranking(String [] input) {
-		// TODO Auto-generated method stub
-		return null;
-=======
+
 	public String Ranking(String[] input) {
 		Caption cc = new Caption(array);
 		int winnerpast =0;
@@ -35,7 +30,6 @@ public class Caption extends FieldSuggest{
 		int contpresent =0;
 		int contpast =0;
 		
-		//int [] valori ={Integer.valueOf(cc.NumberOfRepetition(input [i])),Integer.valueOf(cc.NumberOfRepetition(input [1])), Integer.valueOf(cc.NumberOfRepetition(input [2]))};
 		for ( int i =1; i<input.length; i++) {
 			if (Integer.valueOf(cc.NumberOfRepetition(input [i-1]))>Integer.valueOf(cc.NumberOfRepetition(input [i]))) {
 				winnerpresent = Integer.valueOf(cc.NumberOfRepetition(input [i-1]));
@@ -51,7 +45,7 @@ public class Caption extends FieldSuggest{
 		}
 		String result = "La caption più usata è " +input[contpast] + " con " +Integer.toString(winnerpast) +" ripetizioni" ;
 	    return result ;
->>>>>>> Stashed changes
+
 	}
 	
 		

@@ -1,4 +1,5 @@
 package instatistics.service;
+
 import instatistics.model.*;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,26 +8,15 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Vector;
-
-import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
-import org.apache.coyote.http11.AbstractHttp11JsseProtocol;
 import org.json.simple.JSONArray;
 
 import org.springframework.stereotype.Service;
 @Service
 public class InstatisticsServiceImpl implements InstatisticsService {
 	
-
-<<<<<<< Updated upstream
 	private String token="IGQVJYMjQzaVpCQ191SmswRTFBY1ZACblhUT0NBQWFvamtFYmlsQ1ZAQd3J2T19fdTVjZAjZAwcFB0TEZAadzV3dGMtOC1iS1IwRXltSDhIenhpWWktemlETDFwVy1IRkV3YU1WVC1XY05xV0JaODRTWVF0agZDZD"; //da inserire
-
-=======
-	private String token="IGQVJXZAlI3QnhaMUFXanp6SVVhckE2VWU4NTdmaUEyd1BXaFdpMTRtRjJLSFY5NTcxTTdMWENGVEhGSXJiY3YzWm1XTGVJNWlNOU4yR3VWXzRzRUc1Vnk3dkwyVDRmaXJva0lTM1E0ZADhSalBIdlE0MQZDZD"; //da inserire
->>>>>>> Stashed changes
 	private String idPost ="";//inserire
 
 	private String urlUtente="https://graph.instagram.com/me/media?fields=";
@@ -142,7 +132,7 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 	}
 
 
-	@SuppressWarnings("unchecked")
+	
 	public ArrayList<Post>  JsonReading() {
 		//prende il JSON che ritorna l'api di instagram
 		//e lo mette in un ArrayList
@@ -162,14 +152,6 @@ public class InstatisticsServiceImpl implements InstatisticsService {
         
         	postList.add(i, post);
         }
-        //mi converte l'ArrayList in un JSONObject
-      //  JSONObject jsonList = new JSONObject();
-        //PostList pp=new PostList(postList);
-        //jsonList.put("post", postList);
-       /* for(int i=0;i<postList.size();i++) {
-        	System.out.println(postList.get(i).media_type);
-        }*/
-        
         return postList;
 	}
 	@SuppressWarnings("unchecked")
@@ -200,15 +182,14 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 		return jj;
 	}
 	
-	public JSONObject getTimestamp(String Argoument) {
-		ArrayList<Post> pp=new ArrayList<Post>();
-		pp=JsonReading();
-		TimeStamp tp=new TimeStamp(pp);
-		JSONObject jj=new JSONObject();
-		jj.put("Numero di post", tp.NumberOfRepetition(Argoument));
-		return jj;
-		
-	}
+	//public JSONObject getTimestamp(String Argoument) {
+		//ArrayList<Post> pp=new ArrayList<Post>();
+		//pp=JsonReading();
+		//TimeStamp tp=new TimeStamp(pp);
+		//JSONObject jj=new JSONObject();
+		//jj.put("Numero di post", tp.NumberOfRepetition(Argoument));
+		//return jj;
+	//}
 		
 
 
