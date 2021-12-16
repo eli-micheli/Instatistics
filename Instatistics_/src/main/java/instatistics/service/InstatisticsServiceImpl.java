@@ -21,8 +21,12 @@ import org.springframework.stereotype.Service;
 public class InstatisticsServiceImpl implements InstatisticsService {
 	
 
+<<<<<<< Updated upstream
 	private String token="IGQVJYMjQzaVpCQ191SmswRTFBY1ZACblhUT0NBQWFvamtFYmlsQ1ZAQd3J2T19fdTVjZAjZAwcFB0TEZAadzV3dGMtOC1iS1IwRXltSDhIenhpWWktemlETDFwVy1IRkV3YU1WVC1XY05xV0JaODRTWVF0agZDZD"; //da inserire
 
+=======
+	private String token="IGQVJXZAlI3QnhaMUFXanp6SVVhckE2VWU4NTdmaUEyd1BXaFdpMTRtRjJLSFY5NTcxTTdMWENGVEhGSXJiY3YzWm1XTGVJNWlNOU4yR3VWXzRzRUc1Vnk3dkwyVDRmaXJva0lTM1E0ZADhSalBIdlE0MQZDZD"; //da inserire
+>>>>>>> Stashed changes
 	private String idPost ="";//inserire
 
 	private String urlUtente="https://graph.instagram.com/me/media?fields=";
@@ -168,19 +172,21 @@ public class InstatisticsServiceImpl implements InstatisticsService {
         
         return postList;
 	}
-	/*public JSONObject Test() {	
+	@SuppressWarnings("unchecked")
+	public JSONObject Test() {	
 		//creo oggetto postlist e richiamo la funzione
-		//PostList pl=new PostList(null);
-		PostList pl=JsonReading();
-		//MediaType mm=new MediaType(pl);
-		//return mm.Ranking();
-		JSONObject jj=new JSONObject();
-		jj.put("file", pl);
 		
-		System.out.println(pl.toString());
+		ArrayList<Post> pl=JsonReading();
+		Caption cc = new Caption(pl);
+		//String[] stringa = {"#mare","#ancona", "#sea", "#Vasco"};
+		//String risultato = cc.Ranking(stringa);
+		String risultato = cc.NumberOfRepetition("#vascononstop2019");
+		JSONObject jj=new JSONObject();
+		jj.put("file", risultato);
+	
 		return jj;
 		
-	}*/
+	}
 	@SuppressWarnings("unchecked")
 	public JSONObject getMedia(String Argoument) {
 		ArrayList<Post> pp=new ArrayList<Post>();

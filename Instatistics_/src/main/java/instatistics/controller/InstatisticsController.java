@@ -44,11 +44,11 @@ public ResponseEntity<Object> getAllPost() throws ParseException{
 public ResponseEntity<Object> JsonReading() throws ParseException{
 	return new ResponseEntity<>(instatisticsService.JsonReading(),HttpStatus.OK);
 } 
-/*
+
 @RequestMapping(value="/test")
 public ResponseEntity<Object> Test() throws ParseException{
 	return new ResponseEntity<>(instatisticsService.Test(),HttpStatus.OK);
-} */
+} 
 @RequestMapping(value="/getMedia")
 public ResponseEntity<Object> getMedia(@RequestParam(name = "field", defaultValue = "IMAGE") String field) throws ParseException{
 	return new ResponseEntity<>(instatisticsService.getMedia(field),HttpStatus.OK);
