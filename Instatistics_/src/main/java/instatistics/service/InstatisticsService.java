@@ -18,10 +18,7 @@ public interface InstatisticsService {
     
     public abstract JSONObject getMedia(String metod,String field);
     public abstract JSONObject getTimestamp(String metod,String field);
-    public abstract JSONObject getRankingTimestamp(String date);
-    public abstract JSONObject getNumberOfCaption(String caption);
-    public abstract JSONObject getRankingOfCaption(String caption);
-    public abstract JSONObject getSuggestionCaption(String caption);
+    public abstract JSONObject getCaption(String metod,String theme);
     
     public abstract JSONObject getFilterYear(String year);
     

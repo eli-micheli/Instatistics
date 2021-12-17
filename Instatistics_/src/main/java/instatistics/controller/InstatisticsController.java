@@ -44,35 +44,18 @@ public ResponseEntity<Object> getAllPost() throws ParseException{
 public ResponseEntity<Object> JsonReading() throws ParseException{
 	return new ResponseEntity<>(instatisticsService.JsonReading(),HttpStatus.OK);
 } 
-/*
-@RequestMapping(value="/test")
-public ResponseEntity<Object> Test() throws ParseException{
-	return new ResponseEntity<>(instatisticsService.Test(),HttpStatus.OK);
-} */
 @RequestMapping(value="/getMedia")
-public ResponseEntity<Object> getMedia(@RequestParam(name = "metod") String metod,@RequestParam(name = "field", defaultValue = "IMAGE") String field) throws ParseException{
+public ResponseEntity<Object> getMedia(@RequestParam(name = "metod") String metod,@RequestParam(name = "field") String field) throws ParseException{
 	return new ResponseEntity<>(instatisticsService.getMedia(metod,field),HttpStatus.OK);
 } 
 @RequestMapping(value="/getTimestamp")
-public ResponseEntity<Object> getTimestamp(@RequestParam(name = "field", defaultValue = "2021") String field) throws ParseException{
-	return new ResponseEntity<>(instatisticsService.getTimestamp(field),HttpStatus.OK);
+public ResponseEntity<Object> getTimestamp(@RequestParam(name = "metod") String metod,@RequestParam(name = "field") String field) throws ParseException{
+	return new ResponseEntity<>(instatisticsService.getTimestamp(metod,field),HttpStatus.OK);
 }
 
-@RequestMapping(value="/getRankingTimestamp")
-public ResponseEntity<Object> getRankingTimestamp(@RequestParam(name = "field", defaultValue = "2021,2020") String field) throws ParseException{
-	return new ResponseEntity<>(instatisticsService.getRankingTimestamp(field),HttpStatus.OK);
-}
-@RequestMapping(value="/getNumberOfCaption")
-public ResponseEntity<Object> getNumberOfCaption(@RequestParam(name = "field", defaultValue = "null") String field) throws ParseException{
-	return new ResponseEntity<>(instatisticsService.getNumberOfCaption(field),HttpStatus.OK);
-}
-@RequestMapping(value="/getRankingOfCaption")
-public ResponseEntity<Object> getRankingOfCaption(@RequestParam(name = "field", defaultValue = "null") String field) throws ParseException{
-	return new ResponseEntity<>(instatisticsService.getRankingOfCaption(field),HttpStatus.OK);
-}
-@RequestMapping(value="/getSuggestionOfCaption")
-public ResponseEntity<Object> getSuggestionOfCaption(@RequestParam(name = "field", defaultValue = "null") String field) throws ParseException{
-	return new ResponseEntity<>(instatisticsService.getSuggestionCaption(field),HttpStatus.OK);
+@RequestMapping(value="/getCaption")
+public ResponseEntity<Object> getSuggestionOfCaption(@RequestParam(name = "metod") String metod,@RequestParam(name = "field", defaultValue = "null") String field) throws ParseException{
+	return new ResponseEntity<>(instatisticsService.getCaption(metod,field),HttpStatus.OK);
 }
 
 @RequestMapping(value="/getFilterYear")

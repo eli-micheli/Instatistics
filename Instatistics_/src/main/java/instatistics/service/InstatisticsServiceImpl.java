@@ -188,87 +188,53 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 		if (metod.equals("NumberOfRepetition") || metod.equals("Ranking")) {
 		    ArrayList<Post> pp=new ArrayList<Post>();
 			pp=JsonReading();
-			MediaType mt=new MediaType(pp);
+			TimeStamp mt=new TimeStamp(pp);
 			switch(metod) {
 			case ("NumberOfRepetition"):
-				if (field.equals("IMAGE") || field.equals("VIDEO") || field.equals("CAROUSEL_ALBUM")) {
+				if (field.length() == 4) {
 				jj.put("Numero ripetizioni", mt.NumberOfRepetition(field));
 				}
 				else {jj.put("Errore: ", "field non valido");}	
 			break;
 			case ("Ranking"):
-				jj.put("Ranking", mt.Ranking(null));
+				String [] input= field.split(",");
+	     	jj.put("Più usato",mt.Ranking(input));
 			break;
-			case ("Suggestion"):
-				jj.put("Suggestion", mt.Suggestion(null));
-			break;
-			}
+			
+		   }
 		}
 		else {jj.put("Errore: ", "metod non valido");}
 		return jj;
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		ArrayList<Post> pp=new ArrayList<Post>();
-		pp=JsonReading();
-		TimeStamp tp=new TimeStamp(pp);
-		JSONObject jj=new JSONObject();
-		jj.put("Numero di post", tp.NumberOfRepetition(Argoument));
-		return jj;
 	}
 	
-	@SuppressWarnings("unchecked")
-	public JSONObject getRankingTimestamp(String data) {
-		ArrayList<Post> pp=new ArrayList<Post>();
-		pp=JsonReading();
-		String[] split=data.split(",");
-		TimeStamp tp=new TimeStamp(pp); 
-		
-		JSONObject jj=new JSONObject();
-		jj.put("Risultato:",tp.Ranking(split) );
-		return jj;
-	}
-	
-	@SuppressWarnings("unchecked")
-	public JSONObject getNumberOfCaption(String caption) {
-		ArrayList<Post> pp=new ArrayList<Post>();
-		pp=JsonReading();
-		Caption cc=new Caption(pp);
-		JSONObject jj=new JSONObject();
-		jj.put("La caption è presente", cc.NumberOfRepetition(caption));
-		return jj;
-	}
-	
-	@SuppressWarnings("unchecked")
-	public JSONObject getRankingOfCaption(String caption) {
-		ArrayList<Post> pp=new ArrayList<Post>();
-		pp=JsonReading();
-		Caption cc=new Caption(pp);
-		JSONObject jj=new JSONObject();
-		String[] sp=caption.split(",");
-		jj.put("Risultato:", cc.Ranking(sp));
-		return jj;
-		
-	}
 		
 	@SuppressWarnings("unchecked")
-	public JSONObject getSuggestionCaption(String theme) {
+	public JSONObject getCaption(String metod, String theme) {
 		JSONObject jj=new JSONObject();
-		if (theme == "sport" || theme == "cerimonia" || theme == "insieme") {
-			Caption cc=new Caption (null);
-			jj.put("Hashtag consigliato",cc.Suggestion(theme));
-			
+		
+		if (metod.equals("NumberOfRepetition") || metod.equals("Suggestion") || metod.equals("Ranking")) {
+			ArrayList<Post> pp=new ArrayList<Post>();
+			pp=JsonReading();
+			Caption cc=new Caption (pp);
+			switch (metod){
+			case ("Suggestion"):
+				if (theme.equals("sport") || theme.equals("cerimonia") || theme.equals("insieme")) {
+					jj.put("Hashtag consigliato",cc.Suggestion(theme));
+				}
+				else {jj.put("Errore: ", "inserire un tema a scelta tra: sport, insieme o cerimonia");}
+			break;
+			case ("NumberOfRepetition"):
+				if (theme.equals("null")){jj.put("Errore: ","inserire field");}
+				else {jj.put("Ripetuto",cc.NumberOfRepetition(theme));}
+				
+		    break;
+			case("Ranking"):
+				String [] input= theme.split(",");
+		     	jj.put("Più usato",cc.Ranking(input));
+		    break;
+			}
 		}
-		else {
-			String error = "Errore, inserire un tema  a scelta tra: sport, insieme o cerimonia";
-			jj.put("Post", error );
-		}
+		else {jj.put("Errore: ", "metod non valido");}
 		return jj;
 	}
 	
