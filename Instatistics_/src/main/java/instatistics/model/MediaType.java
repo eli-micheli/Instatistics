@@ -63,10 +63,10 @@ public class MediaType extends FieldSuggest{
 	public String Suggestion(String input) {
 		MediaType mm = new MediaType(array);
 		String mostUsed=mm.Ranking(null);
-		System.out.println("mU: " +mostUsed);
-		String lastUsed=array.get(1).getMedia_type();
-		System.out.println("lU: "+lastUsed);
-		String result = "PP";
+		
+		String lastUsed=array.get(0).getMedia_type();
+		
+		String result = null;
 		if (mostUsed.equals(lastUsed)) {
 			switch (mostUsed) {
 			case("VIDEO"):
@@ -101,7 +101,6 @@ public class MediaType extends FieldSuggest{
 			    
 			break;
 			case ("IMAGE"):
-				System.out.println("fa bene lo switch case");
 				if (lastUsed.equals("CAROUSEL_ALBUM")) {
 					result = "VIDEO";
 					}

@@ -155,30 +155,66 @@ public class InstatisticsServiceImpl implements InstatisticsService {
         }
         return postList;
 	}
-	//|| Argoument == "VIDEO" || Argoument == "CAROUSEL_ALBUM"
+	
 	@SuppressWarnings("unchecked")
-	public JSONObject getMedia(String Argoument) {
-		
+	public JSONObject getMedia(String metod,String field) {
 		JSONObject jj = new JSONObject();
-		if (Argoument.equals("IMAGE") || Argoument.equals("VIDEO") || Argoument.equals("CARUSEL_ALBUM") ) {
-		
-			ArrayList<Post> pp=new ArrayList<Post>();
+		if (metod.equals("NumberOfRepetition") || metod.equals("Suggestion") || metod.equals("Ranking")) {
+		    ArrayList<Post> pp=new ArrayList<Post>();
 			pp=JsonReading();
 			MediaType mt=new MediaType(pp);
-			jj.put("Numero ripetizioni", mt.NumberOfRepetition(Argoument));
-			jj.put("Ranking", mt.Ranking(null));
-			jj.put("Suggestion", mt.Suggestion(null));
+			switch(metod) {
+			case ("NumberOfRepetition"):
+				if (field.equals("IMAGE") || field.equals("VIDEO") || field.equals("CAROUSEL_ALBUM")) {
+				jj.put("Numero ripetizioni", mt.NumberOfRepetition(field));
+				}
+				else {jj.put("Errore: ", "field non valido");}	
+			break;
+			case ("Ranking"):
+				jj.put("Ranking", mt.Ranking(null));
+			break;
+			case ("Suggestion"):
+				jj.put("Suggestion", mt.Suggestion(null));
+			break;
+			}
 		}
-		else {
-			
-			jj.put("Ranking", "Errore");
-			
-		}
+		else {jj.put("Errore: ", "metod non valido");}
 		return jj;
 	}
 	
 	@SuppressWarnings("unchecked")
-	public JSONObject getTimestamp(String Argoument) {
+	public JSONObject getTimestamp(String metod,String field) {
+		JSONObject jj = new JSONObject();
+		if (metod.equals("NumberOfRepetition") || metod.equals("Ranking")) {
+		    ArrayList<Post> pp=new ArrayList<Post>();
+			pp=JsonReading();
+			MediaType mt=new MediaType(pp);
+			switch(metod) {
+			case ("NumberOfRepetition"):
+				if (field.equals("IMAGE") || field.equals("VIDEO") || field.equals("CAROUSEL_ALBUM")) {
+				jj.put("Numero ripetizioni", mt.NumberOfRepetition(field));
+				}
+				else {jj.put("Errore: ", "field non valido");}	
+			break;
+			case ("Ranking"):
+				jj.put("Ranking", mt.Ranking(null));
+			break;
+			case ("Suggestion"):
+				jj.put("Suggestion", mt.Suggestion(null));
+			break;
+			}
+		}
+		else {jj.put("Errore: ", "metod non valido");}
+		return jj;
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		ArrayList<Post> pp=new ArrayList<Post>();
 		pp=JsonReading();
 		TimeStamp tp=new TimeStamp(pp);

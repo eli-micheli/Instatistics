@@ -50,8 +50,8 @@ public ResponseEntity<Object> Test() throws ParseException{
 	return new ResponseEntity<>(instatisticsService.Test(),HttpStatus.OK);
 } */
 @RequestMapping(value="/getMedia")
-public ResponseEntity<Object> getMedia(@RequestParam(name = "field", defaultValue = "IMAGE") String field) throws ParseException{
-	return new ResponseEntity<>(instatisticsService.getMedia(field),HttpStatus.OK);
+public ResponseEntity<Object> getMedia(@RequestParam(name = "metod") String metod,@RequestParam(name = "field", defaultValue = "IMAGE") String field) throws ParseException{
+	return new ResponseEntity<>(instatisticsService.getMedia(metod,field),HttpStatus.OK);
 } 
 @RequestMapping(value="/getTimestamp")
 public ResponseEntity<Object> getTimestamp(@RequestParam(name = "field", defaultValue = "2021") String field) throws ParseException{

@@ -10,10 +10,10 @@ public class TimeStamp implements Field{
 		this.array=array;
 	}
 	@Override
-	public String NumberOfRepetition(String ObjectOfInterest) {
+	public String NumberOfRepetition(String YearOfInterest) {
 		int cont=0;
 		for(int i=0;i<array.size();i++) {
-			if(array.get(i).timestamp.contains(ObjectOfInterest)) {cont++;
+			if(array.get(i).timestamp.contains(YearOfInterest)) {cont++;
 			}
 		}
 		return Integer.toString(cont);
