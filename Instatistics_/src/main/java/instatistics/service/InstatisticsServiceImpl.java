@@ -155,18 +155,18 @@ public class InstatisticsServiceImpl implements InstatisticsService {
         }
         return postList;
 	}
-	@SuppressWarnings("unchecked")
+/*	@SuppressWarnings("unchecked")
 	public JSONObject Test() {	
 		//creo oggetto postlist e richiamo la funzione
 
-		//PostList pl=new PostList(null);
-		PostList pl=JsonReading();
-		//MediaType mm=new MediaType(pl);
+	   ArrayList<Post> pp=new ArrayList<Post>();
+        pp=JsonReading();
+		MediaType mm=new MediaType(pp);
 		//return mm.Ranking();
 		JSONObject jj=new JSONObject();
-		jj.put("file", pl);
+		jj.put("file", pp);
 		
-		System.out.println(pl.toString());
+		System.out.println(pp.toString());
 
 		
 		ArrayList<Post> pl=JsonReading();
@@ -179,7 +179,7 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 		jj.put("file", risultato);
 	
 		return jj;*/
-		JSONObject jj=new JSONObject();
+	/*	JSONObject jj=new JSONObject();
 		Caption mt=new Caption(pl);
 		
 		;
@@ -195,7 +195,7 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 
 		return jj;
 		
-	}
+	}*/
 	@SuppressWarnings("unchecked")
 	public JSONObject getMedia(String Argoument) {
 		ArrayList<Post> pp=new ArrayList<Post>();
@@ -217,7 +217,53 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 		jj.put("Numero di post", tp.NumberOfRepetition(Argoument));
 		return jj;
 	}
+	
+	public JSONObject getRankingTimestamp(String data) {
+		ArrayList<Post> pp=new ArrayList<Post>();
+		pp=JsonReading();
+		String[] split=data.split(",");
+		TimeStamp tp=new TimeStamp(pp); 
 		
+		JSONObject jj=new JSONObject();
+		jj.put("Risultato:",tp.Ranking(split) );
+		return jj;
+	}
+	
+	public JSONObject getNumberOfCaption(String caption) {
+		ArrayList<Post> pp=new ArrayList<Post>();
+		pp=JsonReading();
+		Caption cc=new Caption(pp);
+		JSONObject jj=new JSONObject();
+		jj.put("La caption è presente", cc.NumberOfRepetition(caption));
+		return jj;
+	}
+	
+	public JSONObject getRankingOfCaption(String caption) {
+		ArrayList<Post> pp=new ArrayList<Post>();
+		pp=JsonReading();
+		Caption cc=new Caption(pp);
+		JSONObject jj=new JSONObject();
+		String[] sp=caption.split(",");
+		jj.put("Risultato:", cc.Ranking(sp));
+		return jj;
+		
+	}
+		
+	public JSONObject getSuggestionCaption(String suggestion) {
+		Caption cc=new Caption (null);
+		JSONObject jj=new JSONObject();
+		jj.put("Hashtag consigliato",cc.Suggestion(suggestion));
+		return jj;
+	}
+	public JSONObject getFilterYear(String anno) {
+		ArrayList<Post> pp=new ArrayList<Post>();
+		pp=JsonReading();
+		FiltroAnno fa=new FiltroAnno(pp);
+		JSONObject jj=new JSONObject();
+		jj.put("Post", fa.post_annuali(anno));
+		return jj;
+		
+	}
 
 
 
