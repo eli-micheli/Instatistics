@@ -155,60 +155,29 @@ public class InstatisticsServiceImpl implements InstatisticsService {
         }
         return postList;
 	}
-/*	@SuppressWarnings("unchecked")
-	public JSONObject Test() {	
-		//creo oggetto postlist e richiamo la funzione
-
-	   ArrayList<Post> pp=new ArrayList<Post>();
-        pp=JsonReading();
-		MediaType mm=new MediaType(pp);
-		//return mm.Ranking();
-		JSONObject jj=new JSONObject();
-		jj.put("file", pp);
-		
-		System.out.println(pp.toString());
-
-		
-		ArrayList<Post> pl=JsonReading();
-		/*TimeStamp cc = new TimeStamp(pl);
-		
-		String[] stringa = {"2021","2017", "2019"};
-		String risultato = cc.Ranking(stringa);
-		//String risultato = cc.NumberOfRepetition("#vascononstop2019");
-		JSONObject jj=new JSONObject();
-		jj.put("file", risultato);
-	
-		return jj;*/
-	/*	JSONObject jj=new JSONObject();
-		Caption mt=new Caption(pl);
-		
-		;
-		jj.put("File",mt.NumberOfRepetition("mare") );
-
-		
-		ArrayList<Post> pl=JsonReading();
-		Caption mm = new Caption(pl);
-		String risultato = mm.Suggestion("cerimonia");
-		JSONObject jj=new JSONObject();
-		jj.put("file", risultato);
-	
-
-		return jj;
-		
-	}*/
+	//|| Argoument == "VIDEO" || Argoument == "CAROUSEL_ALBUM"
 	@SuppressWarnings("unchecked")
 	public JSONObject getMedia(String Argoument) {
-		ArrayList<Post> pp=new ArrayList<Post>();
-		pp=JsonReading();
-		MediaType mt=new MediaType(pp);
 		
 		JSONObject jj = new JSONObject();
-		jj.put("Numero ripetizioni", mt.NumberOfRepetition(Argoument));
-		jj.put("Ranking", mt.Ranking(null));
+		if (Argoument.equals("IMAGE") || Argoument.equals("VIDEO") || Argoument.equals("CARUSEL_ALBUM") ) {
 		
+			ArrayList<Post> pp=new ArrayList<Post>();
+			pp=JsonReading();
+			MediaType mt=new MediaType(pp);
+			jj.put("Numero ripetizioni", mt.NumberOfRepetition(Argoument));
+			jj.put("Ranking", mt.Ranking(null));
+			jj.put("Suggestion", mt.Suggestion(null));
+		}
+		else {
+			
+			jj.put("Ranking", "Errore");
+			
+		}
 		return jj;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public JSONObject getTimestamp(String Argoument) {
 		ArrayList<Post> pp=new ArrayList<Post>();
 		pp=JsonReading();
@@ -218,6 +187,7 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 		return jj;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public JSONObject getRankingTimestamp(String data) {
 		ArrayList<Post> pp=new ArrayList<Post>();
 		pp=JsonReading();
@@ -229,6 +199,7 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 		return jj;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public JSONObject getNumberOfCaption(String caption) {
 		ArrayList<Post> pp=new ArrayList<Post>();
 		pp=JsonReading();
@@ -238,6 +209,7 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 		return jj;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public JSONObject getRankingOfCaption(String caption) {
 		ArrayList<Post> pp=new ArrayList<Post>();
 		pp=JsonReading();
@@ -249,18 +221,35 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 		
 	}
 		
-	public JSONObject getSuggestionCaption(String suggestion) {
-		Caption cc=new Caption (null);
+	@SuppressWarnings("unchecked")
+	public JSONObject getSuggestionCaption(String theme) {
 		JSONObject jj=new JSONObject();
-		jj.put("Hashtag consigliato",cc.Suggestion(suggestion));
+		if (theme == "sport" || theme == "cerimonia" || theme == "insieme") {
+			Caption cc=new Caption (null);
+			jj.put("Hashtag consigliato",cc.Suggestion(theme));
+			
+		}
+		else {
+			String error = "Errore, inserire un tema  a scelta tra: sport, insieme o cerimonia";
+			jj.put("Post", error );
+		}
 		return jj;
 	}
-	public JSONObject getFilterYear(String anno) {
+	
+	@SuppressWarnings("unchecked")
+	public JSONObject getFilterYear(String year) {
+		JSONObject jj=new JSONObject();
+		if (year.length() == 4) {
 		ArrayList<Post> pp=new ArrayList<Post>();
 		pp=JsonReading();
 		FiltroAnno fa=new FiltroAnno(pp);
-		JSONObject jj=new JSONObject();
-		jj.put("Post", fa.post_annuali(anno));
+		
+		jj.put("Post", fa.post_annuali(year));
+		}
+		else {
+		String error = "Errore, inserire un anno valido";
+		jj.put("Post", error );
+		}
 		return jj;
 		
 	}
