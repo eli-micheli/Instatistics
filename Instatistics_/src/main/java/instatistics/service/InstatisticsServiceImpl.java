@@ -24,6 +24,7 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 	//url per gestire richieste al profilo
 	private String urlPost="https://graph.instagram.com/";
 	//url per gestire richieste al post
+	
 	@Override
 	public JSONObject getDataUser(String field) {
 	//permette di ottenere informazioni su tutti i post dell'utente 
@@ -78,8 +79,9 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 		catch (Exception e) {System.out.println("Errore");}
 		return all_user;
 	}
+	
 	@Override
-	public JSONObject getDataPost(String field) {
+    public JSONObject getDataPost(String field) {
 		//permette di ottenere informazioni su un post dell'utente 
 		//il tipo di informazione è definita dalla variabile fields
 			JSONObject data_post=null;
@@ -132,8 +134,6 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 		return all_post;
 	}
 
-
-	
 	public ArrayList<Post>  JsonReading() {
 		//prende il JSON che ritorna l'api di instagram
 		//e lo mette in un ArrayList
@@ -207,7 +207,6 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 		return jj;
 	}
 	
-		
 	@SuppressWarnings("unchecked")
 	public JSONObject getCaption(String metod, String theme) {
 		JSONObject jj=new JSONObject();
@@ -253,20 +252,7 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 		jj.put("Post", error );
 		}
 		return jj;
-		
 	}
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
 

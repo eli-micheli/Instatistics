@@ -1,15 +1,13 @@
 package instatistics.model;
 
 import java.util.ArrayList;
-import org.json.simple.*;
-
 public class MediaType extends FieldSuggest{
     
 	ArrayList <Post> array = new ArrayList <Post>();
 	public MediaType (ArrayList <Post> array) {
 		this.array=array;
 	}
-	@SuppressWarnings("unchecked")
+
 	public String NumberOfRepetition(String ObjectOfInterest) {
 		int cont=0;
 		for(int	i=0;i<array.size();i++) {
@@ -25,7 +23,7 @@ public class MediaType extends FieldSuggest{
 		int contAlbum =0;
 		int contVideo=0;
 		
-		String p = null;
+		
 		String q = null;
 		for(int	i=0;i<array.size();i++) {
 			switch (array.get(i).getMedia_type()) {
@@ -41,20 +39,20 @@ public class MediaType extends FieldSuggest{
 			}
 			
 			if(contImage>=contAlbum && contImage>=contAlbum) {
-			    p ="Maggiore" +" "+contImage +" "+"Tipo più frequente" +" "+"IMAGE";
+		
 			    q = "IMAGE";
 			}
 			else {
 				if(contAlbum>=contVideo) {
-				p = "Maggiore" +" "+contAlbum +" "+"Tipo più frequente" +" "+"ALBUM";
 				q = "CAROUSEL_ALBUM";
 				}
 				else {
-					p= "Maggiore" +" "+contVideo +" "+"Tipo più frequente"+" " +"VIDEO";
+					
 					q = "VIDEO";
 				}   
 			}
 		}
+		
 		return q;
 
 	}

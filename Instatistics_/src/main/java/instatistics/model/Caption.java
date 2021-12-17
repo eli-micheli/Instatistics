@@ -1,7 +1,6 @@
 package instatistics.model;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 
 public class Caption extends FieldSuggest{

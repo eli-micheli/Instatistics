@@ -2,8 +2,6 @@ package instatistics.model;
 
 import java.util.ArrayList;
 
-import org.json.simple.JSONObject;
-
 public abstract class FieldSuggest implements Field{
 	
 	public ArrayList <Post> array = new ArrayList <Post>();
