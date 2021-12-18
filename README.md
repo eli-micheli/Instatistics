@@ -18,3 +18,10 @@ Per avviare Instatistics prima di tutto è necessario installare Eclipse, un amb
 4.  Aprire Postman ed eseguire le varie richieste all'indirizzo:*http://localhost8080*
 
 L'applicazione è ora pronta all'utilizzo.
+
+# Richieste
+Grazie all'utilizzo dell'API REST **GET** si possono effettuare delle richieste all'interno di PostMan a seconda delle rotte che vengono inserite. Le rotte presenti nella nostra applicazione sono le seguenti seguite da una breve descrizione:
+
+|**TIPO**|**ROTTE**  | **A COSA SERVE**    |
+| :---: | :---: | :---: | 
+|GET|/getDataUser|Scrivendo semplicemnte la rotta PostMan restituirà l'elenco di tutti i post specificando semplicemente l'Id e il tipo di post; inserendo invece come Query Params  **field** è possibile avere anche altre caratteristiche passando parole chiave come **timestamp**,**caption**,**username**| 
