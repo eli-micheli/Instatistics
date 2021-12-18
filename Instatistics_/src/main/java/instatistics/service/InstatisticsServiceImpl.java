@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 public class InstatisticsServiceImpl implements InstatisticsService {
 	
 	private String token="IGQVJXZAlI3QnhaMUFXanp6SVVhckE2VWU4NTdmaUEyd1BXaFdpMTRtRjJLSFY5NTcxTTdMWENGVEhGSXJiY3YzWm1XTGVJNWlNOU4yR3VWXzRzRUc1Vnk3dkwyVDRmaXJva0lTM1E0ZADhSalBIdlE0MQZDZD"; //da inserire
-	private String idPost ="";//inserire
+	private String idPost ="17893061450319032";//inserire
 
 	private String urlUtente="https://graph.instagram.com/me/media?fields=";
 	//url per gestire richieste al profilo
@@ -171,7 +171,7 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 				else {jj.put("Errore: ", "field non valido");}	
 			break;
 			case ("Ranking"):
-				jj.put("Ranking", mt.Ranking(null));
+			    jj.put("Ranking", mt.Ranking(null));
 			break;
 			case ("Suggestion"):
 				jj.put("Suggestion", mt.Suggestion(null));
@@ -252,6 +252,36 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 		jj.put("Post", error );
 		}
 		return jj;
+	}
+	public JSONObject getFilterPost(String data) {
+		ArrayList<Post> pp=new ArrayList<Post>();
+		pp=JsonReading();
+		FilterPost fp=new FilterPost(pp);
+		JSONObject jj=new JSONObject();
+		jj=fp.getPost(data);
+		return jj;
+		
+		
+}
+	
+	public JSONObject getFilterMediaType(String MediaType) {
+		
+		JSONObject jj=new JSONObject();
+		if(MediaType.equals("IMAGE") || MediaType.equals("VIDEO") || MediaType.equals("CAROUSEL_ALBUM")) {
+		ArrayList<Post> pp= new ArrayList();
+		pp=JsonReading();
+		
+		FiltroMediaType fm=new FiltroMediaType(pp);
+		
+		jj.put("Post", fm.tipi_di_post(MediaType));
+		}else {
+		jj.put("Inserire un formato valido","IMAGE,VIDEO o CAROUSEL_ALBUM");
+		}
+		
+		
+		
+		return jj;
+		
 	}
 
 }

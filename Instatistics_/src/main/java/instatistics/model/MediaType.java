@@ -61,8 +61,7 @@ public class MediaType extends FieldSuggest{
 	public String Suggestion(String input) {
 		MediaType mm = new MediaType(array);
 		String mostUsed=mm.Ranking(null);
-		
-		String lastUsed=array.get(0).getMedia_type();
+		String lastUsed=array.get(0).getMedia_type(); 
 		
 		String result = null;
 		if (mostUsed.equals(lastUsed)) {

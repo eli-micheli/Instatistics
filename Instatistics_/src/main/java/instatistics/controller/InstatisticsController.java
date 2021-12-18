@@ -58,6 +58,14 @@ public ResponseEntity<Object> getSuggestionOfCaption(@RequestParam(name = "metod
 public ResponseEntity<Object> getFilterYear(@RequestParam(name = "field", defaultValue = "2021") String field) throws ParseException{
 	return new ResponseEntity<>(instatisticsService.getFilterYear(field),HttpStatus.OK);
 }
+@RequestMapping(value="/getFilterPost")
+public ResponseEntity<Object> getFilterPost(@RequestParam(name = "field") String field) throws ParseException{
+	return new ResponseEntity<>(instatisticsService.getFilterPost(field),HttpStatus.OK);
+}
+@RequestMapping(value="/getFilterMediaType")
+public ResponseEntity<Object> getFilterMediaType(@RequestParam(name = "field") String field) throws ParseException{
+	return new ResponseEntity<>(instatisticsService.getFilterMediaType(field),HttpStatus.OK);
+}
 
 
 

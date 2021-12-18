@@ -19,5 +19,6 @@ public interface InstatisticsService {
     public abstract JSONObject getCaption(String metod,String theme);
     
     public abstract JSONObject getFilterYear(String year);
-    
+    public abstract JSONObject getFilterPost(String data);
+    public abstract JSONObject getFilterMediaType(String MediaType);
 }

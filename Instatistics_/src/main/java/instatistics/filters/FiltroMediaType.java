@@ -18,7 +18,7 @@ public class FiltroMediaType {
 	
 	public ArrayList<Post> tipi_di_post(String media_type) {
 		for(int i=0;i<array.size();i++) {
-			if(array.get(i).getMedia_type().contains(media_type))
+			if(array.get(i).getMedia_type().equals(media_type))
 			{
 				appoggio.add(array.get(i));
 			}
