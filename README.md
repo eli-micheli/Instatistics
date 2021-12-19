@@ -52,3 +52,24 @@ Breve descrizione dei dati disponibili sui post:
 |/getFilterYear |http://localhost:8080/getFilterYear?field= *year_of_interest* | Sostituendo *year_of_interest* con l'anno di interesse vengono filtrati tutti i post e saranno restituiti solo quelli pubblicati nell'anno indicato |
 |/getFilterPost|http://localhost:8080/getFilterPost?field= *AAAA-MM-GG* |Inserendo una data al posto del campo *AAAA-MM-GG* i post verranno filtrati e se in tale data l'utente ha pubblicato qualche post quest'ultimo verrà restituito, altrimenti verrà restituito che non è stato trovato nulla|
 |/getFilterMediaType|http://localhost:8080/getFilterMediaType?field= *media_type* |Sostituendo *media_type* con una delle parole chiavi IMAGE,VIDEO o CAROUSEL_ALBUM i post vengono filtrati e verranno restituiti solo quelli corrispondenti al *media_type* indicato|
+
+# Statistiche
+L'applicazione può dunque effettuare alcune statistiche facendo riferimento alla caption, alla data di pubblicazione e al tipo dei post. In particolare per:
+
+**MEDIA TYPE:**
+* indicare quanti post di un certo tipo sono presenti su un profilo(IMAGE, VIDEO o CAROUSEL_ALBUM)
+* indicare quale tra tutti i tipi è il più utilizzato dall'utente
+
+**CAPTION**
+* fornendo un hashtag a scelta l'applicazione è in grado di indicare quante volte è stato utilizzato nei post
+* fornendo un elenco di hashtag l'applicazione è in grado di indicare quale sia stato utilizzato più volte e quante volte 
+
+**TIMESTAMP**
+* fornendo un anno di riferimento l'applicazione è in grado di restituire quanti post sono stati pubblicati nell'anno indicato
+* fornendo un elenco di anni l'applicazione indica in quale anno siano stati pubblicati più post e quanti ne sono stati effettivamente pubblicati
+
+
+
+
+
+
