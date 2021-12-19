@@ -12,23 +12,37 @@ import java.util.ArrayList;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.json.simple.JSONArray;
-
 import org.springframework.stereotype.Service;
+/**
+ * <b>Classe</b> che descrive i servizi dell'API.
+ * Estende l'interfaccia Service.
+ * @author Micheli Elisa 
+ * @author Mattioli Sara
+ */
 @Service
 public class InstatisticsServiceImpl implements InstatisticsService {
-	
-	private String token="IGQVJXZAlI3QnhaMUFXanp6SVVhckE2VWU4NTdmaUEyd1BXaFdpMTRtRjJLSFY5NTcxTTdMWENGVEhGSXJiY3YzWm1XTGVJNWlNOU4yR3VWXzRzRUc1Vnk3dkwyVDRmaXJva0lTM1E0ZADhSalBIdlE0MQZDZD"; //da inserire
-	private String idPost ="17893061450319032";//inserire
-
+	/**
+	 * token dell'utente
+	 */
+	private String token=""; //da inserire
+	/**
+	 * id del post per getAllPost e getDataPost
+	 */
+	private String idPost ="";//inserire
+    /**
+     * url per gestire richieste al profilo
+     */
 	private String urlUtente="https://graph.instagram.com/me/media?fields=";
-	//url per gestire richieste al profilo
+	/**
+	 * url per gestire richieste al post
+	 */
 	private String urlPost="https://graph.instagram.com/";
-	//url per gestire richieste al post
-	
-	@Override
+	/**
+	 *<b>Metodo</b> permette di ottenere informazioni su tutti i post dell'utente 
+	 * il tipo di informazione è definita dalla variabile fields.
+	 * @param field oggetto del post su cui ottenere l'informazione.
+	 */
 	public JSONObject getDataUser(String field) {
-	//permette di ottenere informazioni su tutti i post dell'utente 
-	//il tipo di informazione è definita dalla variabile fields
 		JSONObject data_user=null;
 
 		try {
@@ -45,18 +59,18 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 				}
 
 			}finally {in.close();}
-        //String[] fields = field.split(","); per èassare gli argomenti di req param ai metodi
        
 			data_user=(JSONObject) JSONValue.parseWithException(data);
 		}catch (IOException e ) {System.out.println("Errore");}
 		catch (Exception e) {System.out.println("Errore");}
 		return data_user;
 	}
-	
-	@Override
+	/**
+	 *<b>Metodo</b> permette di ottenere tutte le info possibili
+	 *da tutti i post dell'utente
+	 */
 	public JSONObject getAllUser() {
-	//permette di ottenere tutte le info possibili da tutti
-	//i post dell'utente
+	
 		JSONObject all_user=null;
 
 		try {
@@ -79,11 +93,12 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 		catch (Exception e) {System.out.println("Errore");}
 		return all_user;
 	}
-	
-	@Override
+	/**
+	 *<b>Metodo</b> permette di ottenere informazioni su un post dell'utente 
+	 *il tipo di informazione è definita dalla variabile fields.
+	 * @param field oggetto del post su cui ottenere l'informazione.
+	 */
     public JSONObject getDataPost(String field) {
-		//permette di ottenere informazioni su un post dell'utente 
-		//il tipo di informazione è definita dalla variabile fields
 			JSONObject data_post=null;
 			                     
 			try {
@@ -106,11 +121,11 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 			catch (Exception e) {System.out.println("Errore");}
 			return data_post;
 		}
-		
-	@Override
+    /**
+	 *<b>Metodo</b> permette di ottenere tutte le info possibili da un
+	 *solo post dell'utente
+	 */	
 	public JSONObject getAllPost() {
-		//permette di ottenere tutte le info possibili da un
-		//solo post dell'utente
 		JSONObject all_post=null;
 
 		try {
@@ -133,10 +148,11 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 		catch (Exception e) {System.out.println("Errore");}
 		return all_post;
 	}
-
+    /**
+     * <b>Metodo</b> che prende il JSON che ritorna l'api di instagram e lo mette in un ArrayList.
+     * Serve come metodo di collegamento tra i dati e le sattistiche.
+     */
 	public ArrayList<Post>  JsonReading() {
-		//prende il JSON che ritorna l'api di instagram
-		//e lo mette in un ArrayList
 		ArrayList <Post> postList = new ArrayList<Post>();
 		JSONObject file =getAllUser();
 		//Ottengo il jsonArray che contiene la lista di tutti dati di tutti post
@@ -155,7 +171,9 @@ public class InstatisticsServiceImpl implements InstatisticsService {
         }
         return postList;
 	}
-	
+	/**
+	 *<b>Metodo</b> che permette di ottenere le statistiche sul tipo di post.
+	 */	
 	@SuppressWarnings("unchecked")
 	public JSONObject getMedia(String metod,String field) {
 		JSONObject jj = new JSONObject();
@@ -181,7 +199,9 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 		else {jj.put("Errore: ", "metod non valido");}
 		return jj;
 	}
-	
+	/**
+	 *<b>Metodo</b> che permette di ottenere le statistiche sulla data dei post.
+	 */	
 	@SuppressWarnings("unchecked")
 	public JSONObject getTimestamp(String metod,String field) {
 		JSONObject jj = new JSONObject();
@@ -206,7 +226,9 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 		else {jj.put("Errore: ", "metod non valido");}
 		return jj;
 	}
-	
+	/**
+	 *<b>Metodo</b> che permette di ottenere le statistiche sulla didascalia del post.
+	 */	
 	@SuppressWarnings("unchecked")
 	public JSONObject getCaption(String metod, String theme) {
 		JSONObject jj=new JSONObject();
@@ -236,7 +258,9 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 		else {jj.put("Errore: ", "metod non valido");}
 		return jj;
 	}
-	
+	/**
+	 *<b>Metodo</b> che implementa il filtro annuale.
+	 */	
 	@SuppressWarnings("unchecked")
 	public JSONObject getFilterYear(String year) {
 		JSONObject jj=new JSONObject();
@@ -253,6 +277,9 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 		}
 		return jj;
 	}
+	/**
+	 *<b>Metodo</b> che implementa il filtro giornaliero.
+	 */	
 	public JSONObject getFilterPost(String data) {
 		ArrayList<Post> pp=new ArrayList<Post>();
 		pp=JsonReading();
@@ -260,10 +287,11 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 		JSONObject jj=new JSONObject();
 		jj=fp.getPost(data);
 		return jj;
-		
-		
-}
-	
+	}
+	/**
+	 *<b>Metodo</b> che implementa il filtro di tipo.
+	 */	
+	@SuppressWarnings("unchecked")
 	public JSONObject getFilterMediaType(String MediaType) {
 		
 		JSONObject jj=new JSONObject();
@@ -277,13 +305,8 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 		}else {
 		jj.put("Inserire un formato valido","IMAGE,VIDEO o CAROUSEL_ALBUM");
 		}
-		
-		
-		
 		return jj;
-		
 	}
-
 }
 
 		

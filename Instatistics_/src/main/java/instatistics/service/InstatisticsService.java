@@ -2,8 +2,12 @@ package instatistics.service;
 
 import java.util.ArrayList;
 import org.json.simple.*;
-
 import instatistics.model.Post;
+/**
+ * <b>Interfaccia</b> che definisce i servizi dell'API
+ * @author Micheli Elisa 
+ * @author Mattioli Sara
+ */
 
 public interface InstatisticsService {
 	public abstract JSONObject getDataUser(String field); 

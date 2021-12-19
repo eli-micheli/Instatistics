@@ -1,7 +1,12 @@
 package instatistics.model;
 
 import java.util.ArrayList;
-
+/**
+ * <b>Classe</b> che permette di elaborare statistiche sui post
+ * in relazione all'anno di pubblicazione.
+ * @author Micheli Elisa 
+ * @author Mattioli Sara
+ */
 
 public class TimeStamp implements Field{
 	/**

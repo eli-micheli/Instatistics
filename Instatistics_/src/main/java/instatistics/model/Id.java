@@ -1,8 +1,12 @@
 package instatistics.model;
-
-import java.util.ArrayList;
-
+/**
+ * <b>Classe</b> che descrive l'id di un post.
+ * @author Micheli Elisa 
+ * @author Mattioli Sara
+ */
 public class Id  {
-	ArrayList <String> array = new ArrayList <String>();
+	/**
+	 * <b>Constructor</b> 
+	 */
 	public Id () {}
 }

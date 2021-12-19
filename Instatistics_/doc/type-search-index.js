@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes","u":"allclasses-index.html"},{"p":"instatistics.model","l":"TimeStamp"}];updateSearchResults();
+typeSearchIndex = [{"l":"All Classes","u":"allclasses-index.html"},{"p":"instatistics.controller","l":"InstatisticsController"}];updateSearchResults();

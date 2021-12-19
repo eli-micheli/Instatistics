@@ -8,7 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import instatistics.service.*;
-
+/**
+ * <b>Classe</b> che descrive le rotte dell'API.
+ * @author Micheli Elisa 
+ * @author Mattioli Sara
+ */
 
 @RestController
 public class InstatisticsController {
@@ -19,9 +23,7 @@ private InstatisticsServiceImpl instatisticsService;
 @RequestMapping(value="/getDataUser")
 public ResponseEntity<Object> getDataUser(@RequestParam(name = "field", defaultValue = "media_type") String field) throws ParseException{
 	return new ResponseEntity<>(instatisticsService.getDataUser(field),HttpStatus.OK);
-} // se faccio piu map cambiando il value mi da errore per usare sempre getdata
-  // possiamo trovare un modo per ottenere dalla chiamata il tipo di dato
-  // così da avere un map solo
+} 
 @RequestMapping(value="/getAllUser")
 public ResponseEntity<Object> getAllUser() throws ParseException{
 	return new ResponseEntity<>(instatisticsService.getAllUser(),HttpStatus.OK);
@@ -29,9 +31,7 @@ public ResponseEntity<Object> getAllUser() throws ParseException{
 @RequestMapping(value="/getDataPost")
 public ResponseEntity<Object> getDataPost(@RequestParam(name = "field", defaultValue = "media_type") String field) throws ParseException{
 	return new ResponseEntity<>(instatisticsService.getDataPost(field),HttpStatus.OK);
-} // se faccio piu map cambiando il value mi da errore per usare sempre getdata
-  // possiamo trovare un modo per ottenere dalla chiamata il tipo di dato
-  // così da avere un map solo
+} 
 @RequestMapping(value="/getAllPost")
 public ResponseEntity<Object> getAllPost() throws ParseException{
 	return new ResponseEntity<>(instatisticsService.getAllPost(),HttpStatus.OK);

@@ -11,7 +11,8 @@ public class FilterPost {
 	  this.array=array;
   }
   
-  public JSONObject getPost(String input){
+  @SuppressWarnings("unchecked")
+public JSONObject getPost(String input){
 	  String[] split=null;
 	  JSONObject jj=new JSONObject();
 	  Boolean trovato=false;
