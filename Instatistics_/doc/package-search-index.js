@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.example.Instatistics_"},{"l":"instatistics.controller"},{"l":"instatistics.filters"},{"l":"instatistics.model"},{"l":"instatistics.service"}];updateSearchResults();
