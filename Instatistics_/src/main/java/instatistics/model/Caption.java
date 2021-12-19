@@ -1,28 +1,50 @@
 package instatistics.model;
 
 import java.util.ArrayList;
-
-
+/**
+ * <b>Classe</b> che permette di elaborare statistiche sulla caption 
+ * del post. In particolare la classe permette di ottenere statistiche sui tag e 
+ * gli hashtag.
+ * @author Micheli Elisa 
+ * @author Mattioli Sara
+ */
 public class Caption extends FieldSuggest{
-	//private JSONObject json = new JSONObject();
-	ArrayList <Post> array = new ArrayList <Post>();
-	public Caption (ArrayList<Post> array) {
-		this.array=array;
+	/**
+     * ArrayList di oggetti di tipo Post che contiene
+     * tutti i post dell'utente eventualmente filtrati.
+     */
+	ArrayList <Post> allPost = new ArrayList <Post>();
+	/**
+	 * <b>Constructor</b> 
+	 * @param array ArrayList di oggetti di tipo Post che contiene
+     * tutti i post dell'utente eventualmente filtrati.
+	 */
+	public Caption (ArrayList<Post> allPost) {
+		this.allPost=allPost;
 	}
-	
-	public String NumberOfRepetition(String ObjectOfInterest) {
+	/**
+	 *<b>Metod</b> che calcola il numero di volte 
+	 *che è stato utilizzato un dato tag o hashtag.
+	 *@param TagHashtag tag o hashtag su cui fare la statistica.
+	 *@return Il numero di volte che è stato usato. 
+	 */
+	public String NumberOfRepetition(String TagHashtag) {
 		int cont=0;
-		for(int	i=0;i<array.size();i++) {
-			String s = array.get(i).getCaption(); //captin del post numero i
-			if(s.contains(ObjectOfInterest)) { 
-			cont++;//se la stringa s contiene l'hastag aumento il contatore
+		for(int	i=0;i<allPost.size();i++) {
+			String s = allPost.get(i).getCaption();
+			if(s.contains(TagHashtag)) { 
+			cont++;
 			}
 		}
-		//String result = "Hai postato " +ObjectOfInterest +cont +"volte";
 		return Integer.toString(cont); 
 	}
-	
-
+	/**
+	 *<b>Metod</b> che calcola il tag o l'hastag piu' usato
+	 *tra un gruppo di hashtag o tag forniti dall'utente.
+	 *@param input un array contenente gli oggetti su cui fare 
+	 *la statistica.
+	 *@return Il tag o l'hashtag piu' usato
+	 */
 	public String Ranking(String[] input) {
 		Caption cc = new Caption(array);
 		int winnerpast =0;
@@ -45,21 +67,22 @@ public class Caption extends FieldSuggest{
 		}
 		String result = "La caption più usata è " +input[contpast] + " con " +Integer.toString(winnerpast) +" ripetizioni" ;
 	    return result ;
-
 	}
-	
-		
-	
-		
-	@Override
-	public String Suggestion(String input) {
+	/**
+	 *<b>Metod</b> che suggerisce un hashtag in base al tema 
+	 *fornito dall'utente.
+	 *@param input Il tema riguardo il quale si vuole l'hashtag.
+	 *I temi per ora implementati sono: "sport","insieme" e "cerimonia".
+	 *@return L'hashtag suggerito.
+	 */
+	public String Suggestion(String theme) {
 		String [] sport = {"#nopainnogain", "#sport", "#giornatainmovimento"};
 		String [] insieme = {"#giornatacongliamici", "#ritrovarsi", "#amicizia"};
 		String [] cerimonia = {"#congratulazioni", "#auguri", "#complimenti"};
 		
 		int i = (int) (Math.random()*3);
 		String result = null;
-		switch(input) {
+		switch(theme) {
 			case "sport":
 			 result = sport [i];
 			break;
