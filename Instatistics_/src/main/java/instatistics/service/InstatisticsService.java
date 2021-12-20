@@ -18,7 +18,7 @@ public interface InstatisticsService {
 	
     public abstract ArrayList<Post> JsonReading();
     
-    public abstract JSONObject getMedia(String metod,String field);
+    public abstract JSONObject getMedia(String filter,String metod,String field);
     public abstract JSONObject getTimestamp(String metod,String field);
     public abstract JSONObject getCaption(String metod,String theme);
     

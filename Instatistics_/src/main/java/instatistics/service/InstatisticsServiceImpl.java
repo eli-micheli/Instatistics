@@ -179,26 +179,39 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 		JSONObject JsonReturn = new JSONObject();
 		String [] filterInfo = filter.split(","); //filter continene il tipo  di filtro e la specifica
 		                                          //del filtro in una sola stringa. Con lo split divido le due informazioni.
-		if (metod.equals("NumberOfRepetition") || metod.equals("Suggestion") || metod.equals("Ranking")) {
-		    ArrayList<Post> allPost=new ArrayList<Post>();
-			allPost=JsonReading();
-			MediaType mediatype=new MediaType(allPost);
-			switch(metod) {
-			case ("NumberOfRepetition"):
-				if (field.equals("IMAGE") || field.equals("VIDEO") || field.equals("CAROUSEL_ALBUM")) {
-				JsonReturn.put("Numero ripetizioni", mediatype.NumberOfRepetition(field));
+		if(filterInfo[0].equals("null") || filterInfo[0].equals("yearFilter") || filterInfo[0].equals("mediaFilter")) {
+			if (metod.equals("NumberOfRepetition") || metod.equals("Suggestion") || metod.equals("Ranking")) {
+				ArrayList<Post> allPost=new ArrayList<Post>();
+                switch (filterInfo[0]) {
+                case("null"):
+				allPost=JsonReading();
+                break;
+                case("yearFilter"):
+    				allPost=getFilterYear(filterInfo[1]);
+                break;
+                case("mediaFilter"):
+    				allPost=getFilterMediaType(filterInfo[1]);
+                break;
+                }
+				MediaType mediatype=new MediaType(allPost);
+				switch(metod) {
+				case ("NumberOfRepetition"):
+					if (field.equals("IMAGE") || field.equals("VIDEO") || field.equals("CAROUSEL_ALBUM")) {
+						JsonReturn.put("Numero ripetizioni", mediatype.NumberOfRepetition(field));
+					}
+					else {JsonReturn.put("Errore: ", "field non valido");}	
+				break;
+				case ("Ranking"):
+					JsonReturn.put("Ranking", mediatype.Ranking(null));
+				break;
+				case ("Suggestion"):
+					JsonReturn.put("Suggestion", mediatype.Suggestion(null));
+				break;
 				}
-				else {JsonReturn.put("Errore: ", "field non valido");}	
-			break;
-			case ("Ranking"):
-			    JsonReturn.put("Ranking", mediatype.Ranking(null));
-			break;
-			case ("Suggestion"):
-				JsonReturn.put("Suggestion", mediatype.Suggestion(null));
-			break;
 			}
+			else {JsonReturn.put("Errore: ", "metod non valido");}
 		}
-		else {JsonReturn.put("Errore: ", "metod non valido");}
+		else {JsonReturn.put("Errore: ", "filter non valido");}
 		return JsonReturn;
 	}
 	/**
