@@ -70,8 +70,8 @@ public ResponseEntity<Object> getAllPost() throws ParseException{
  * @return json con le statistiche.
  */
 @RequestMapping(value="/getMedia")
-public ResponseEntity<Object> getMedia(@RequestParam(name = "metod") String metod, @RequestParam(name = "field", defaultValue = "null") String field) throws ParseException{
-	return new ResponseEntity<>(instatisticsService.getMedia(metod,field),HttpStatus.OK);
+public ResponseEntity<Object> getMedia(@RequestParam(name ="filter")String filter,@RequestParam(name = "metod") String metod, @RequestParam(name = "field", defaultValue = "null") String field) throws ParseException{
+	return new ResponseEntity<>(instatisticsService.getMedia(filter,metod,field),HttpStatus.OK);
 } 
 /**
  * <b>Rotta</b> che permette di elaborare statistiche sulle date di tutti i post dell'user.

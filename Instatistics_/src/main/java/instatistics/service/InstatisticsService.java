@@ -22,7 +22,7 @@ public interface InstatisticsService {
     public abstract JSONObject getTimestamp(String metod,String field);
     public abstract JSONObject getCaption(String metod,String theme);
     
-    public abstract JSONObject getFilterYear(String year);
+    public abstract ArrayList<Post> getFilterYear(String year);
     public abstract JSONObject getFilterPostforDate(String data);
-    public abstract JSONObject getFilterMediaType(String MediaType);
+    public abstract ArrayList<Post> getFilterMediaType(String MediaType);
 }

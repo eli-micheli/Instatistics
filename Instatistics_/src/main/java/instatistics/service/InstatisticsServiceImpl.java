@@ -152,12 +152,9 @@ public class InstatisticsServiceImpl implements InstatisticsService {
      * <b>Metodo</b> che prende il JSON che ritorna l'api di instagram e lo mette in un ArrayList.
      * Serve come metodo di collegamento tra i dati e le sattistiche.
      */
-	public ArrayList<Post>  JsonReading(String typeOfFilter) {
+	public ArrayList<Post>  JsonReading() {
 		ArrayList <Post> postList = new ArrayList<Post>();
-		switch (typeOfFilter) {
-		case(YearFilter)
-		JSONObject file =getAllUser();
-		}
+		JSONObject file = getAllUser();
 		//Ottengo il jsonArray che contiene la lista di tutti dati di tutti post
         JSONArray jsonArrayPost = (JSONArray) file.get("data");
         //Per ogni oggetto del JSONArray prendo i value e
@@ -178,8 +175,10 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 	 *<b>Metodo</b> che permette di ottenere le statistiche sul tipo di post.
 	 */	
 	@SuppressWarnings("unchecked")
-	public JSONObject getMedia(String metod,String field) {
+	public JSONObject getMedia(String filter,String metod,String field) {
 		JSONObject JsonReturn = new JSONObject();
+		String [] filterInfo = filter.split(","); //filter continene il tipo  di filtro e la specifica
+		                                          //del filtro in una sola stringa. Con lo split divido le due informazioni.
 		if (metod.equals("NumberOfRepetition") || metod.equals("Suggestion") || metod.equals("Ranking")) {
 		    ArrayList<Post> allPost=new ArrayList<Post>();
 			allPost=JsonReading();
@@ -265,32 +264,33 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 	 *<b>Metodo</b> che implementa il filtro annuale.
 	 */	
 	@SuppressWarnings("unchecked")
-	public JSONObject getFilterYear(String year) {
+	public ArrayList<Post> getFilterYear(String year) {
+		ArrayList<Post> filtratedPost= new ArrayList<Post>();
 		JSONObject JsonReturn=new JSONObject();
 		if (year.length() == 4) {
 		ArrayList<Post> allPost=new ArrayList<Post>();
 		allPost=JsonReading();
 		FiltroAnno YearFilter=new FiltroAnno(allPost);
 		
-		JsonReturn.put("Post", YearFilter.post_annuali(year));
+		filtratedPost = YearFilter.post_annuali(year);
 		}
 		else {
 		JsonReturn.put("Errore", "inserire un anno valido");
 		}
-		return JsonReturn;
+		return filtratedPost;
 	}
 	/**
 	 *<b>Metodo</b> che implementa il filtro giornaliero.
 	 */	
 	@SuppressWarnings("unchecked")
 	public JSONObject getFilterPostforDate(String data) {
-		JSONObject JsonReturn=new JSONObject();
 		
 		ArrayList<Post> allPost=new ArrayList<Post>();
 		allPost=JsonReading();
 		FilterPostforDate DateFilter=new FilterPostforDate(allPost);
 		
-		JsonReturn.put("Post", DateFilter.getPostforDate(data));
+		JSONObject JsonReturn = new JSONObject();
+		JsonReturn .put("Post", DateFilter.getPostforDate(data));
 
 		return JsonReturn;
 	}
@@ -298,20 +298,19 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 	 *<b>Metodo</b> che implementa il filtro di tipo.
 	 */	
 	@SuppressWarnings("unchecked")
-	public JSONObject getFilterMediaType(String MediaType) {
-		
-		JSONObject JsonReturn=new JSONObject();
+	public ArrayList<Post> getFilterMediaType(String MediaType) {
+		ArrayList<Post> filtratedPost= new ArrayList<Post>();
 		if(MediaType.equals("IMAGE") || MediaType.equals("VIDEO") || MediaType.equals("CAROUSEL_ALBUM")) {
 		ArrayList<Post> allPost= new ArrayList<Post>();
 		allPost=JsonReading();
 		
 		FiltroMediaType MediaFilter=new FiltroMediaType(allPost);
 		
-		JsonReturn.put("Post", MediaFilter.tipi_di_post(MediaType));
+		filtratedPost = MediaFilter.tipi_di_post(MediaType);
 		}else {
-		JsonReturn.put("Errore","Inserire un formato valido: IMAGE,VIDEO o CAROUSEL_ALBUM");
+		System.out.println("Errore: Inserire un formato valido: IMAGE,VIDEO o CAROUSEL_ALBUM");
 		}
-		return JsonReturn;
+		return filtratedPost;
 	}
 }
 
