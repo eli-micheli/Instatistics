@@ -152,9 +152,12 @@ public class InstatisticsServiceImpl implements InstatisticsService {
      * <b>Metodo</b> che prende il JSON che ritorna l'api di instagram e lo mette in un ArrayList.
      * Serve come metodo di collegamento tra i dati e le sattistiche.
      */
-	public ArrayList<Post>  JsonReading() {
+	public ArrayList<Post>  JsonReading(String typeOfFilter) {
 		ArrayList <Post> postList = new ArrayList<Post>();
+		switch (typeOfFilter) {
+		case(YearFilter)
 		JSONObject file =getAllUser();
+		}
 		//Ottengo il jsonArray che contiene la lista di tutti dati di tutti post
         JSONArray jsonArrayPost = (JSONArray) file.get("data");
         //Per ogni oggetto del JSONArray prendo i value e
@@ -176,28 +179,28 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 	 */	
 	@SuppressWarnings("unchecked")
 	public JSONObject getMedia(String metod,String field) {
-		JSONObject jj = new JSONObject();
+		JSONObject JsonReturn = new JSONObject();
 		if (metod.equals("NumberOfRepetition") || metod.equals("Suggestion") || metod.equals("Ranking")) {
-		    ArrayList<Post> pp=new ArrayList<Post>();
-			pp=JsonReading();
-			MediaType mt=new MediaType(pp);
+		    ArrayList<Post> allPost=new ArrayList<Post>();
+			allPost=JsonReading();
+			MediaType mediatype=new MediaType(allPost);
 			switch(metod) {
 			case ("NumberOfRepetition"):
 				if (field.equals("IMAGE") || field.equals("VIDEO") || field.equals("CAROUSEL_ALBUM")) {
-				jj.put("Numero ripetizioni", mt.NumberOfRepetition(field));
+				JsonReturn.put("Numero ripetizioni", mediatype.NumberOfRepetition(field));
 				}
-				else {jj.put("Errore: ", "field non valido");}	
+				else {JsonReturn.put("Errore: ", "field non valido");}	
 			break;
 			case ("Ranking"):
-			    jj.put("Ranking", mt.Ranking(null));
+			    JsonReturn.put("Ranking", mediatype.Ranking(null));
 			break;
 			case ("Suggestion"):
-				jj.put("Suggestion", mt.Suggestion(null));
+				JsonReturn.put("Suggestion", mediatype.Suggestion(null));
 			break;
 			}
 		}
-		else {jj.put("Errore: ", "metod non valido");}
-		return jj;
+		else {JsonReturn.put("Errore: ", "metod non valido");}
+		return JsonReturn;
 	}
 	/**
 	 *<b>Metodo</b> che permette di ottenere le statistiche sulla data dei post.
