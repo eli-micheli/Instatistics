@@ -1,16 +1,27 @@
 package instatistics.filters;
 import java.util.ArrayList;
-
 import org.json.simple.JSONObject;
-
 import instatistics.model.*;
+/**
+ *<b>Classe</b> che permette di filtrare una lista di post in base alla data.
+ *@author Micheli Elisa
+ *@author Mattioli Sara
+ */
 public class FilterPostforDate {
   ArrayList<Post> array=new ArrayList<Post>();
+  /**
+   * <b>Constructor</b>
+   * @param array lista di post da filtrare
+   */
   Post result=new Post(null,null,null,null);
   public FilterPostforDate(ArrayList<Post> array) {
 	  this.array=array;
   }
-  
+  /**
+   * <b>Metod</b> che implementa la funzione del filtro.
+   * @param data La data per cui filtrare i post.
+   * @return json contentente la lista di post filtarta.
+   */
   @SuppressWarnings("unchecked")
 public JSONObject getPostforDate(String data){
 	  String[] split=null;
@@ -42,9 +53,7 @@ public JSONObject getPostforDate(String data){
 	  }
 	  else {
 		  jj.put("Risultato","Inserire formato corretto della data:AAAA-MM-GG");}
-	  
-  
-  
+	
   return jj;
   
   
