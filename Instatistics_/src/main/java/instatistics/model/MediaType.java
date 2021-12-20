@@ -28,7 +28,7 @@ public class MediaType extends FieldSuggest{
      */
 	public String NumberOfRepetition(String TypeOfPost) {
 		int cont=0;
-		for(int	i=0;i<array.size();i++) {
+		for(int	i=0;i<allPost.size();i++) {
 			if(allPost.get(i).getMedia_type().equals(TypeOfPost)) {
 			cont++;
 			}
@@ -48,7 +48,7 @@ public class MediaType extends FieldSuggest{
 		String result = null;
 		
 		for(int	i=0;i<allPost.size();i++) {
-			switch (array.get(i).getMedia_type()) {
+			switch (allPost.get(i).getMedia_type()) {
 			case "IMAGE":
 				contImage++;
 				break;

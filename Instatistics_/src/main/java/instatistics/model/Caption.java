@@ -46,7 +46,7 @@ public class Caption extends FieldSuggest{
 	 *@return Il tag o l'hashtag piu' usato
 	 */
 	public String Ranking(String[] input) {
-		Caption cc = new Caption(array);
+		Caption cc = new Caption(allPost);
 		int winnerpast =0;
 		int winnerpresent =0;
 		int contpresent =0;
