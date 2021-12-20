@@ -2,7 +2,7 @@ package instatistics.model;
 
 import java.util.ArrayList;
 /**
- * <b>Classe</b> che permette di elaborare statistiche sul tipo di post
+ * <b>Class</b> che permette di elaborare statistiche sul tipo di post
  * @author Micheli Elisa 
  * @author Mattioli Sara
  */

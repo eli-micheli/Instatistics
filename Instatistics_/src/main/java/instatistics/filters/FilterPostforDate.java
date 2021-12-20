@@ -4,24 +4,24 @@ import java.util.ArrayList;
 import org.json.simple.JSONObject;
 
 import instatistics.model.*;
-public class FilterPost {
+public class FilterPostforDate {
   ArrayList<Post> array=new ArrayList<Post>();
   Post result=new Post(null,null,null,null);
-  public FilterPost(ArrayList<Post> array) {
+  public FilterPostforDate(ArrayList<Post> array) {
 	  this.array=array;
   }
   
   @SuppressWarnings("unchecked")
-public JSONObject getPost(String input){
+public JSONObject getPostforDate(String data){
 	  String[] split=null;
 	  JSONObject jj=new JSONObject();
 	  Boolean trovato=false;
-	  if(input.length()==10) {
-	  split=input.substring(0,10).split("-");
+	  if(data.length()==10) {
+	  split=data.substring(0,10).split("-");
 	  
 	  if(split[0].length()==4 && Integer.parseInt(split[1])<13 && Integer.parseInt(split[2])<=31  ){
 			   for(int i=0;i<array.size();i++) {
-				   if(array.get(i).getTimestamp().contains(input)) 
+				   if(array.get(i).getTimestamp().contains(data)) 
 				   {
 					   result.setCaption(array.get(i).getCaption());
 					   result.setMedia_type(array.get(i).getMedia_type());

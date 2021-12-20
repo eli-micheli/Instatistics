@@ -204,89 +204,92 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 	 */	
 	@SuppressWarnings("unchecked")
 	public JSONObject getTimestamp(String metod,String field) {
-		JSONObject jj = new JSONObject();
+		JSONObject JsonReturn = new JSONObject();
 		if (metod.equals("NumberOfRepetition") || metod.equals("Ranking")) {
-		    ArrayList<Post> pp=new ArrayList<Post>();
-			pp=JsonReading();
-			TimeStamp mt=new TimeStamp(pp);
+		    ArrayList<Post> allPost=new ArrayList<Post>();
+			allPost=JsonReading();
+			TimeStamp timestamp=new TimeStamp(allPost);
 			switch(metod) {
 			case ("NumberOfRepetition"):
 				if (field.length() == 4) {
-				jj.put("Numero ripetizioni", mt.NumberOfRepetition(field));
+				JsonReturn.put("Numero ripetizioni", timestamp.NumberOfRepetition(field));
 				}
-				else {jj.put("Errore: ", "field non valido");}	
+				else {JsonReturn.put("Errore: ", "field non valido");}	
 			break;
 			case ("Ranking"):
 				String [] input= field.split(",");
-	     	jj.put("Più usato",mt.Ranking(input));
+	     	JsonReturn.put("Più usato",timestamp.Ranking(input));
 			break;
 			
 		   }
 		}
-		else {jj.put("Errore: ", "metod non valido");}
-		return jj;
+		else {JsonReturn.put("Errore: ", "metod non valido");}
+		return JsonReturn;
 	}
 	/**
 	 *<b>Metodo</b> che permette di ottenere le statistiche sulla didascalia del post.
 	 */	
 	@SuppressWarnings("unchecked")
 	public JSONObject getCaption(String metod, String theme) {
-		JSONObject jj=new JSONObject();
+		JSONObject JsonReturn=new JSONObject();
 		
 		if (metod.equals("NumberOfRepetition") || metod.equals("Suggestion") || metod.equals("Ranking")) {
-			ArrayList<Post> pp=new ArrayList<Post>();
-			pp=JsonReading();
-			Caption cc=new Caption (pp);
+			ArrayList<Post> allPost=new ArrayList<Post>();
+			allPost=JsonReading();
+			Caption caption=new Caption (allPost);
 			switch (metod){
 			case ("Suggestion"):
 				if (theme.equals("sport") || theme.equals("cerimonia") || theme.equals("insieme")) {
-					jj.put("Hashtag consigliato",cc.Suggestion(theme));
+					JsonReturn.put("Hashtag consigliato",caption.Suggestion(theme));
 				}
-				else {jj.put("Errore: ", "inserire un tema a scelta tra: sport, insieme o cerimonia");}
+				else {JsonReturn.put("Errore: ", "inserire un tema a scelta tra: sport, insieme o cerimonia");}
 			break;
 			case ("NumberOfRepetition"):
-				if (theme.equals("null")){jj.put("Errore: ","inserire field");}
-				else {jj.put("Ripetuto",cc.NumberOfRepetition(theme));}
+				if (theme.equals("null")){JsonReturn.put("Errore: ","inserire field");}
+				else {JsonReturn.put("Ripetuto",caption.NumberOfRepetition(theme));}
 				
 		    break;
 			case("Ranking"):
 				String [] input= theme.split(",");
-		     	jj.put("Più usato",cc.Ranking(input));
+		     	JsonReturn.put("Più usato",caption.Ranking(input));
 		    break;
 			}
 		}
-		else {jj.put("Errore: ", "metod non valido");}
-		return jj;
+		else {JsonReturn.put("Errore: ", "metod non valido");}
+		return JsonReturn;
 	}
 	/**
 	 *<b>Metodo</b> che implementa il filtro annuale.
 	 */	
 	@SuppressWarnings("unchecked")
 	public JSONObject getFilterYear(String year) {
-		JSONObject jj=new JSONObject();
+		JSONObject JsonReturn=new JSONObject();
 		if (year.length() == 4) {
-		ArrayList<Post> pp=new ArrayList<Post>();
-		pp=JsonReading();
-		FiltroAnno fa=new FiltroAnno(pp);
+		ArrayList<Post> allPost=new ArrayList<Post>();
+		allPost=JsonReading();
+		FiltroAnno YearFilter=new FiltroAnno(allPost);
 		
-		jj.put("Post", fa.post_annuali(year));
+		JsonReturn.put("Post", YearFilter.post_annuali(year));
 		}
 		else {
-		String error = "Errore, inserire un anno valido";
-		jj.put("Post", error );
+		JsonReturn.put("Errore", "inserire un anno valido");
 		}
-		return jj;
+		return JsonReturn;
 	}
 	/**
 	 *<b>Metodo</b> che implementa il filtro giornaliero.
 	 */	
-	public JSONObject getFilterPost(String data) {
-		ArrayList<Post> pp=new ArrayList<Post>();
-		pp=JsonReading();
-		FilterPost fp=new FilterPost(pp);
-		JSONObject jj=new JSONObject();
-		jj=fp.getPost(data);
-		return jj;
+	@SuppressWarnings("unchecked")
+	public JSONObject getFilterPostforDate(String data) {
+		JSONObject JsonReturn=new JSONObject();
+		
+		ArrayList<Post> allPost=new ArrayList<Post>();
+		allPost=JsonReading();
+		FilterPostforDate DateFilter=new FilterPostforDate(allPost);
+		
+		JsonReturn.put("Post", DateFilter.getPostforDate(data));
+
+		return JsonReturn;
 	}
 	/**
 	 *<b>Metodo</b> che implementa il filtro di tipo.
@@ -294,18 +297,18 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 	@SuppressWarnings("unchecked")
 	public JSONObject getFilterMediaType(String MediaType) {
 		
-		JSONObject jj=new JSONObject();
+		JSONObject JsonReturn=new JSONObject();
 		if(MediaType.equals("IMAGE") || MediaType.equals("VIDEO") || MediaType.equals("CAROUSEL_ALBUM")) {
-		ArrayList<Post> pp= new ArrayList();
-		pp=JsonReading();
+		ArrayList<Post> allPost= new ArrayList<Post>();
+		allPost=JsonReading();
 		
-		FiltroMediaType fm=new FiltroMediaType(pp);
+		FiltroMediaType MediaFilter=new FiltroMediaType(allPost);
 		
-		jj.put("Post", fm.tipi_di_post(MediaType));
+		JsonReturn.put("Post", MediaFilter.tipi_di_post(MediaType));
 		}else {
-		jj.put("Inserire un formato valido","IMAGE,VIDEO o CAROUSEL_ALBUM");
+		JsonReturn.put("Errore","Inserire un formato valido: IMAGE,VIDEO o CAROUSEL_ALBUM");
 		}
-		return jj;
+		return JsonReturn;
 	}
 }
 
