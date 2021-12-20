@@ -68,7 +68,9 @@ L'applicazione può dunque effettuare alcune statistiche facendo riferimento all
 * fornendo un anno di riferimento l'applicazione è in grado di restituire quanti post sono stati pubblicati nell'anno indicato
 * fornendo un elenco di anni l'applicazione indica in quale anno siano stati pubblicati più post e quanti ne sono stati effettivamente pubblicati
 
-
+# Autori
+* Elisa Micheli
+* Sara Mattioli
 
 
 
