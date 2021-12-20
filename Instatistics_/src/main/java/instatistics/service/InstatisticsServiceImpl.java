@@ -279,7 +279,7 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 	@SuppressWarnings("unchecked")
 	public ArrayList<Post> getFilterYear(String year) {
 		ArrayList<Post> filtratedPost= new ArrayList<Post>();
-		JSONObject JsonReturn=new JSONObject();
+		//JSONObject JsonReturn=new JSONObject();
 		if (year.length() == 4) {
 		ArrayList<Post> allPost=new ArrayList<Post>();
 		allPost=JsonReading();
@@ -288,7 +288,8 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 		filtratedPost = YearFilter.post_annuali(year);
 		}
 		else {
-		JsonReturn.put("Errore", "inserire un anno valido");
+		//JsonReturn.put("Errore", "inserire un anno valido");
+			System.out.println("Errore: Inserire un anno valido");
 		}
 		return filtratedPost;
 	}
