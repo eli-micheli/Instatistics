@@ -19,6 +19,15 @@ Per avviare Instatistics prima di tutto è necessario installare Eclipse, un amb
 
 L'applicazione è ora pronta all'utilizzo.
 
+# Dati disponibili
+Breve descrizione dei dati disponibili sui post:
+|  **DATO**  | **DESCRIZIONE**    |   
+| :---: | :---: |
+| **timestamp** | La data di pubblicazione del contenuto multimediale in formato ISO 8601 | 
+| **media_type** | Il tipo di contenuto multimediale. Può essere IMAGE, VIDEO o CAROUSEL_ALBUM|
+| **caption** | Il testo della didascalia del contenuto multimediale|
+| **username** |Il nome utente del creatore del contenuto multimediale |
+
 # Richieste
 Grazie all'utilizzo dell'API REST **GET** si possono effettuare delle richieste all'interno di PostMan a seconda delle rotte che vengono inserite. Le rotte presenti nella nostra applicazione sono le seguenti seguite da una breve descrizione:
 
@@ -36,15 +45,6 @@ Grazie all'utilizzo dell'API REST **GET** si possono effettuare delle richieste 
 |GET|/getCaption|http://localhost:8080/getCaption?metod=Suggestion&field= *tema* | Scegliendo uno dei temi a disposizione tra *sport*,*insieme* e *cerimonia* l'applicazione consiglierà all'utente un hashtag per il proprio post|
 |GET|/getTimestamp|http://localhost:8080/getTimestamp?metod=NumberOfRepetition&field= *year_of_interest* |Inserendo al posto di *year_of_interest* l'anno di interesse verrà restituito il numero di post pubblicati nel'anno indicato|
 |GET|/getTimestamp|http://localhost:8080/getTimestamp?metod=Ranking&field= *year1*,*year2*,*year3*... |Inserendo al posto di *year1*,*year2,year3*... un elenco di anni(esempio 2021,2020,2019) verrà restituito l'anno in cui sono stati pubblicati più post e quanti ne sono stati pubblicati(**IMPORTANTE** separare gli anni attraverso l'utilizzo delle virgole)|
-
-# Dati disponibili
-Breve descrizione dei dati disponibili sui post:
-|  **DATO**  | **DESCRIZIONE**    |   
-| :---: | :---: |
-| **timestamp** | La data di pubblicazione del contenuto multimediale in formato ISO 8601 | 
-| **media_type** | Il tipo di contenuto multimediale. Può essere IMAGE, VIDEO o CAROUSEL_ALBUM|
-| **caption** | Il testo della didascalia del contenuto multimediale|
-| **username** |Il nome utente del creatore del contenuto multimediale |
 
 # Filtri
 |**ROTTE FILTRI**|**INDIRIZZO** | **DESCRIZIONE**    |
