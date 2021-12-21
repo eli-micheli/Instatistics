@@ -1,33 +1,38 @@
 package com.example.Instatistics_;
-
 import instatistics.model.*;
-import junit.framework.*;
+import instatistics.service.InstatisticsServiceImpl;
+import instatistics.filters.*;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import junit.framework.TestCase;
 
 import java.util.ArrayList;
 
-import org.junit.jupiter.api.*;
-import org.springframework.boot.test.context.SpringBootTest;
-
 @SpringBootTest
 class InstatisticsApplicationTests extends TestCase {
-	ArrayList<Post> pp = null;
-	Caption i1 = new Caption(pp);
-	public InstatisticsApplicationTests(String name){
-		super(name);
-		}
+	ArrayList<Post> pp ;
+	Caption i1;
+	InstatisticsServiceImpl service;
 	@BeforeEach
 	public void setUp(){
-		//Caption i1 = new Caption(pp);
+		pp = new ArrayList<Post>();
+		i1 = new Caption(pp);
+		service = new InstatisticsServiceImpl();
 		}
-	
-	public void Suggestion(){
-		assertEquals(i1.Suggestion("sport"), "#nopainnogain");
-		}
+	@Test
+	public void TestSuggestion(){
+		
+		Caption i1 = new Caption(pp);
+        assertTrue(i1.Suggestion("sport").equals("#nopainnogain"));
+	}
+	@Test
+	public void TestYearFilter() {
+	    assertEquals(service.getFilterYear("22000"),pp);
+	}
     @AfterEach
 	public void tearDown(){};
-	public static TestSuite suite(){
-	TestSuite suite = new TestSuite();
-	suite.addTest(new InstatisticsApplicationTests("Suggestion"));
-	return suite;
-	}
+	
 }
