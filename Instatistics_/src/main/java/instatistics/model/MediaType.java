@@ -18,7 +18,7 @@ public class MediaType extends FieldSuggest{
      * tutti i post dell'utente eventualmente filtrati
 	 */
 	public MediaType (ArrayList <Post> allPost) {
-		this.allPost=allPost;
+		super(allPost);
 	}
     /**
      * <b>Metod</b> che conta il numero di post di un certo tipo.

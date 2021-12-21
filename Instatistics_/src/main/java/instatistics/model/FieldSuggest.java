@@ -8,8 +8,11 @@ import java.util.ArrayList;
  * @author Mattioli Sara
  */
 public abstract class FieldSuggest implements Field{
+	public ArrayList <Post> allPost = new ArrayList <Post>();
 	
-	public ArrayList <Post> array = new ArrayList <Post>();
+	public FieldSuggest(ArrayList <Post> allPost) {
+		this.allPost = allPost;
+	}
 	public abstract String NumberOfRepetition(String ObjectOfInterest);
     public abstract String Ranking(String [] input);
 	public abstract String Suggestion(String input);
