@@ -1,5 +1,5 @@
 # Instatistics
-Instatistics è un'applicazione che permette agli utenti di poter effettuare alcune statistiche sul proprio profilo Instagram, di poter filtrare i contenuti al suo interno in base a determinate richieste e a richiesta dell'utente suggerire un hashtag per uno dei temi consigliati dall'app che sono *sport,cerimonia e insieme*. L'applicazione, dunque elabora i dati in formato JSON restituendo a seconda delle richieste dell'utente:
+Instatistics è un'applicazione che permette agli utenti di poter effettuare alcune statistiche sul proprio profilo Instagram, di poter filtrare i contenuti al suo interno in base a determinate richieste e suggerire un hashtag per uno dei temi consigliati dall'app che sono *sport,cerimonia e insieme*. L'applicazione, dunque elabora i dati in formato JSON restituendo a seconda delle richieste dell'utente:
 * tutti i post presenti su un profilo
 * l'elenco di tutti i post con solo alcune caratteristiche e non tutti i dati che li contraddistinguono passando le corrette parole chiave nel field
 * i dati relativi ad un singolo post
@@ -28,30 +28,82 @@ Breve descrizione dei dati disponibili sui post:
 | **caption** | Il testo della didascalia del contenuto multimediale|
 | **username** |Il nome utente del creatore del contenuto multimediale |
 
-# Richieste
+# Rotte
 Grazie all'utilizzo dell'API REST **GET** si possono effettuare delle richieste all'interno di PostMan a seconda delle rotte che vengono inserite. Le rotte presenti nella nostra applicazione sono le seguenti seguite da una breve descrizione:
-
-|**TIPO**|**ROTTE** |**INDIRIZZO** | **DESCRIZIONE**    |
+|**TIPO**|**ROTTE**|**INDIRIZZO**| **DESCRIZIONE**|
 | :---: | :---: | :---: | :---: | 
-|GET|/getDataUser|http://localhost:8080/getDataUser?field= |Verrà restituito l'elenco di tutti i post specificando semplicemente l'Id e il tipo di post di default, ma è possibile accedere anche ad altre caratteristiche dei post scrivendo dopo field una o più delle parole chiave a disposizione (**timestamp**,**caption**,**username**,**media_type**) | 
-|GET|/getAllUser|http://localhost:8080/getAllUser|Verrà restituito direttamente l'elenco di tutti i post, con tutti i dati disponibili|
-|GET|/getDataPost|http://localhost:8080/getDataPost?field= |Verrà restituito il singolo post con l'Id e il tipo di post di default; se si è interessati ad altri dati riguardanti il post basterà elencare dopo field una delle parole chiave a disposizione(**timestamp**,**caption**,**username**,**media_type**)|
-|GET|/getAllPost|http://localhost:8080/getAllPost |Verrà restituito il post con tutti i dati disponibili|
-|GET|/getMedia|http://localhost:8080/getMedia?filter=null&metod=NumberOfRepetition&field=IMAGE *media_type*| Inserendo al posto di *media_type* una delle tre parole chiave **IMAGE**,**VIDEO** o **CAROUSEL_ALBUM** verrà restituito il numero di post presenti sul profilo Instagram d'interesse corrispondenti al *media_type* fornito. Se al posto di **null** si inserisce *yearFilter*, *yearOfInterest* (ad esempio *yearFilter*,2021)i post verranno filtrati in funzione dell'anno e verrà restituito il numero di post pubblicati nell'anno indicato corrispondenti al *media_type* fornito |
-|GET|/getMedia|http://localhost:8080/getMedia?filter=null&metod=Ranking&field= | Verrà restituito il media_type maggiormente presente sul profilo Instagram in analisi. Quindi analizzando tutti i post tra immagini,album e video restituisce il tipo più frequente. Se al posto di **null** si inserisce *yearFilter*, *yearOfInterest* (ad esempio *yearFilter*,2021)i post verranno filtrati in funzione dell'anno e verrà restituito il tipo maggiormente frequente nell'anno indicato|
-|GET|/getMedia|http://localhost:8080/getMedia?filter=null&metod=Suggestion&field= | In funzione del tipo di post maggiormente frequente sul profilo Instagram analizzato e della tipologia dell'ultimo post pubblicato l'applicazione consiglia che tipo di post pubblicare tra: IMAGE,VIDEO o CAROUSEL_ALBUM|
-|GET|/getCaption|http://localhost:8080/getCaption?metod=NumberOfRepetition&field= *word*| Inserendo al posto di *word* l'hashtag d'interesse (ad esempio #mare) verrà restituito il numero di volte in cui l'hashtag è stato utilizzato nei post|
-|GET|/getCaption|http://localhost:8080/getCaption?metod=Ranking&field= *#parola1,#parola2,#parola3...* |Passando un elenco di hashtag a scelta dell'utente verrà restituito tra quelli scritti quello maggiormente presente sul profilo Instagram e il numero di volte che è stato ripetuto (**IMPORTANTE** separare l'elenco dei vari hashtag attraverso l'utilizzo delle virgole)|
-|GET|/getCaption|http://localhost:8080/getCaption?metod=Suggestion&field= *tema* | Scegliendo uno dei temi a disposizione tra *sport*,*insieme* e *cerimonia* l'applicazione consiglierà all'utente un hashtag per il proprio post|
-|GET|/getTimestamp|http://localhost:8080/getTimestamp?metod=NumberOfRepetition&field= *year_of_interest* |Inserendo al posto di *year_of_interest* l'anno di interesse verrà restituito il numero di post pubblicati nel'anno indicato|
-|GET|/getTimestamp|http://localhost:8080/getTimestamp?metod=Ranking&field= *year1*,*year2*,*year3*... |Inserendo al posto di *year1*,*year2,year3*... un elenco di anni(esempio 2021,2020,2019) verrà restituito l'anno in cui sono stati pubblicati più post e quanti ne sono stati pubblicati(**IMPORTANTE** separare gli anni attraverso l'utilizzo delle virgole)|
+|GET|/getAllUser|http://localhost:8080/getAllUser|Verrà restituito l'elenco di tutti i post, con tutti i dati disponibili|
+|GET|/getMedia|http://localhost:8080/getMedia?filter= *filtro* ?metod= *metodo* &field= *campo* | Restituisce statistiche sul tipo di media. Tramite la key **filter** si possono filtrare i post dell'utente su cui fare le statistiche. Tramite la key **metod** si definisce la statistica da ottenere. Tramite la key **field** si definisce il parametro per la statistica.|
+|GET|/getCaption|http://localhost:8080/getCaption?metod= *metodo* &field= *campo* | Restituisce statistiche sulla didascalia dei post. Tramite la key **metod** si definisce la statistica da ottenere. Tramite la key **field** si definisce il parametro per la statistica.|
+|GET|/getTimestamp|http://localhost:8080/getTimestamp?metod= *metodo* &field= *campo* | Restituisce statistiche sulla data di pubblicazione dei post. Tramite la key **metod** si definisce la statistica da ottenere. Tramite la key **field** si definisce il parametro per la statistica.|
+|GET|/getFilterYear |http://localhost:8080/getFilterYear?field= *year_of_interest* | Sostituendo *year_of_interest* con l'anno di interesse vengono filtrati tutti i post e saranno restituiti solo quelli pubblicati nell'anno indicato |
+|GET|/getFilterPost|http://localhost:8080/getFilterPost?field= *AAAA-MM-GG* |Inserendo una data al posto del campo *AAAA-MM-GG* i post verranno filtrati e se in tale data l'utente ha pubblicato qualche post quest'ultimo verrà restituito, altrimenti verrà restituito che non è stato trovato nulla|
+|GET|/getFilterMediaType|http://localhost:8080/getFilterMediaType?field= *media_type* |Sostituendo *media_type* con una delle parole chiavi IMAGE,VIDEO o CAROUSEL_ALBUM i post vengono filtrati e verranno restituiti solo quelli corrispondenti al *media_type* indicato|
 
-# Filtri
-|**ROTTE FILTRI**|**INDIRIZZO** | **DESCRIZIONE**    |
-| :---: | :---: | :---: | 
-|/getFilterYear |http://localhost:8080/getFilterYear?field= *year_of_interest* | Sostituendo *year_of_interest* con l'anno di interesse vengono filtrati tutti i post e saranno restituiti solo quelli pubblicati nell'anno indicato |
-|/getFilterPost|http://localhost:8080/getFilterPost?field= *AAAA-MM-GG* |Inserendo una data al posto del campo *AAAA-MM-GG* i post verranno filtrati e se in tale data l'utente ha pubblicato qualche post quest'ultimo verrà restituito, altrimenti verrà restituito che non è stato trovato nulla|
-|/getFilterMediaType|http://localhost:8080/getFilterMediaType?field= *media_type* |Sostituendo *media_type* con una delle parole chiavi IMAGE,VIDEO o CAROUSEL_ALBUM i post vengono filtrati e verranno restituiti solo quelli corrispondenti al *media_type* indicato|
+# Richieste
+**GET MEDIA**
+
+* **Metodo:Ranking**
+Verrà restituito il media_type maggiormente presente sul profilo Instagram in analisi. Quindi analizzando tutti i post tra IMAGE, CAROUSEL_ALBUM e VIDEO restituisce il tipo più frequente. Se nella key **filter** si inserisce *yearFilter*, *yearOfInterest* (ad esempio *yearFilter*,2021)i post verranno filtrati in funzione dell'anno e verrà restituito il tipo maggiormente frequente nell'anno indicato.
+
+![MicrosoftTeams-image (2)](https://user-images.githubusercontent.com/94125029/147115133-fb68e33d-e41b-43f1-8c7e-fd8731b71579.png)
+* **Metodo:NumberOfRepetition**
+Inserendo al posto di *media_type* una delle tre parole chiave **IMAGE**,**VIDEO** o **CAROUSEL_ALBUM** verrà restituito il numero di post presenti sul profilo Instagram d'interesse corrispondenti al *media_type* fornito. Se si inserisce *yearFilter*, *yearOfInterest* (ad esempio *yearFilter*,2021)i post verranno filtrati in funzione dell'anno e verrà restituito il numero di post pubblicati nell'anno indicato corrispondenti al *media_type* fornito.
+
+![MicrosoftTeams-image (13)](https://user-images.githubusercontent.com/94125029/147117809-75dd93f8-2286-4bb4-a6b6-92f908258b93.png)
+
+* **Metodo:Suggestion**
+ In funzione del tipo di post maggiormente frequente sul profilo Instagram analizzato e della tipologia dell'ultimo post pubblicato l'applicazione consiglia che tipo di post pubblicare tra: IMAGE,VIDEO o CAROUSEL_ALBUM.
+ ![MicrosoftTeams-image (1)](https://user-images.githubusercontent.com/94125029/147115805-b4eb6f8b-2216-4360-9df5-e4d5146952b4.png)
+ 
+ **GET CAPTION**
+ * **Metodo:Ranking**
+Passando un elenco di hashtag a scelta dell'utente verrà restituito tra quelli scritti quello maggiormente presente sul profilo Instagram e il numero di volte che è stato ripetuto (**IMPORTANTE** separare l'elenco dei vari hashtag attraverso l'utilizzo delle virgole)
+
+![Cattsura](https://user-images.githubusercontent.com/94125029/147117013-6b6eb1ac-2885-4aec-8389-3df3684c1ae5.PNG)
+
+* **Metodo:NumberOfRepetition**
+Inserendo l'hashtag d'interesse (ad esempio #mare) verrà restituito il numero di volte in cui l'hashtag è stato utilizzato nei post
+
+![MicrosoftTeams-image (5)](https://user-images.githubusercontent.com/94125029/147116782-e7fb0394-7ddb-478a-9d49-3da488578859.png)
+
+* **Metodo:Suggestion**
+  Scegliendo uno dei temi a disposizione tra *sport*,*insieme* e *cerimonia* l'applicazione consiglierà all'utente un hashtag per il proprio post
+ 
+ ![MicrosoftTeams-image (10)](https://user-images.githubusercontent.com/94125029/147116437-29d0679b-15df-4d95-9e81-c637d69910d2.png)
+ 
+ **GET TIMESTAMP**
+ * **Metodo:Ranking**
+ Inserendo al posto di un elenco di anni(esempio 2021,2020,2019) verrà restituito l'anno in cui sono stati pubblicati più post e quanti ne sono stati pubblicati(**IMPORTANTE** separare gli anni attraverso l'utilizzo delle virgole)
+ 
+ ![MicrosoftTeams-image (11)](https://user-images.githubusercontent.com/94125029/147117340-920e61e3-fc44-4075-9c4d-c95fead3b48c.png)
+ 
+ * **Metodo:NumberOfRepetition**
+ Inserendo l'anno di interesse verrà restituito il numero di post pubblicati nel'anno indicato
+ 
+ ![MicrosoftTeams-image (12)](https://user-images.githubusercontent.com/94125029/147117600-66c812e9-a1dd-4edd-ab6b-13a3c9c22e30.png)
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Statistiche
 L'applicazione può dunque effettuare alcune statistiche facendo riferimento alla caption, alla data di pubblicazione e al tipo dei post. In particolare per:
