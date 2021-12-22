@@ -3,34 +3,48 @@ import instatistics.model.*;
 import instatistics.service.InstatisticsServiceImpl;
 import instatistics.filters.*;
 import org.junit.jupiter.api.Test;
+import org.json.simple.JSONObject;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import instatistics.exception.fieldNotFound;
+import instatistics.exception.metodNotFound;
 import junit.framework.TestCase;
 
 import java.util.ArrayList;
 
 @SpringBootTest
 class InstatisticsApplicationTests extends TestCase {
-	ArrayList<Post> pp ;
-	Caption i1;
-	InstatisticsServiceImpl service;
+	ArrayList<Post> arrayPostTest ;
+	Caption captionTest;
+	InstatisticsServiceImpl serviceTest;
+	JSONObject jsonError;
+	@SuppressWarnings("unchecked")
 	@BeforeEach
 	public void setUp(){
-		pp = new ArrayList<Post>();
-		i1 = new Caption(pp);
-		service = new InstatisticsServiceImpl();
+		arrayPostTest = new ArrayList<Post>();
+		captionTest = new Caption(arrayPostTest);
+		serviceTest = new InstatisticsServiceImpl();
+		jsonError = new JSONObject();
+		jsonError.put("Errore: ", "inserire un tema a scelta tra: sport, insieme o cerimonia");
 		}
 	@Test
-	public void TestSuggestion(){
-		
-		Caption i1 = new Caption(pp);
-        assertTrue(i1.Suggestion("sport").equals("#sport"));
+	public void TestCaptionMetod() throws fieldNotFound{
+		try {
+			serviceTest.getCaption("wrongMetod",null);
+			fail("No exception generated");
+		} catch (metodNotFound exception) {
+			exception.printStackTrace();
+		}
+	}
+	@Test
+	public void TestCaptionTheme() throws fieldNotFound, metodNotFound {
+		 assertEquals(serviceTest.getCaption("Suggestion","wrongTheme"),jsonError);
 	}
 	@Test
 	public void TestYearFilter() {
-	    assertEquals(service.getFilterYear("22000"),pp);
+	    assertEquals(serviceTest.getFilterYear("22000"),arrayPostTest);
 	}
     @AfterEach
 	public void tearDown(){};

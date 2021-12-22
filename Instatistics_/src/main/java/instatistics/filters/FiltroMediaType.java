@@ -1,9 +1,6 @@
 package instatistics.filters;
 
 import java.util.ArrayList;
-
-import org.json.simple.JSONObject;
-
 import instatistics.model.Post;
 /**
  *<b>Classe</b> che permette di filtrare una lista di post in base al tipo di post.
@@ -13,8 +10,7 @@ import instatistics.model.Post;
 public class FiltroMediaType {
 	
 	public ArrayList<Post> array=new ArrayList<Post>();
-	JSONObject jj=new JSONObject();
-	ArrayList<Post> Return=new ArrayList<Post>();
+	ArrayList<Post> Return=new ArrayList<Post>(); 
 	/**
 	 * <b>Constructor</b>
 	 * @param array lista di post da filtrare

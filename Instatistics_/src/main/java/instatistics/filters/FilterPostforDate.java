@@ -8,7 +8,7 @@ import instatistics.model.*;
  *@author Mattioli Sara
  */
 public class FilterPostforDate {
-  ArrayList<Post> array=new ArrayList<Post>();
+  ArrayList<Post> array=new ArrayList<Post>(); 
   /**
    * <b>Constructor</b>
    * @param array lista di post da filtrare
@@ -25,8 +25,8 @@ public class FilterPostforDate {
   @SuppressWarnings("unchecked")
 public JSONObject getPostforDate(String data){
 	  String[] split=null;
-	  JSONObject jj=new JSONObject();
-	  Boolean trovato=false;
+	  JSONObject JsonReturn=new JSONObject();
+	  Boolean flag=false;
 	  if(data.length()==10) {
 	  split=data.substring(0,10).split("-");
 	  
@@ -38,23 +38,23 @@ public JSONObject getPostforDate(String data){
 					   result.setMedia_type(array.get(i).getMedia_type());
 					   result.setId(array.get(i).getId());
 					   result.setTimestamp(array.get(i).getTimestamp());
-					   jj.put("Post", result);
-					   trovato=true;
+					   JsonReturn.put("Post", result);
+					   flag=true;
 				   }
 			   }
-			   if(trovato==false) {
-				   jj.put("Risultato","Post non trovato");
+			   if(flag==false) {
+				   JsonReturn.put("Risultato","Post non trovato");
 				   }
 		  
 	  }else {
-		  jj.put("Risultato","Inserire formato corretto della data:AAAA-MM-GG");
+		  JsonReturn.put("Risultato","Inserire formato corretto della data:AAAA-MM-GG");
 		  
 	  }
 	  }
 	  else {
-		  jj.put("Risultato","Inserire formato corretto della data:AAAA-MM-GG");}
+		  JsonReturn.put("Risultato","Inserire formato corretto della data:AAAA-MM-GG");}
 	
-  return jj;
+  return JsonReturn;
   
   
   

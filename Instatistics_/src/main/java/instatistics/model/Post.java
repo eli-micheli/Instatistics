@@ -17,7 +17,7 @@ public class Post {
 	 * @param id descrive l'id del post.
 	 * @param timestamp contiene la data del post in formato ISO 8601
 	 */
-	public Post(String media_type,String caption,String id,String timestamp) {
+	public Post(String media_type,String caption,String id,String timestamp) { 
 		this.caption=caption;
 		this.media_type=media_type;
 		this.id=id;

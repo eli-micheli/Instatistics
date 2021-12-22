@@ -11,13 +11,13 @@ public class MediaType extends FieldSuggest{
      * ArrayList di oggetti di tipo Post che contiene
      * tutti i post dell'utente eventualmente filtrati
      */
-	ArrayList <Post> allPost = new ArrayList <Post>();
+	ArrayList <Post> allPost = new ArrayList <Post>(); 
 	/**
 	 * <b>Constructor</b> 
 	 * @param allPost ArrayList di oggetti di tipo Post che contiene
      * tutti i post dell'utente eventualmente filtrati
 	 */
-	public MediaType (ArrayList <Post> allPost) {
+	public MediaType (ArrayList <Post> allPost) { 
 		this.allPost = allPost;
 	}
     /**
@@ -124,8 +124,8 @@ public class MediaType extends FieldSuggest{
 				break;
 			}
 		}
-		
-		return result;
+		String toReturn = "Dato che il media piu' usato è " +mostUsed +" e l'ultimo media è " +lastUsed +" ti suggeriamo di pubblicare un " +result;
+		return toReturn;
 	}
 }
 

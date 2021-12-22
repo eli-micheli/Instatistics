@@ -13,11 +13,8 @@ import instatistics.model.Post;
  */
 
 public interface InstatisticsService {
-	public abstract JSONObject getDataUser(String field); 
+	 
 	public abstract JSONObject getAllUser();
-	
-	public abstract JSONObject getDataPost(String field); 
-	public abstract JSONObject getAllPost();
 	
     public abstract ArrayList<Post> JsonReading();
     
@@ -25,7 +22,7 @@ public interface InstatisticsService {
     public abstract JSONObject getTimestamp(String metod,String field)throws fieldNotFound,metodNotFound;
     public abstract JSONObject getCaption(String metod,String theme)throws fieldNotFound,metodNotFound;
     
-    public abstract ArrayList<Post> getFilterYear(String year);
+    public abstract ArrayList<Post> getFilterYear(String year)throws fieldNotFound;
     public abstract JSONObject getFilterPostforDate(String data);
-    public abstract ArrayList<Post> getFilterMediaType(String MediaType);
+    public abstract ArrayList<Post> getFilterMediaType(String MediaType)throws fieldNotFound;
 }

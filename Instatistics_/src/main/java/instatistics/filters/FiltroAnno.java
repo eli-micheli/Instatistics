@@ -1,6 +1,5 @@
 package instatistics.filters;
 import java.util.ArrayList;
-import org.json.simple.JSONObject;
 import instatistics.model.*;
 /**
  *<b>Classe</b> che permette di filtrare una lista di post in base all'anno.
@@ -9,7 +8,7 @@ import instatistics.model.*;
  */
 public class FiltroAnno {
 	ArrayList<Post> array=new ArrayList<Post>();
-	ArrayList<Post> Return =new ArrayList<Post>();
+	ArrayList<Post> Return =new ArrayList<Post>();  
 	/**
 	 * <b>Constructor</b>
 	 * @param array lista di post da filtrare

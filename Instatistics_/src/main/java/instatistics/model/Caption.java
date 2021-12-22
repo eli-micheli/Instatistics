@@ -13,7 +13,7 @@ public class Caption extends FieldSuggest{
      * ArrayList di oggetti di tipo Post che contiene
      * tutti i post dell'utente eventualmente filtrati.
      */
-	ArrayList <Post> allPost = new ArrayList <Post>();
+	ArrayList <Post> allPost = new ArrayList <Post>(); 
 	/**
 	 * <b>Constructor</b> 
 	 * @param array ArrayList di oggetti di tipo Post che contiene
@@ -81,18 +81,19 @@ public class Caption extends FieldSuggest{
 		String [] cerimonia = {"#congratulazioni", "#auguri", "#complimenti"};
 		
 		int i = (int) (Math.random()*3);
-		String result = null;
+		String suggested = null;
 		switch(theme) {
 			case "sport":
-			 result = sport [i];
+			 suggested = sport [i];
 			break;
 			case "insieme":
-			 result = insieme[i];
+			 suggested = insieme[i]; 
 			break;
 			case "cerimonia":
-			 result = cerimonia[i];
+			 suggested = cerimonia[i];
 			break;
 		}
-		return result;
+		String toreturn = "Ti suggeriamo di usare la caption:" +suggested;
+		return toreturn;
 	}
 }

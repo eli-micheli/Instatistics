@@ -13,6 +13,6 @@ public class InstatisticsApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(InstatisticsApplication.class, args);
-	}
+	} 
 
 }

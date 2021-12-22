@@ -22,23 +22,16 @@ import org.springframework.stereotype.Service;
  * @author Mattioli Sara
  */
 @Service
-public class InstatisticsServiceImpl implements InstatisticsService {
+public class InstatisticsServiceImpl implements InstatisticsService { 
 	/**
 	 * token dell'utente
 	 */
 	private String token="IGQVJXd0lIcFBVN1FKaXhfUkFyeDN4ck4xZAkNrUkZABMkNsNEt0STlremhfNVJ6MWpReVNWWHFtTlR0ZA0kwVWtRQU42OElOMVhlQTYxLVJ1ckEzb0lKXzFCWEh1U2IzQW4wU2V0MllsbVgzQ3dodWcxcwZDZD"; //da inserire
-	/**
-	 * id del post per getAllPost e getDataPost
-	 */
-	private String idPost ="";//inserire
+	
     /**
      * url per gestire richieste al profilo
      */
 	private String urlUtente="https://graph.instagram.com/me/media?fields=";
-	/**
-	 * url per gestire richieste al post
-	 */
-	private String urlPost="https://graph.instagram.com/";
 	
 	/**
 	 *<b>Metodo</b> permette di ottenere tutte le info possibili
@@ -104,7 +97,7 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 			if (metod.equals("NumberOfRepetition") || metod.equals("Suggestion") || metod.equals("Ranking")) {
 				ArrayList<Post> allPost=new ArrayList<Post>();
                 switch (filterInfo[0]) {
-                case("null"):
+                case("null"): 
 				allPost=JsonReading();
                 break;
                 case("yearFilter"):
@@ -123,12 +116,12 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 					else {throw new fieldNotFound("field non valido");}	
 				break;
 				case ("Ranking"):
-					JsonReturn.put("Ranking", mediatype.Ranking(null));
+					JsonReturn.put("Media piu' usato", mediatype.Ranking(null));
 				break;
 				case ("Suggestion"):
-					JsonReturn.put("Suggestion", mediatype.Suggestion(null));
+					JsonReturn.put("Risultato", mediatype.Suggestion(null));
 				break;
-				}
+				} 
 			}
 			else {throw new metodNotFound("metod non valido");}
 		}
@@ -153,8 +146,11 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 				else {throw new fieldNotFound ("field non valido");}	
 			break;
 			case ("Ranking"):
-				String [] input= field.split(",");
-	     	JsonReturn.put("Più usato",timestamp.Ranking(input));
+				if(field.equals("null")) {throw new fieldNotFound ("inserire anni di cui si vuole la classifica");}	
+				else {
+					String [] input= field.split(",");
+					JsonReturn.put("Risultato",timestamp.Ranking(input));
+				}
 			break;
 			
 		   }
@@ -176,18 +172,18 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 			switch (metod){
 			case ("Suggestion"):
 				if (theme.equals("sport") || theme.equals("cerimonia") || theme.equals("insieme")) {
-					JsonReturn.put("Hashtag consigliato",caption.Suggestion(theme));
+					JsonReturn.put("Risultato",caption.Suggestion(theme));
 				}
 				else {JsonReturn.put("Errore: ", "inserire un tema a scelta tra: sport, insieme o cerimonia");}
 			break;
 			case ("NumberOfRepetition"):
 				if (theme.equals("null")){throw new fieldNotFound("inserire field");}
-				else {JsonReturn.put("Ripetuto",caption.NumberOfRepetition(theme));}
+				else {JsonReturn.put("Numero di ripetizioni",caption.NumberOfRepetition(theme));}
 				
 		    break;
 			case("Ranking"):
 				String [] input= theme.split(",");
-		     	JsonReturn.put("Più usato",caption.Ranking(input));
+		     	JsonReturn.put("Risultato",caption.Ranking(input));
 		    break;
 			}
 		}
@@ -197,21 +193,18 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 	/**
 	 *<b>Metodo</b> che implementa il filtro annuale.
 	 */	
-	@SuppressWarnings("unchecked")
-	public ArrayList<Post> getFilterYear(String year) {
+	public ArrayList<Post> getFilterYear(String year) throws fieldNotFound {
 		ArrayList<Post> filtratedPost= new ArrayList<Post>();
 		
-		if (year.length() == 4) {
+		if (year.length() == 4 && !year.equals("null")) {
 		ArrayList<Post> allPost=new ArrayList<Post>();
 		allPost=JsonReading();
 		FiltroAnno YearFilter=new FiltroAnno(allPost);
 		
 		filtratedPost = YearFilter.post_annuali(year);
 		}
-		else {
-		//JsonReturn.put("Errore", "inserire un anno valido");
-			System.out.println("Errore: Inserire un anno valido");
-		}
+		else {throw new fieldNotFound("field non valido");}
+		
 		return filtratedPost;
 	}
 	/**
@@ -232,8 +225,7 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 	/**
 	 *<b>Metodo</b> che implementa il filtro di tipo.
 	 */	
-	@SuppressWarnings("unchecked")
-	public ArrayList<Post> getFilterMediaType(String MediaType) {
+	public ArrayList<Post> getFilterMediaType(String MediaType)throws fieldNotFound {
 		ArrayList<Post> filtratedPost= new ArrayList<Post>();
 		if(MediaType.equals("IMAGE") || MediaType.equals("VIDEO") || MediaType.equals("CAROUSEL_ALBUM")) {
 		ArrayList<Post> allPost= new ArrayList<Post>();
@@ -243,7 +235,7 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 		
 		filtratedPost = MediaFilter.tipi_di_post(MediaType);
 		}else {
-		System.out.println("Errore: Inserire un formato valido: IMAGE,VIDEO o CAROUSEL_ALBUM");
+		throw new fieldNotFound("Inserire un formato valido: IMAGE,VIDEO o CAROUSEL_ALBUM");
 		}
 		return filtratedPost;
 	}

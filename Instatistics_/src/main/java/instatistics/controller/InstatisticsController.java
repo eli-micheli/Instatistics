@@ -18,7 +18,7 @@ import instatistics.service.*;
  */
 
 @RestController
-public class InstatisticsController {
+public class InstatisticsController { 
 @Autowired
 private InstatisticsServiceImpl instatisticsService;
 
@@ -42,7 +42,7 @@ public ResponseEntity<Object> getAllUser() throws ParseException{
  * @throws metodNotFound 
  */
 @RequestMapping(value="/getMedia")
-public ResponseEntity<Object> getMedia(@RequestParam(name ="filter")String filter,@RequestParam(name = "metod") String metod, @RequestParam(name = "field", defaultValue = "null") String field) throws ParseException, fieldNotFound, metodNotFound{
+public ResponseEntity<Object> getMedia(@RequestParam(name ="filter",defaultValue = "null")String filter,@RequestParam(name = "metod") String metod, @RequestParam(name = "field", defaultValue = "null") String field) throws ParseException, fieldNotFound, metodNotFound{
 	return new ResponseEntity<>(instatisticsService.getMedia(filter,metod,field),HttpStatus.OK);
 } 
 /**
@@ -54,7 +54,7 @@ public ResponseEntity<Object> getMedia(@RequestParam(name ="filter")String filte
  * @throws metodNotFound 
  */
 @RequestMapping(value="/getTimestamp")
-public ResponseEntity<Object> getTimestamp(@RequestParam(name = "metod") String metod,@RequestParam(name = "field") String field) throws ParseException,fieldNotFound, metodNotFound{
+public ResponseEntity<Object> getTimestamp(@RequestParam(name = "metod") String metod,@RequestParam(name = "field",defaultValue = "null") String field) throws ParseException,fieldNotFound, metodNotFound{
 	return new ResponseEntity<>(instatisticsService.getTimestamp(metod,field),HttpStatus.OK);
 }
 /**
@@ -74,9 +74,10 @@ public ResponseEntity<Object> getCaption(@RequestParam(name = "metod") String me
  * <b>Rotta</b> che permette di filtare tutti post in base all'anno di pubblicazione.
  * @param field anno per il quale si desidera filtrare i post. 
  * @return json contenente tutti i post del determinato anno.
+ * @throws fieldNotFound 
  */
 @RequestMapping(value="/getFilterYear")
-public ResponseEntity<Object> getFilterYear(@RequestParam(name = "field", defaultValue = "2021") String field) throws ParseException{
+public ResponseEntity<Object> getFilterYear(@RequestParam(name = "field",defaultValue = "null") String field) throws ParseException, fieldNotFound{
 	return new ResponseEntity<>(instatisticsService.getFilterYear(field),HttpStatus.OK);
 }
 /**
@@ -92,13 +93,14 @@ public ResponseEntity<Object> getFilterPostforDate(@RequestParam(name = "field")
  * <b>Rotta</b> che permette di filtare tutti post in base al tipo di post.
  * @param field tipo per il quale si desidera filtrare i post. 
  * @return json contenente tutti i post del determinato tipo.
+ * @throws fieldNotFound 
  */
 @RequestMapping(value="/getFilterMediaType")
-public ResponseEntity<Object> getFilterMediaType(@RequestParam(name = "field") String field) throws ParseException{
+public ResponseEntity<Object> getFilterMediaType(@RequestParam(name = "field") String field) throws ParseException, fieldNotFound{
 	return new ResponseEntity<>(instatisticsService.getFilterMediaType(field),HttpStatus.OK);
 }
 
-
+ 
 
 
 

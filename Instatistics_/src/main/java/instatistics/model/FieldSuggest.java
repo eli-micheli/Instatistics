@@ -6,7 +6,7 @@ package instatistics.model;
  * @author Micheli Elisa 
  * @author Mattioli Sara
  */
-public abstract class FieldSuggest implements Field{
+public abstract class FieldSuggest implements Field{ 
 	
 	public abstract String NumberOfRepetition(String ObjectOfInterest);
     public abstract String Ranking(String [] input);

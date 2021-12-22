@@ -13,7 +13,7 @@ public class TimeStamp implements Field{
      * ArrayList di oggetti di tipo Post che contiene
      * tutti i post dell'utente eventualmente filtrati.
      */
-	ArrayList <Post> allPost = new ArrayList <Post>();
+	ArrayList <Post> allPost = new ArrayList <Post>(); 
 	/**
 	 * <b>Constructor</b> 
 	 * @param array ArrayList di oggetti di tipo Post che contiene
