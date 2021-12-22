@@ -2,7 +2,6 @@
 Instatistics è un'applicazione che permette agli utenti di poter effettuare alcune statistiche sul proprio profilo Instagram, di poter filtrare i contenuti al suo interno in base a determinate richieste e suggerire un hashtag per uno dei temi consigliati dall'app che sono *sport,cerimonia e insieme*. L'applicazione, dunque elabora i dati in formato JSON restituendo a seconda delle richieste dell'utente:
 * tutti i post presenti su un profilo
 * l'elenco di tutti i post con solo alcune caratteristiche e non tutti i dati che li contraddistinguono passando le corrette parole chiave nel field
-* i dati relativi ad un singolo post
 * restituire statistiche su dati che siano stati filtrati a richiesta dell'utente, nell'applicazione questa possibilità è stata implementata per statistiche sul tipo di post, ma può essere facilmente estesa anche alle altre rotte
 * restituire un hashtag a seconda di quale sia il tema richiesto
 
@@ -37,7 +36,7 @@ Grazie all'utilizzo dell'API REST **GET** si possono effettuare delle richieste 
 |GET|/getCaption|http://localhost:8080/getCaption?metod= *metodo* &field= *campo* | Restituisce statistiche sulla didascalia dei post. Tramite la key **metod** si definisce la statistica da ottenere. Tramite la key **field** si definisce il parametro per la statistica.|
 |GET|/getTimestamp|http://localhost:8080/getTimestamp?metod= *metodo* &field= *campo* | Restituisce statistiche sulla data di pubblicazione dei post. Tramite la key **metod** si definisce la statistica da ottenere. Tramite la key **field** si definisce il parametro per la statistica.|
 |GET|/getFilterYear |http://localhost:8080/getFilterYear?field= *year_of_interest* | Sostituendo *year_of_interest* con l'anno di interesse vengono filtrati tutti i post e saranno restituiti solo quelli pubblicati nell'anno indicato |
-|GET|/getFilterPost|http://localhost:8080/getFilterPost?field= *AAAA-MM-GG* |Inserendo una data al posto del campo *AAAA-MM-GG* i post verranno filtrati e se in tale data l'utente ha pubblicato qualche post quest'ultimo verrà restituito, altrimenti verrà restituito che non è stato trovato nulla|
+|GET|/getFilterPostforDate|http://localhost:8080/getFilterPost?field= *AAAA-MM-GG* |Inserendo una data al posto del campo *AAAA-MM-GG* i post verranno filtrati e se in tale data l'utente ha pubblicato qualche post quest'ultimo verrà restituito, altrimenti verrà restituito che non è stato trovato nulla|
 |GET|/getFilterMediaType|http://localhost:8080/getFilterMediaType?field= *media_type* |Sostituendo *media_type* con una delle parole chiavi IMAGE,VIDEO o CAROUSEL_ALBUM i post vengono filtrati e verranno restituiti solo quelli corrispondenti al *media_type* indicato|
 
 # Richieste
@@ -58,12 +57,12 @@ Inserendo al posto di *media_type* una delle tre parole chiave **IMAGE**,**VIDEO
  
  **GET CAPTION**
  * **Metodo:Ranking**
-Passando un elenco di hashtag a scelta dell'utente verrà restituito tra quelli scritti quello maggiormente presente sul profilo Instagram e il numero di volte che è stato ripetuto (**IMPORTANTE** separare l'elenco dei vari hashtag attraverso l'utilizzo delle virgole)
+Passando un elenco di hashtag/tag a scelta dell'utente verrà restituito tra quelli scritti quello maggiormente presente sul profilo Instagram e il numero di volte che è stato ripetuto (**IMPORTANTE** separare l'elenco dei vari hashtag attraverso l'utilizzo delle virgole)
 
 ![Cattsura](https://user-images.githubusercontent.com/94125029/147117013-6b6eb1ac-2885-4aec-8389-3df3684c1ae5.PNG)
 
 * **Metodo:NumberOfRepetition**
-Inserendo l'hashtag d'interesse (ad esempio #mare) verrà restituito il numero di volte in cui l'hashtag è stato utilizzato nei post
+Inserendo l'hashtag/tag d'interesse (ad esempio #mare) verrà restituito il numero di volte in cui l'hashtag è stato utilizzato nei post
 
 ![MicrosoftTeams-image (5)](https://user-images.githubusercontent.com/94125029/147116782-e7fb0394-7ddb-478a-9d49-3da488578859.png)
 
