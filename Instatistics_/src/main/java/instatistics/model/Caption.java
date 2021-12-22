@@ -20,7 +20,7 @@ public class Caption extends FieldSuggest{
      * tutti i post dell'utente eventualmente filtrati.
 	 */
 	public Caption (ArrayList<Post> allPost) {
-		super(allPost);
+		this.allPost=allPost;
 	}
 	/**
 	 *<b>Metod</b> che calcola il numero di volte 

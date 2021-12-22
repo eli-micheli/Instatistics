@@ -1,4 +1,6 @@
 package instatistics.model;
+
+
 /**
  * @author Mattioli Sara
  * @author Micheli ELisa
@@ -8,8 +10,7 @@ package instatistics.model;
  *estensioni.
  */
 public interface Field {
-	
 	public String NumberOfRepetition (String ObjectOfInterest);
 	public String Ranking(String[] input);
-    
+
 }

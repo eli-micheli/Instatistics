@@ -39,34 +39,7 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 	 * url per gestire richieste al post
 	 */
 	private String urlPost="https://graph.instagram.com/";
-	/**
-	 *<b>Metodo</b> permette di ottenere informazioni su tutti i post dell'utente 
-	 * il tipo di informazione è definita dalla variabile fields.
-	 * @param field oggetto del post su cui ottenere l'informazione.
-	 */
-	public JSONObject getDataUser(String field) {
-		JSONObject data_user=null;
-
-		try {
-			URLConnection openConnection=new URL(urlUtente+field+"&access_token="+token).openConnection();
-			InputStream in=openConnection.getInputStream();
-
-			String data="";
-			String line="";
-			try {
-				InputStreamReader inR= new InputStreamReader(in);
-				BufferedReader buf= new BufferedReader(inR);
-				while((line=buf.readLine()) != null) {
-					data+=line;
-				}
-
-			}finally {in.close();}
-       
-			data_user=(JSONObject) JSONValue.parseWithException(data);
-		}catch (IOException e ) {System.out.println("Errore");}
-		catch (Exception e) {System.out.println("Errore");}
-		return data_user;
-	}
+	
 	/**
 	 *<b>Metodo</b> permette di ottenere tutte le info possibili
 	 *da tutti i post dell'utente
@@ -95,61 +68,7 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 		catch (Exception e) {System.out.println("Errore");}
 		return all_user;
 	}
-	/**
-	 *<b>Metodo</b> permette di ottenere informazioni su un post dell'utente 
-	 *il tipo di informazione è definita dalla variabile fields.
-	 * @param field oggetto del post su cui ottenere l'informazione.
-	 */
-    public JSONObject getDataPost(String field) {
-			JSONObject data_post=null;
-			                     
-			try {
-				URLConnection openConnection=new URL(urlPost+idPost+"/?fields="+field+"&access_token="+token).openConnection();
-				InputStream in=openConnection.getInputStream();
-
-				String data="";
-				String line="";
-				try {
-					InputStreamReader inR= new InputStreamReader(in);
-					BufferedReader buf= new BufferedReader(inR);
-					while((line=buf.readLine()) != null) {
-						data+=line;
-					}
-
-				}finally {in.close();}
-
-				data_post=(JSONObject) JSONValue.parseWithException(data);
-			}catch (IOException e ) {System.out.println("Errore");}
-			catch (Exception e) {System.out.println("Errore");}
-			return data_post;
-		}
-    /**
-	 *<b>Metodo</b> permette di ottenere tutte le info possibili da un
-	 *solo post dell'utente
-	 */	
-	public JSONObject getAllPost() {
-		JSONObject all_post=null;
-
-		try {
-			URLConnection openConnection=new URL(urlPost+idPost+"/?fields=media_type,caption,timestamp"+"&access_token="+token).openConnection();
-			InputStream in=openConnection.getInputStream();
-
-			String data="";
-			String line="";
-			try {
-				InputStreamReader inR= new InputStreamReader(in);
-				BufferedReader buf= new BufferedReader(inR);
-				while((line=buf.readLine()) != null) {
-					data+=line;
-				}
-
-			}finally {in.close();}
-
-			all_post=(JSONObject) JSONValue.parseWithException(data);
-		}catch (IOException e ) {System.out.println("Errore");}
-		catch (Exception e) {System.out.println("Errore");}
-		return all_post;
-	}
+	
     /**
      * <b>Metodo</b> che prende il JSON che ritorna l'api di instagram e lo mette in un ArrayList.
      * Serve come metodo di collegamento tra i dati e le sattistiche.

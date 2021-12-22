@@ -23,16 +23,7 @@ public class InstatisticsController {
 private InstatisticsServiceImpl instatisticsService;
 
 //la scrittura in Postman è getDataUser?field=media_type
-/**
- * <b>Rotta</b> che permette di ottenere un particolare tipo di dato
- * di tutti i post dell'user.
- * @param field dato desiderato.Puo' essere media_type,id,caption o datastamp.
- * @return json con i dati desiderati di tutti post.
- */
-@RequestMapping(value="/getDataUser")
-public ResponseEntity<Object> getDataUser(@RequestParam(name = "field", defaultValue = "media_type") String field) throws ParseException{
-	return new ResponseEntity<>(instatisticsService.getDataUser(field),HttpStatus.OK);
-} 
+
 /**
  * <b>Rotta</b> che permette di ottenere tutti i dati di tutti i post dell'user. 
  * @return json con tutti i dati di tutti i post dell'user.
@@ -41,30 +32,6 @@ public ResponseEntity<Object> getDataUser(@RequestParam(name = "field", defaultV
 public ResponseEntity<Object> getAllUser() throws ParseException{
 	return new ResponseEntity<>(instatisticsService.getAllUser(),HttpStatus.OK);
 } 
-/**
- * <b>Rotta</b> che permette di ottenere un particolare tipo di dato
- * di un particolare post dell'user.
- * @param field dato desiderato. Puo' essere media_type,id,caption o datastamp.
- * @return json con i dati desiderati del post.
- */
-@RequestMapping(value="/getDataPost")
-public ResponseEntity<Object> getDataPost(@RequestParam(name = "field", defaultValue = "media_type") String field) throws ParseException{
-	return new ResponseEntity<>(instatisticsService.getDataPost(field),HttpStatus.OK);
-}
-/**
- * <b>Rotta</b> che permette di ottenere tutti i dati di tutti di un post dell'user. 
- * @return json con tutti i dati di un post dell'user.
- */
-@RequestMapping(value="/getAllPost")
-public ResponseEntity<Object> getAllPost() throws ParseException{
-	return new ResponseEntity<>(instatisticsService.getAllPost(),HttpStatus.OK);
-} 
-
-/*
- * @RequestMapping(value="/lettura_json") public ResponseEntity<Object>
- * JsonReading() throws ParseException{ return new
- * ResponseEntity<>(instatisticsService.JsonReading(),HttpStatus.OK); }
- */ 
 /**
  * <b>Rotta</b> che permette di elaborare statistiche sul media_type di tutti i post dell'user.
  * @param metod statistica desiderata. Puo' essere Ranking,Suggestion o NumberOfRepetition.
