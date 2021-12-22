@@ -7,7 +7,10 @@ package instatistics.exception;
 public class metodNotFound extends Exception {
 	
 	private static final long serialVersionUID = 1L;
-
+/**
+ * 
+ * @param message message
+ */
 	public metodNotFound (String message){
 		super(message);
 	}

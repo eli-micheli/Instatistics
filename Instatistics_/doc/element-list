@@ -1,1 +1,6 @@
+com.example.Instatistics_
+instatistics.controller
 instatistics.exception
+instatistics.filters
+instatistics.model
+instatistics.service
