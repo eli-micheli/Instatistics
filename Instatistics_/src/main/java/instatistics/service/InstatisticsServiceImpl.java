@@ -1,5 +1,7 @@
 package instatistics.service;
 
+import instatistics.exception.fieldNotFound;
+import instatistics.exception.metodNotFound;
 import instatistics.filters.*;
 import instatistics.model.*;
 import java.io.BufferedReader;
@@ -24,7 +26,7 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 	/**
 	 * token dell'utente
 	 */
-	private String token=""; //da inserire
+	private String token="IGQVJXd0lIcFBVN1FKaXhfUkFyeDN4ck4xZAkNrUkZABMkNsNEt0STlremhfNVJ6MWpReVNWWHFtTlR0ZA0kwVWtRQU42OElOMVhlQTYxLVJ1ckEzb0lKXzFCWEh1U2IzQW4wU2V0MllsbVgzQ3dodWcxcwZDZD"; //da inserire
 	/**
 	 * id del post per getAllPost e getDataPost
 	 */
@@ -175,7 +177,7 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 	 *<b>Metodo</b> che permette di ottenere le statistiche sul tipo di post.
 	 */	
 	@SuppressWarnings("unchecked")
-	public JSONObject getMedia(String filter,String metod,String field) {
+	public JSONObject getMedia(String filter,String metod,String field) throws fieldNotFound,metodNotFound {
 		JSONObject JsonReturn = new JSONObject();
 		String [] filterInfo = filter.split(","); //filter continene il tipo  di filtro e la specifica
 		                                          //del filtro in una sola stringa. Con lo split divido le due informazioni.
@@ -199,7 +201,7 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 					if (field.equals("IMAGE") || field.equals("VIDEO") || field.equals("CAROUSEL_ALBUM")) {
 						JsonReturn.put("Numero ripetizioni", mediatype.NumberOfRepetition(field));
 					}
-					else {JsonReturn.put("Errore: ", "field non valido");}	
+					else {throw new fieldNotFound("field non valido");}	
 				break;
 				case ("Ranking"):
 					JsonReturn.put("Ranking", mediatype.Ranking(null));
@@ -209,7 +211,7 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 				break;
 				}
 			}
-			else {JsonReturn.put("Errore: ", "metod non valido");}
+			else {throw new metodNotFound("metod non valido");}
 		}
 		else {JsonReturn.put("Errore: ", "filter non valido");}
 		return JsonReturn;
@@ -218,7 +220,7 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 	 *<b>Metodo</b> che permette di ottenere le statistiche sulla data dei post.
 	 */	
 	@SuppressWarnings("unchecked")
-	public JSONObject getTimestamp(String metod,String field) {
+	public JSONObject getTimestamp(String metod,String field) throws fieldNotFound,metodNotFound {
 		JSONObject JsonReturn = new JSONObject();
 		if (metod.equals("NumberOfRepetition") || metod.equals("Ranking")) {
 		    ArrayList<Post> allPost=new ArrayList<Post>();
@@ -229,7 +231,7 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 				if (field.length() == 4) {
 				JsonReturn.put("Numero ripetizioni", timestamp.NumberOfRepetition(field));
 				}
-				else {JsonReturn.put("Errore: ", "field non valido");}	
+				else {throw new fieldNotFound ("field non valido");}	
 			break;
 			case ("Ranking"):
 				String [] input= field.split(",");
@@ -238,14 +240,14 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 			
 		   }
 		}
-		else {JsonReturn.put("Errore: ", "metod non valido");}
+		else {throw new metodNotFound("metod non valido");}
 		return JsonReturn;
 	}
 	/**
 	 *<b>Metodo</b> che permette di ottenere le statistiche sulla didascalia del post.
 	 */	
 	@SuppressWarnings("unchecked")
-	public JSONObject getCaption(String metod, String theme) {
+	public JSONObject getCaption(String metod, String theme) throws fieldNotFound,metodNotFound{
 		JSONObject JsonReturn=new JSONObject();
 		
 		if (metod.equals("NumberOfRepetition") || metod.equals("Suggestion") || metod.equals("Ranking")) {
@@ -260,7 +262,7 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 				else {JsonReturn.put("Errore: ", "inserire un tema a scelta tra: sport, insieme o cerimonia");}
 			break;
 			case ("NumberOfRepetition"):
-				if (theme.equals("null")){JsonReturn.put("Errore: ","inserire field");}
+				if (theme.equals("null")){throw new fieldNotFound("inserire field");}
 				else {JsonReturn.put("Ripetuto",caption.NumberOfRepetition(theme));}
 				
 		    break;
@@ -270,7 +272,7 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 		    break;
 			}
 		}
-		else {JsonReturn.put("Errore: ", "metod non valido");}
+		else {throw new metodNotFound("metod non valido");}
 		return JsonReturn;
 	}
 	/**
@@ -279,7 +281,7 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 	@SuppressWarnings("unchecked")
 	public ArrayList<Post> getFilterYear(String year) {
 		ArrayList<Post> filtratedPost= new ArrayList<Post>();
-		//JSONObject JsonReturn=new JSONObject();
+		
 		if (year.length() == 4) {
 		ArrayList<Post> allPost=new ArrayList<Post>();
 		allPost=JsonReading();

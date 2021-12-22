@@ -26,7 +26,7 @@ class InstatisticsApplicationTests extends TestCase {
 	public void TestSuggestion(){
 		
 		Caption i1 = new Caption(pp);
-        assertTrue(i1.Suggestion("sport").equals("#nopainnogain"));
+        assertTrue(i1.Suggestion("sport").equals("#sport"));
 	}
 	@Test
 	public void TestYearFilter() {

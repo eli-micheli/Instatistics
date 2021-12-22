@@ -7,6 +7,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import instatistics.exception.fieldNotFound;
+import instatistics.exception.metodNotFound;
 import instatistics.service.*;
 /**
  * <b>Classe</b> che descrive le rotte dell'API.
@@ -68,9 +71,11 @@ public ResponseEntity<Object> getAllPost() throws ParseException{
  * @param field parametro per il metodo "NumberOfRepetion".Indica il tipo di cui si
  * vuole conoscere le ripetizioni. 
  * @return json con le statistiche.
+ * @throws fieldNotFound 
+ * @throws metodNotFound 
  */
 @RequestMapping(value="/getMedia")
-public ResponseEntity<Object> getMedia(@RequestParam(name ="filter")String filter,@RequestParam(name = "metod") String metod, @RequestParam(name = "field", defaultValue = "null") String field) throws ParseException{
+public ResponseEntity<Object> getMedia(@RequestParam(name ="filter")String filter,@RequestParam(name = "metod") String metod, @RequestParam(name = "field", defaultValue = "null") String field) throws ParseException, fieldNotFound, metodNotFound{
 	return new ResponseEntity<>(instatisticsService.getMedia(filter,metod,field),HttpStatus.OK);
 } 
 /**
@@ -79,9 +84,10 @@ public ResponseEntity<Object> getMedia(@RequestParam(name ="filter")String filte
  * @param field parametro per il metodo "NumberOfRepetion".Indica l'anno di cui si
  * vuole conoscere le ripetizioni. 
  * @return json con le statistiche.
+ * @throws metodNotFound 
  */
 @RequestMapping(value="/getTimestamp")
-public ResponseEntity<Object> getTimestamp(@RequestParam(name = "metod") String metod,@RequestParam(name = "field") String field) throws ParseException{
+public ResponseEntity<Object> getTimestamp(@RequestParam(name = "metod") String metod,@RequestParam(name = "field") String field) throws ParseException,fieldNotFound, metodNotFound{
 	return new ResponseEntity<>(instatisticsService.getTimestamp(metod,field),HttpStatus.OK);
 }
 /**
@@ -94,7 +100,7 @@ public ResponseEntity<Object> getTimestamp(@RequestParam(name = "metod") String 
  * @return json con le statistiche.
  */
 @RequestMapping(value="/getCaption")
-public ResponseEntity<Object> getSuggestionOfCaption(@RequestParam(name = "metod") String metod,@RequestParam(name = "field", defaultValue = "null") String field) throws ParseException{
+public ResponseEntity<Object> getCaption(@RequestParam(name = "metod") String metod,@RequestParam(name = "field", defaultValue = "null") String field) throws ParseException,fieldNotFound,metodNotFound{
 	return new ResponseEntity<>(instatisticsService.getCaption(metod,field),HttpStatus.OK);
 }
 /**
