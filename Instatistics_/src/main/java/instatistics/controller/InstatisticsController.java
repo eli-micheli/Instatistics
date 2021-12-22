@@ -22,7 +22,6 @@ public class InstatisticsController {
 @Autowired
 private InstatisticsServiceImpl instatisticsService;
 
-//la scrittura in Postman è getDataUser?field=media_type
 
 /**
  * <b>Rotta</b> che permette di ottenere tutti i dati di tutti i post dell'user. 

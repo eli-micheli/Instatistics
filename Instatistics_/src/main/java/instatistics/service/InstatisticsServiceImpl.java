@@ -26,7 +26,7 @@ public class InstatisticsServiceImpl implements InstatisticsService {
 	/**
 	 * token dell'utente
 	 */
-	private String token="IGQVJXd0lIcFBVN1FKaXhfUkFyeDN4ck4xZAkNrUkZABMkNsNEt0STlremhfNVJ6MWpReVNWWHFtTlR0ZA0kwVWtRQU42OElOMVhlQTYxLVJ1ckEzb0lKXzFCWEh1U2IzQW4wU2V0MllsbVgzQ3dodWcxcwZDZD"; //da inserire
+	private String token="IGQVJYbHJXWlpCVmNpc2dtcHhnaU5lMlhWbVBCc0NQZA2JPc1RpTFNTcXl5ZAWpOQ2E2djBKRGNXanc3ZATNRY1Ftc1NraFMyTTlQN2VUSGE5ZAWI4MG9Yb0JNcmhhXzAxY0IzaGJLRjRXTlFpWFBtbUJQVgZDZD"; //da inserire
 	
     /**
      * url per gestire richieste al profilo

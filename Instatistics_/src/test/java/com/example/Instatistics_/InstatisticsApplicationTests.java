@@ -13,7 +13,11 @@ import instatistics.exception.metodNotFound;
 import junit.framework.TestCase;
 
 import java.util.ArrayList;
-
+/**
+ * <b> Classe </b> che racchiude i test con Junit.
+ * @author Micheli Elisa
+ * @author Mattioli Sara
+ */
 @SpringBootTest
 class InstatisticsApplicationTests extends TestCase {
 	ArrayList<Post> arrayPostTest ;
@@ -43,8 +47,13 @@ class InstatisticsApplicationTests extends TestCase {
 		 assertEquals(serviceTest.getCaption("Suggestion","wrongTheme"),jsonError);
 	}
 	@Test
-	public void TestYearFilter() {
-	    assertEquals(serviceTest.getFilterYear("22000"),arrayPostTest);
+	public void TestYearFilter() throws fieldNotFound {
+		try {
+	    serviceTest.getFilterYear("22000");
+	    fail("No exception generated");
+		} catch (fieldNotFound exception) {
+			exception.printStackTrace();
+		}
 	}
     @AfterEach
 	public void tearDown(){};
